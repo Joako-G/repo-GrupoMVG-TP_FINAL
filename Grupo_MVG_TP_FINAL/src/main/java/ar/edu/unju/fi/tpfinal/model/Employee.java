@@ -1,5 +1,6 @@
 package ar.edu.unju.fi.tpfinal.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,50 +26,65 @@ public class Employee {
 	@Column(name = "employeeNumber")
 	private Long id;
 	
-	@Column(name = "lastName")
+	@NotEmpty(message = "Debe ingresar su apellido")
+	@Column(name = "lastName", length = 50)
 	private String apellido;
 	
-	@Column(name = "firstName")
+	@NotEmpty(message = "Debe ingresar su nombre")
+	@Column(name = "firstName", length = 50)
 	private String nombre;
 	
-	@Column(name = "extension")
+	@NotNull
+	@Column(name = "extension", length = 10)
 	private String extension;
 	
-	@Column(name = "email")
+	@NotNull(message = "Debe ingresar su email")
+	@Column(name = "email", length = 100)
 	private String correo;
 	
+	@NotNull
+	@Column(name = "jobTitle", length = 50)
+	private String titulo;
+	
+	//Relacion con Office
 	@Autowired
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "officeCode")
+	@JoinColumn(name = "officeCode", nullable = false)
 	private Office oficina;
 	
+	//Relacion con Employee
 	@Autowired
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "reportsTo", referencedColumnName = "employeeNumber")
 	private Employee gerente;
 	
 	@OneToMany(mappedBy = "gerente")
-	private List<Employee> empleados;
+	private List<Employee> empleados = new ArrayList<Employee>();
 	
-	@Column(name = "jobTitle")
-	private String titulo;
+	//Relacion con Customer
+	@Autowired
+	@OneToMany(mappedBy = "empleado")
+	private List<Customer> clientes = new ArrayList<Customer>();
 	
 	public Employee() {
 		// TODO Auto-generated constructor stub
 	}
-
-	public Employee(Long id, String apellido, String nombre, String extension, String correo, Office oficina,
-			Employee gerente, List<Employee> empleados, String titulo) {
+	
+	public Employee(Long id, @NotEmpty(message = "Debe ingresar su apellido") String apellido,
+			@NotEmpty(message = "Debe ingresar su nombre") String nombre, @NotNull String extension,
+			@NotNull String correo, @NotNull String titulo, Office oficina, Employee gerente,
+			List<Employee> empleados, List<Customer> clientes) {
 		super();
 		this.id = id;
 		this.apellido = apellido;
 		this.nombre = nombre;
 		this.extension = extension;
 		this.correo = correo;
+		this.titulo = titulo;
 		this.oficina = oficina;
 		this.gerente = gerente;
 		this.empleados = empleados;
-		this.titulo = titulo;
+		this.clientes = clientes;
 	}
 
 	public Long getId() {
@@ -141,11 +159,19 @@ public class Employee {
 		this.titulo = titulo;
 	}
 
+	public List<Customer> getClientes() {
+		return clientes;
+	}
+
+	public void setClientes(List<Customer> clientes) {
+		this.clientes = clientes;
+	}
+
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", apellido=" + apellido + ", nombre=" + nombre + ", extension=" + extension
-				+ ", correo=" + correo + ", gerente=" + gerente + ", empleados=" + empleados + ", titulo=" + titulo
-				+ "]";
+				+ ", correo=" + correo + ", titulo=" + titulo + ", oficina=" + oficina + ", gerente=" + gerente
+				+ ", empleados=" + empleados + ", clientes=" + clientes + "]";
 	}
-	
+
 }
