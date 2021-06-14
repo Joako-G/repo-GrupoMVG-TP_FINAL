@@ -58,7 +58,7 @@ public class Customer {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="salesRepEmployeeNumber")
-	private int numeroEmpleado;
+	private Employee empleado;
 	
 	public Customer() {
 		// TODO Auto-generated constructor stub
@@ -66,7 +66,7 @@ public class Customer {
 
 	public Customer(Long idCliente, int clienteNombre, String apellido, String nombre, int telefono, String direccion1,
 			String direccion2, String ciudad, String estado, int codigoPostal, String pais, double limiteCredito,
-			int numeroEmpleado) {
+			Employee empleado) {
 		super();
 		this.idCliente = idCliente;
 		this.clienteNombre = clienteNombre;
@@ -80,7 +80,7 @@ public class Customer {
 		this.codigoPostal = codigoPostal;
 		this.pais = pais;
 		this.limiteCredito = limiteCredito;
-		this.numeroEmpleado = numeroEmpleado;
+		this.empleado = empleado;
 	}
 
 	public Long getIdCliente() {
@@ -179,12 +179,12 @@ public class Customer {
 		this.limiteCredito = limiteCredito;
 	}
 
-	public int getNumeroEmpleado() {
-		return numeroEmpleado;
+	public Employee getNumeroEmpleado() {
+		return empleado;
 	}
 
-	public void setNumeroEmpleado(int numeroEmpleado) {
-		this.numeroEmpleado = numeroEmpleado;
+	public void setNumeroEmpleado(Employee empleado) {
+		this.empleado = empleado;
 	}
 
 	@Override
@@ -192,7 +192,7 @@ public class Customer {
 		return "Customer [idCliente=" + idCliente + ", clienteNombre=" + clienteNombre + ", apellido=" + apellido
 				+ ", nombre=" + nombre + ", telefono=" + telefono + ", direccion1=" + direccion1 + ", direccion2="
 				+ direccion2 + ", ciudad=" + ciudad + ", estado=" + estado + ", codigoPostal=" + codigoPostal
-				+ ", pais=" + pais + ", limiteCredito=" + limiteCredito + ", numeroEmpleado=" + numeroEmpleado + "]";
+				+ ", pais=" + pais + ", limiteCredito=" + limiteCredito + ", empleado=" + empleado + "]";
 	}
 	
 	
