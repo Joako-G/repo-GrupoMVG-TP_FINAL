@@ -3,6 +3,7 @@ package ar.edu.unju.fi.tpfinal.model;
 import java.sql.Clob;
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -25,7 +26,7 @@ public class Order {
 	
 	@Id
 	@NotNull(message = "Debe elegir un id valido")
-	@OneToOne(mappedBy = "orderdetails")
+	@OneToOne(mappedBy = "orderdetails", cascade = CascadeType.ALL)
 	@Column(name = "orderNumber")
 	private int id;
 	
