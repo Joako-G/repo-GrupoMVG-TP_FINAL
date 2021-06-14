@@ -55,7 +55,7 @@ public class Order {
 	@Autowired
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "customerNumber", referencedColumnName = "customerNumber")
-	private Customer cliente;
+	private Customer idCliente;
 
 	public Order() {
 		super();

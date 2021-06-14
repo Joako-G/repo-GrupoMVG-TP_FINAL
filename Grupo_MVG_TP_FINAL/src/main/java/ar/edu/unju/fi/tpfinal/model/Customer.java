@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name="CUSTOMERS")
-public class Customers {
+public class Customer {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,11 +60,11 @@ public class Customers {
 	@JoinColumn(name="salesRepEmployeeNumber")
 	private int numeroEmpleado;
 	
-	public Customers() {
+	public Customer() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Customers(Long idCliente, int clienteNombre, String apellido, String nombre, int telefono, String direccion1,
+	public Customer(Long idCliente, int clienteNombre, String apellido, String nombre, int telefono, String direccion1,
 			String direccion2, String ciudad, String estado, int codigoPostal, String pais, double limiteCredito,
 			int numeroEmpleado) {
 		super();
@@ -189,7 +189,7 @@ public class Customers {
 
 	@Override
 	public String toString() {
-		return "Customers [idCliente=" + idCliente + ", clienteNombre=" + clienteNombre + ", apellido=" + apellido
+		return "Customer [idCliente=" + idCliente + ", clienteNombre=" + clienteNombre + ", apellido=" + apellido
 				+ ", nombre=" + nombre + ", telefono=" + telefono + ", direccion1=" + direccion1 + ", direccion2="
 				+ direccion2 + ", ciudad=" + ciudad + ", estado=" + estado + ", codigoPostal=" + codigoPostal
 				+ ", pais=" + pais + ", limiteCredito=" + limiteCredito + ", numeroEmpleado=" + numeroEmpleado + "]";
