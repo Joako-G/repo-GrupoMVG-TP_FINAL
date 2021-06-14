@@ -33,14 +33,14 @@ public class ProductLine {
 	private byte[] imagen;
 	
 	@OneToMany(mappedBy = "product")
-	private List<Products> productos = new ArrayList<Products>();
+	private List<Product> productos = new ArrayList<Product>();
 	
 	public ProductLine() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public ProductLine(String lineaDeProductos, String textDescripcion, String htmlDescripcion, byte[] imagen,
-			List<Products> productos) {
+			List<Product> productos) {
 		super();
 		this.lineaDeProductos = lineaDeProductos;
 		this.textDescripcion = textDescripcion;
@@ -81,11 +81,11 @@ public class ProductLine {
 		this.imagen = imagen;
 	}
 
-	public List<Products> getProductos() {
+	public List<Product> getProductos() {
 		return productos;
 	}
 
-	public void setProductos(List<Products> productos) {
+	public void setProductos(List<Product> productos) {
 		this.productos = productos;
 	}
 

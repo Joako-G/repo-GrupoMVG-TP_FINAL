@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name="PRODUCTS")
-public class Products {
+public class Product {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,14 +47,14 @@ public class Products {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="productLine")
-	private ProductLines productLine;
+	private ProductLine productLine;
 	
-	public Products() {
+	public Product() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Products(long productCode, String productName, LocalDate productScale, String productVendor,
-			String productDescription, int quantityInStock, float buyPrice, float mSRP, ProductLines productLine) {
+	public Product(long productCode, String productName, LocalDate productScale, String productVendor,
+			String productDescription, int quantityInStock, float buyPrice, float mSRP, ProductLine productLine) {
 		super();
 		this.productCode = productCode;
 		this.productName = productName;
@@ -133,11 +133,11 @@ public class Products {
 		MSRP = mSRP;
 	}
 
-	public ProductLines getProductLine() {
+	public ProductLine getProductLine() {
 		return productLine;
 	}
 
-	public void setProductLine(ProductLines productLine) {
+	public void setProductLine(ProductLine productLine) {
 		this.productLine = productLine;
 	}
 
