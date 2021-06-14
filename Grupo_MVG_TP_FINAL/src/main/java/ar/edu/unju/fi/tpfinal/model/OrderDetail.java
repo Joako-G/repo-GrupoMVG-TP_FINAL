@@ -23,7 +23,7 @@ public class OrderDetail {
 	@NotNull
 	@Autowired
 	@OneToOne(optional = false)
-	@JoinColumn(name = "orderNumber")
+	@JoinColumn(name = "orderNumber", referencedColumnName = "orderNumber")
 	private Order orden;
 	
 	@Id
