@@ -1,6 +1,8 @@
 package ar.edu.unju.fi.tpfinal.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -56,6 +59,9 @@ public class Product {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="productLine")
 	private ProductLine productLine;
+	
+	@OneToMany(mappedBy = "id")
+	private List<OrderDetail> orderDetails = new ArrayList<OrderDetail>();
 	
 	public Product() {
 		// TODO Auto-generated constructor stub

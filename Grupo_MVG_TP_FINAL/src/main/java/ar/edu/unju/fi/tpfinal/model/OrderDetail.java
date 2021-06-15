@@ -1,37 +1,26 @@
 package ar.edu.unju.fi.tpfinal.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 @Entity
 @Table(name="ORDERDETAILS")
-public class OrderDetail {
+public class OrderDetail implements Serializable{
 	
-	@Id
-	@NotNull
-	@Autowired
-	@OneToOne(optional = false)
-	@JoinColumn(name = "orderNumber", referencedColumnName = "orderNumber")
-	private Order orden;
-	
-	@Id
-	@NotNull
-	@Autowired
-	@OneToOne(optional = false)
-	@JoinColumn(name = "productCode")
-	private Product producto;
+	private static final long serialVersionUID = 1L;
+
+	@EmbeddedId
+	private OrderDetailsId id;
 	
 	@NotNull
 	@Min(value = 0, message = "La cantidad no puede ser menor a 0")
@@ -51,34 +40,23 @@ public class OrderDetail {
 		super();
 	}
 
-	public OrderDetail(@NotNull Order orden, Product producto,
+	public OrderDetail(OrderDetailsId id,
 			@NotNull @Min(value = 0, message = "La cantidad no puede ser menor a 0") int cantidad,
 			@NotNull @Min(value = 0, message = "El precio no puede ser menor a 0") BigDecimal precio,
 			@NotNull short numeroLinea) {
 		super();
-		this.orden = orden;
-		this.producto = producto;
+		this.id = id;
 		this.cantidad = cantidad;
 		this.precio = precio;
 		this.numeroLinea = numeroLinea;
 	}
 
-
-	public Order getOrden() {
-		return orden;
+	public OrderDetailsId getId() {
+		return id;
 	}
 
-	public void setOrden(Order orden) {
-		this.orden = orden;
-	}
-
-
-	public Product getProducto() {
-		return producto;
-	}
-
-	public void setProducto(Product producto) {
-		this.producto = producto;
+	public void setId(OrderDetailsId id) {
+		this.id = id;
 	}
 
 	public int getCantidad() {
@@ -105,11 +83,14 @@ public class OrderDetail {
 		this.numeroLinea = numeroLinea;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public String toString() {
-		return "OrderDetail [orden=" + orden + ", cantidad=" + cantidad + ", precio=" + precio + ", numeroLinea="
+		return "OrderDetail [id=" + id + ", cantidad=" + cantidad + ", precio=" + precio + ", numeroLinea="
 				+ numeroLinea + "]";
 	}
-	
-	
+
 }
