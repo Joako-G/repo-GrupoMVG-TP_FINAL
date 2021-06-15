@@ -79,7 +79,7 @@ public class Customer {
 	@JoinColumn(name="salesRepEmployeeNumber")
 	private Employee empleado;
 	
-	@OneToMany(mappedBy = "idCliente",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "cliente",cascade = CascadeType.ALL)
 	private List<Order> pedidos = new ArrayList<Order>();
 	
 	public Customer() {
