@@ -2,19 +2,19 @@ package ar.edu.unju.fi.tpfinal.model;
 
 import java.sql.Clob;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
@@ -25,7 +25,6 @@ public class Order {
 	
 	@Id
 	@NotNull(message = "Debe elegir un id valido")
-	@OneToOne(mappedBy = "orderdetails", cascade = CascadeType.ALL)
 	@Column(name = "orderNumber")
 	private int id;
 	
@@ -51,19 +50,23 @@ public class Order {
 	@Column(name = "comments")
 	private Clob comentarios;
 
-	@Autowired
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "customerNumber", referencedColumnName = "customerNumber")
-	private Customer cliente;
+	@JoinColumn(name = "customerNumber")
+	private Customer customerNumber;
+	
+	@OneToMany(mappedBy = "id")
+	private List<OrderDetail> orderDetails = new ArrayList<OrderDetail>();
 
 	public Order() {
 		super();
 	}
 
-	public Order(int id, @NotNull(message = "Debe elegir una fecha valida") LocalDate fechaOrden,
+	public Order(@NotNull(message = "Debe elegir un id valido") int id,
+			@NotNull(message = "Debe elegir una fecha valida") LocalDate fechaOrden,
 			@NotNull(message = "Debe elegir una fecha valida") LocalDate fechaRequerida,
 			@NotNull(message = "Debe elegir una fecha valida") LocalDate fechaEnvio,
-			@NotNull(message = "Debe ingresar el estado") String estado, Clob comentarios, Customer cliente) {
+			@NotNull(message = "Debe ingresar el estado") String estado, Clob comentarios, Customer customerNumber,
+			List<OrderDetail> orderDetails) {
 		super();
 		this.id = id;
 		this.fechaOrden = fechaOrden;
@@ -71,7 +74,8 @@ public class Order {
 		this.fechaEnvio = fechaEnvio;
 		this.estado = estado;
 		this.comentarios = comentarios;
-		this.cliente = cliente;
+		this.customerNumber = customerNumber;
+		this.orderDetails = orderDetails;
 	}
 
 	public int getId() {
@@ -122,19 +126,29 @@ public class Order {
 		this.comentarios = comentarios;
 	}
 
-	public Customer getIdCliente() {
-		return cliente;
+	public Customer getCustomerNumber() {
+		return customerNumber;
 	}
 
-	public void setIdCliente(Customer cliente) {
-		this.cliente = cliente;
+	public void setCustomerNumber(Customer customerNumber) {
+		this.customerNumber = customerNumber;
+	}
+
+	public List<OrderDetail> getOrderDetails() {
+		return orderDetails;
+	}
+
+	public void setOrderDetails(List<OrderDetail> orderDetails) {
+		this.orderDetails = orderDetails;
 	}
 
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", fechaOrden=" + fechaOrden + ", fechaRequerida=" + fechaRequerida + ", fechaEnvio="
-				+ fechaEnvio + ", estado=" + estado + ", comentarios=" + comentarios + "]";
+				+ fechaEnvio + ", estado=" + estado + ", comentarios=" + comentarios + ", customerNumber="
+				+ customerNumber + ", orderDetails=" + orderDetails + "]";
 	}
+
 	
 	
 }

@@ -79,8 +79,11 @@ public class Customer {
 	@JoinColumn(name="salesRepEmployeeNumber")
 	private Employee empleado;
 	
-	@OneToMany(mappedBy = "cliente",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customerNumber",cascade = CascadeType.ALL)
 	private List<Order> pedidos = new ArrayList<Order>();
+	
+	@OneToMany(mappedBy = "id",cascade = CascadeType.ALL)
+	private List<Payment> payments = new ArrayList<Payment>();
 	
 	public Customer() {
 		// TODO Auto-generated constructor stub
