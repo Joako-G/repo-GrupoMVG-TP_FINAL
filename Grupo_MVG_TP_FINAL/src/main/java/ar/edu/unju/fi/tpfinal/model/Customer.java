@@ -82,7 +82,7 @@ public class Customer {
 	@OneToMany(mappedBy = "customerNumber",cascade = CascadeType.ALL)
 	private List<Order> pedidos = new ArrayList<Order>();
 	
-	@OneToMany(mappedBy = "id",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "id.customerNumber",cascade = CascadeType.ALL)
 	private List<Payment> payments = new ArrayList<Payment>();
 	
 	public Customer() {
