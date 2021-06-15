@@ -11,7 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -20,31 +24,39 @@ import org.springframework.stereotype.Component;
 public class Product {
 	
 	@Id
+	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="productCode")
-	private long productCode;
+	private long id;
 	
-	@Column(name="productName")
-	private String productName;
+	@NotEmpty(message = "Debe ingresar el nombre del producto")
+	@Column(name="productName", length = 20)
+	private String nombreProducto;
 	
 	@Column(name="productSacle")
 	private LocalDate productScale;
 	
-	@Column(name="productVendor")
-	private String productVendor;
+	@NotEmpty(message = "Debe ingresar nombre de la empresa vendedora")
+	@Column(name="productVendor", length = 30)
+	private String vendedorProducto;
 	
-	@Column(name="productDescription")
-	private String productDescription;
+	@NotEmpty(message = "Debe ingresar descripcion del producto")
+	@Column(name="productDescription", length = 150)
+	private String descripcionProducto;
 	
+	@NotNull(message = "Debe ingresar el stock del producto")
 	@Column(name="quantityInStock")
-	private int quantityInStock;
+	private int stock;
 	
+	@NotNull(message = "Debe ingresar el precio del producto")
 	@Column(name="buyPrice")
-	private float buyPrice;
+	private float precioCompra;
 	
-	@Column(name="MSPR")
+	@Column(name="MSRP")
 	private float MSRP;
 	
+	@Autowired
+	@Valid
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="productLine")
 	private ProductLine productLine;
@@ -53,36 +65,39 @@ public class Product {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Product(long productCode, String productName, LocalDate productScale, String productVendor,
-			String productDescription, int quantityInStock, float buyPrice, float mSRP, ProductLine productLine) {
+	public Product(@NotNull long id, @NotEmpty(message = "Debe ingresar el nombre del producto") String nombreProducto,
+			LocalDate productScale,
+			@NotEmpty(message = "Debe ingresar nombre de la empresa vendedora") String vendedorProducto,
+			@NotEmpty(message = "Debe ingresar descripcion del producto") String descripcionProducto,
+			@NotNull(message = "Debe ingresar el stock del producto") int stock,
+			@NotNull(message = "Debe ingresar el precio del producto") float precioCompra, float mSRP,
+			@Valid ProductLine productLine) {
 		super();
-		this.productCode = productCode;
-		this.productName = productName;
+		this.id = id;
+		this.nombreProducto = nombreProducto;
 		this.productScale = productScale;
-		this.productVendor = productVendor;
-		this.productDescription = productDescription;
-		this.quantityInStock = quantityInStock;
-		this.buyPrice = buyPrice;
+		this.vendedorProducto = vendedorProducto;
+		this.descripcionProducto = descripcionProducto;
+		this.stock = stock;
+		this.precioCompra = precioCompra;
 		MSRP = mSRP;
 		this.productLine = productLine;
 	}
 
-
-
-	public long getProductCode() {
-		return productCode;
+	public long getId() {
+		return id;
 	}
 
-	public void setProductCode(long productCode) {
-		this.productCode = productCode;
+	public void setId(long id) {
+		this.id = id;
 	}
 
-	public String getProductName() {
-		return productName;
+	public String getNombreProducto() {
+		return nombreProducto;
 	}
 
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setNombreProducto(String nombreProducto) {
+		this.nombreProducto = nombreProducto;
 	}
 
 	public LocalDate getProductScale() {
@@ -93,36 +108,36 @@ public class Product {
 		this.productScale = productScale;
 	}
 
-	public String getProductVendor() {
-		return productVendor;
+	public String getVendedorProducto() {
+		return vendedorProducto;
 	}
 
-	public void setProductVendor(String productVendor) {
-		this.productVendor = productVendor;
+	public void setVendedorProducto(String vendedorProducto) {
+		this.vendedorProducto = vendedorProducto;
 	}
 
-	public String getProductDescription() {
-		return productDescription;
+	public String getDescripcionProducto() {
+		return descripcionProducto;
 	}
 
-	public void setProductDescription(String productDescription) {
-		this.productDescription = productDescription;
+	public void setDescripcionProducto(String descripcionProducto) {
+		this.descripcionProducto = descripcionProducto;
 	}
 
-	public int getQuantityInStock() {
-		return quantityInStock;
+	public int getStock() {
+		return stock;
 	}
 
-	public void setQuantityInStock(int quantityInStock) {
-		this.quantityInStock = quantityInStock;
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
 
-	public float getBuyPrice() {
-		return buyPrice;
+	public float getPrecioCompra() {
+		return precioCompra;
 	}
 
-	public void setBuyPrice(float buyPrice) {
-		this.buyPrice = buyPrice;
+	public void setPrecioCompra(float precioCompra) {
+		this.precioCompra = precioCompra;
 	}
 
 	public float getMSRP() {
@@ -143,10 +158,10 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "Products [productCode=" + productCode + ", productName=" + productName + ", productScale="
-				+ productScale + ", productVendor=" + productVendor + ", productDescription=" + productDescription
-				+ ", quantityInStock=" + quantityInStock + ", buyPrice=" + buyPrice + ", MSRP=" + MSRP
-				+ ", productLine=" + productLine + "]";
+		return "Product [id=" + id + ", nombreProducto=" + nombreProducto + ", productScale=" + productScale
+				+ ", vendedorProducto=" + vendedorProducto + ", descripcionProducto=" + descripcionProducto + ", stock="
+				+ stock + ", precioCompra=" + precioCompra + ", MSRP=" + MSRP + ", productLine=" + productLine + "]";
 	}
 	
+
 }

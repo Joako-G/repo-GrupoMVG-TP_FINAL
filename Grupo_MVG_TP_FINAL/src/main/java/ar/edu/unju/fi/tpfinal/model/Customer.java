@@ -9,7 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,58 +22,69 @@ import org.springframework.stereotype.Component;
 public class Customer {
 	
 	@Id
+	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="customerNumber")
 	private Long idCliente;
 	
-	@Column(name="customerName")
-	private int clienteNombre;
+	@NotNull(message = "Debe ingresar el nombre de la empresa")
+	@Column(name="customerName", length = 30)
+	private String empresaNombre;
 	
-	@Column(name="contactLastName")
+	@NotEmpty(message = "Debe ingresar el apellido")
+	@Column(name="contactLastName", length = 20)
 	private String apellido;
 	
-	@Column(name="contactFirsName")
+	@NotEmpty(message = "Debe ingresar el nombre")
+	@Column(name="contactFirsName", length = 30)
 	private String nombre;
 	
+	@NotNull(message = "Debe ingresar el numero de celular/telefono")
+	@Size(min=7,max=9,message = "Debe ingresar un numero valido")
 	@Column(name="phone")
 	private int telefono;
 	
+	@NotEmpty(message = "Debe ingresar la direccion")
 	@Column(name="addressLine1")
 	private String direccion1;
 	
 	@Column(name="addressLine2")
 	private String direccion2;
 	
+	@NotEmpty(message = "Debe ingresar el nombre de la ciudad")
 	@Column(name="city")
 	private String ciudad;
 	
 	@Column(name="state")
 	private String estado;
 	
+	
 	@Column(name="postalCode")
 	private int codigoPostal;
 	
+	@NotEmpty(message = "Debe ingresar el pais")
 	@Column(name="country")
 	private String pais;
 
+	@NotNull(message = "Debe ingresar un limite para el credito")
 	@Column(name="creditLimit")
 	private double limiteCredito;
 	
-	
+	@Autowired
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="salesRepEmployeeNumber")
-	private int numeroEmpleado;
+	private Employee numeroEmpleado;
 	
 	public Customer() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Customer(Long idCliente, int clienteNombre, String apellido, String nombre, int telefono, String direccion1,
+	public Customer(Long idCliente, String empresaNombre, String apellido, String nombre, int telefono, String direccion1,
 			String direccion2, String ciudad, String estado, int codigoPostal, String pais, double limiteCredito,
-			int numeroEmpleado) {
+			Employee numeroEmpleado) {
 		super();
 		this.idCliente = idCliente;
-		this.clienteNombre = clienteNombre;
+		this.empresaNombre = empresaNombre;
 		this.apellido = apellido;
 		this.nombre = nombre;
 		this.telefono = telefono;
@@ -91,12 +106,12 @@ public class Customer {
 		this.idCliente = idCliente;
 	}
 
-	public int getClienteNombre() {
-		return clienteNombre;
+	public String getEmpresaNombre() {
+		return empresaNombre;
 	}
 
-	public void setClienteNombre(int clienteNombre) {
-		this.clienteNombre = clienteNombre;
+	public void setEmpresaNombre(String empresaNombre) {
+		this.empresaNombre = empresaNombre;
 	}
 
 	public String getApellido() {
@@ -179,22 +194,20 @@ public class Customer {
 		this.limiteCredito = limiteCredito;
 	}
 
-	public int getNumeroEmpleado() {
+	public Employee getNumeroEmpleado() {
 		return numeroEmpleado;
 	}
 
-	public void setNumeroEmpleado(int numeroEmpleado) {
+	public void setNumeroEmpleado(Employee numeroEmpleado) {
 		this.numeroEmpleado = numeroEmpleado;
 	}
 
 	@Override
 	public String toString() {
-		return "Customer [idCliente=" + idCliente + ", clienteNombre=" + clienteNombre + ", apellido=" + apellido
+		return "Customer [idCliente=" + idCliente + ", empresaNombre=" + empresaNombre + ", apellido=" + apellido
 				+ ", nombre=" + nombre + ", telefono=" + telefono + ", direccion1=" + direccion1 + ", direccion2="
 				+ direccion2 + ", ciudad=" + ciudad + ", estado=" + estado + ", codigoPostal=" + codigoPostal
 				+ ", pais=" + pais + ", limiteCredito=" + limiteCredito + ", numeroEmpleado=" + numeroEmpleado + "]";
 	}
-	
-	
 	
 }
