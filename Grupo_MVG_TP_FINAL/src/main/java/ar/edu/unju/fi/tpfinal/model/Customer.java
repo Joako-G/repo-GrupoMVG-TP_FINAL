@@ -9,7 +9,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -22,40 +27,49 @@ public class Customer {
 	@Column(name="customerNumber")
 	private Long idCliente;
 	
-	@Column(name="customerName")
-	private int clienteNombre;
+	@NotEmpty(message = "Debe ingresar nombre de la empresa/negocio")
+	@Column(name="customerName", length = 50)
+	private int empresaNombre;
 	
-	@Column(name="contactLastName")
+	@NotEmpty(message = "Debe ingresar apellido del cliente")
+	@Column(name="contactLastName", length = 15)
 	private String apellido;
 	
-	@Column(name="contactFirsName")
+	@NotEmpty(message = "Debe ingresar nombre del cliente")
+	@Column(name="contactFirsName", length = 20)
 	private String nombre;
 	
+	@Min(value=1000000, message = "El numero de telefono debe ser mayor a 1000000")
+	@Max(value=999999999, message = "El numero de telefono no debe pasar los 999999999")
 	@Column(name="phone")
 	private int telefono;
 	
-	@Column(name="addressLine1")
+	@NotEmpty(message = "Debe ingresar la direccion")
+	@Column(name="addressLine1",length = 50)
 	private String direccion1;
 	
 	@Column(name="addressLine2")
 	private String direccion2;
 	
-	@Column(name="city")
+	@NotEmpty(message = "Debe ingresar la ciudad")
+	@Column(name="city", length = 30)
 	private String ciudad;
 	
-	@Column(name="state")
+	@Column(name="state", length = 20)
 	private String estado;
 	
 	@Column(name="postalCode")
 	private int codigoPostal;
 	
-	@Column(name="country")
+	@NotEmpty(message = "Debe ingresar el pais")
+	@Column(name="country", length = 15)
 	private String pais;
-
+	
+	@NotNull(message = "Debe ingresar limite de credito")
 	@Column(name="creditLimit")
 	private double limiteCredito;
 	
-	
+	@Autowired
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="salesRepEmployeeNumber")
 	private Employee empleado;
@@ -64,12 +78,12 @@ public class Customer {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Customer(Long idCliente, int clienteNombre, String apellido, String nombre, int telefono, String direccion1,
+	public Customer(Long idCliente, int empresaNombre, String apellido, String nombre, int telefono, String direccion1,
 			String direccion2, String ciudad, String estado, int codigoPostal, String pais, double limiteCredito,
 			Employee empleado) {
 		super();
 		this.idCliente = idCliente;
-		this.clienteNombre = clienteNombre;
+		this.empresaNombre = empresaNombre;
 		this.apellido = apellido;
 		this.nombre = nombre;
 		this.telefono = telefono;
@@ -91,12 +105,20 @@ public class Customer {
 		this.idCliente = idCliente;
 	}
 
-	public int getClienteNombre() {
-		return clienteNombre;
+	public int getEmpresaNombre() {
+		return empresaNombre;
 	}
 
-	public void setClienteNombre(int clienteNombre) {
-		this.clienteNombre = clienteNombre;
+	public void setEmpresaNombre(int empresaNombre) {
+		this.empresaNombre = empresaNombre;
+	}
+
+	public Employee getEmpleado() {
+		return empleado;
+	}
+
+	public void setEmpleado(Employee empleado) {
+		this.empleado = empleado;
 	}
 
 	public String getApellido() {
@@ -189,7 +211,7 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer [idCliente=" + idCliente + ", clienteNombre=" + clienteNombre + ", apellido=" + apellido
+		return "Customer [idCliente=" + idCliente + ", empresaNombre=" + empresaNombre + ", apellido=" + apellido
 				+ ", nombre=" + nombre + ", telefono=" + telefono + ", direccion1=" + direccion1 + ", direccion2="
 				+ direccion2 + ", ciudad=" + ciudad + ", estado=" + estado + ", codigoPostal=" + codigoPostal
 				+ ", pais=" + pais + ", limiteCredito=" + limiteCredito + ", empleado=" + empleado + "]";
