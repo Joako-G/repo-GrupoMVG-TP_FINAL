@@ -21,8 +21,8 @@ import org.springframework.stereotype.Component;
 public class Office {
 	
 	@Id
-	@Column(name = "officeCode")
-	private Long id;
+	@Column(name = "officeCode", length = 10)
+	private String id;
 	
 	@NotEmpty(message = "Debe ingresar la ciudad")
 	@Column(name = "city", length = 50)
@@ -61,7 +61,7 @@ public class Office {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Office(Long id, @NotEmpty(message = "Debe ingresar la ciudad") String ciudad,
+	public Office(String id, @NotEmpty(message = "Debe ingresar la ciudad") String ciudad,
 			@Min(value = 1000000, message = "El numero de telefono debe ser mayor a 1000000") @Max(value = 999999999, message = "El numero de telefono no debe superar los 9999999") int telefono,
 			@NotEmpty(message = "Debe ingresar la direccion") String direccion1, String direccion2,
 			@NotEmpty(message = "Debe ingresar el estado o provincia") String estado,
@@ -80,11 +80,11 @@ public class Office {
 		this.empleados = empleados;
 	}
 	
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

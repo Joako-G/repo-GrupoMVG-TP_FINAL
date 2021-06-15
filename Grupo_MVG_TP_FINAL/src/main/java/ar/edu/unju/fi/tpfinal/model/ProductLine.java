@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import org.springframework.stereotype.Component;
 
@@ -20,8 +21,9 @@ public class ProductLine {
 	
 	@Id
 	@Column(name = "productLine")
-	private String lineaDeProductos;
+	private String id;
 	
+	@NotEmpty(message = "Falta descripcion")
 	@Column(name = "textDescription")
 	private String textDescripcion;
 	
@@ -38,10 +40,10 @@ public class ProductLine {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ProductLine(String lineaDeProductos, String textDescripcion, String htmlDescripcion, byte[] imagen,
+	public ProductLine(String id, String textDescripcion, String htmlDescripcion, byte[] imagen,
 			List<Product> productos) {
 		super();
-		this.lineaDeProductos = lineaDeProductos;
+		this.id = id;
 		this.textDescripcion = textDescripcion;
 		this.htmlDescripcion = htmlDescripcion;
 		this.imagen = imagen;
@@ -49,11 +51,11 @@ public class ProductLine {
 	}
 
 	public String getLineaDeProductos() {
-		return lineaDeProductos;
+		return id;
 	}
 
-	public void setLineaDeProductos(String lineaDeProductos) {
-		this.lineaDeProductos = lineaDeProductos;
+	public void setLineaDeProductos(String id) {
+		this.id = id;
 	}
 
 	public String getTextDescripcion() {
@@ -90,7 +92,7 @@ public class ProductLine {
 
 	@Override
 	public String toString() {
-		return "ProductLine [lineaDeProductos=" + lineaDeProductos + ", textDescripcion=" + textDescripcion
+		return "ProductLine [id=" + id + ", textDescripcion=" + textDescripcion
 				+ ", htmlDescripcion=" + htmlDescripcion + ", imagen=" + Arrays.toString(imagen) + "]";
 	}
 
