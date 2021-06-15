@@ -25,7 +25,7 @@ public class Order {
 	
 	@Id
 	@NotNull(message = "Debe elegir un id valido")
-	@OneToOne(mappedBy = "orderdetails", cascade = CascadeType.ALL)
+	//@OneToOne(mappedBy = "orderdetails", cascade = CascadeType.ALL)
 	@Column(name = "orderNumber")
 	private int id;
 	
