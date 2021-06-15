@@ -54,7 +54,7 @@ public class Order {
 	@JoinColumn(name = "customerNumber")
 	private Customer customerNumber;
 	
-	@OneToMany(mappedBy = "id")
+	@OneToMany(mappedBy = "id.orderNumber")
 	private List<OrderDetail> orderDetails = new ArrayList<OrderDetail>();
 
 	public Order() {

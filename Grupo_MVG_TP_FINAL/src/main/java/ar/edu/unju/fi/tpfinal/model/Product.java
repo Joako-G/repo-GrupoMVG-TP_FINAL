@@ -60,7 +60,7 @@ public class Product {
 	@JoinColumn(name="productLine")
 	private ProductLine productLine;
 	
-	@OneToMany(mappedBy = "id")
+	@OneToMany(mappedBy = "id.productCode")
 	private List<OrderDetail> orderDetails = new ArrayList<OrderDetail>();
 	
 	public Product() {
