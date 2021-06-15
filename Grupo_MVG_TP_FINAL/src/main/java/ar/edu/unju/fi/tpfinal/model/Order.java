@@ -25,7 +25,7 @@ public class Order {
 	
 	@Id
 	@NotNull(message = "Debe elegir un id valido")
-	@OneToOne(mappedBy = "orderdetails", cascade = CascadeType.ALL)
+	//@OneToOne(mappedBy = "orderdetails", cascade = CascadeType.ALL)
 	@Column(name = "orderNumber")
 	private int id;
 	
@@ -54,7 +54,7 @@ public class Order {
 	@Autowired
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "customerNumber", referencedColumnName = "customerNumber")
-	private Customer idCliente;
+	private Customer cliente;
 
 	public Order() {
 		super();
@@ -63,7 +63,7 @@ public class Order {
 	public Order(int id, @NotNull(message = "Debe elegir una fecha valida") LocalDate fechaOrden,
 			@NotNull(message = "Debe elegir una fecha valida") LocalDate fechaRequerida,
 			@NotNull(message = "Debe elegir una fecha valida") LocalDate fechaEnvio,
-			@NotNull(message = "Debe ingresar el estado") String estado, Clob comentarios, Customer idCliente) {
+			@NotNull(message = "Debe ingresar el estado") String estado, Clob comentarios, Customer cliente) {
 		super();
 		this.id = id;
 		this.fechaOrden = fechaOrden;
@@ -71,7 +71,7 @@ public class Order {
 		this.fechaEnvio = fechaEnvio;
 		this.estado = estado;
 		this.comentarios = comentarios;
-		this.idCliente = idCliente;
+		this.cliente = cliente;
 	}
 
 	public int getId() {
@@ -123,11 +123,11 @@ public class Order {
 	}
 
 	public Customer getIdCliente() {
-		return idCliente;
+		return cliente;
 	}
 
-	public void setIdCliente(Customer idCliente) {
-		this.idCliente = idCliente;
+	public void setIdCliente(Customer cliente) {
+		this.cliente = cliente;
 	}
 
 	@Override

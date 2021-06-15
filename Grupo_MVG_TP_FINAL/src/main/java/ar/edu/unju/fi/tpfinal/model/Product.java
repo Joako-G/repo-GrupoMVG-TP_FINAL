@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -45,16 +46,17 @@ public class Product {
 	@Column(name="MSPR")
 	private float MSRP;
 	
+	@Autowired
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="productLine")
-	private ProductLine productLine;
+	private ProductLine lineaDeProductos;
 	
 	public Product() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Product(long productCode, String productName, LocalDate productScale, String productVendor,
-			String productDescription, int quantityInStock, float buyPrice, float mSRP, ProductLine productLine) {
+			String productDescription, int quantityInStock, float buyPrice, float mSRP, ProductLine lineaDeProductos) {
 		super();
 		this.productCode = productCode;
 		this.productName = productName;
@@ -64,7 +66,7 @@ public class Product {
 		this.quantityInStock = quantityInStock;
 		this.buyPrice = buyPrice;
 		MSRP = mSRP;
-		this.productLine = productLine;
+		this.lineaDeProductos = lineaDeProductos;
 	}
 
 
@@ -134,11 +136,11 @@ public class Product {
 	}
 
 	public ProductLine getProductLine() {
-		return productLine;
+		return lineaDeProductos;
 	}
 
-	public void setProductLine(ProductLine productLine) {
-		this.productLine = productLine;
+	public void setProductLine(ProductLine lineaDeProductos) {
+		this.lineaDeProductos = lineaDeProductos;
 	}
 
 	@Override
@@ -146,7 +148,7 @@ public class Product {
 		return "Products [productCode=" + productCode + ", productName=" + productName + ", productScale="
 				+ productScale + ", productVendor=" + productVendor + ", productDescription=" + productDescription
 				+ ", quantityInStock=" + quantityInStock + ", buyPrice=" + buyPrice + ", MSRP=" + MSRP
-				+ ", productLine=" + productLine + "]";
+				+ ", lineaDeProductos=" + lineaDeProductos + "]";
 	}
 	
 }
