@@ -1,5 +1,7 @@
 package ar.edu.unju.fi.tpfinal.service.imp;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,12 @@ public class EmployeeServiceMysqImp implements IEmployeeService {
 	@Override
 	public void guardarEmployee(Employee employee) {
 		employeeRepository.save(employee);
+	}
+	
+	@Override
+	public Optional<Employee> getEmployeePorId(Integer id) {
+		Optional<Employee> empleado = employeeRepository.findById(id);
+		return empleado;
 	}
 
 }
