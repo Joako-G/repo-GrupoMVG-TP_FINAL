@@ -28,8 +28,7 @@ public class Office {
 	@Column(name = "city", length = 50)
 	private String ciudad;
 	
-	@Min(value = 1000000, message = "El numero de telefono debe ser mayor a 1000000")
-	@Max(value= 999999999,message = "El numero de telefono no debe superar los 9999999")
+	@NotEmpty(message = "Debe ingresar el telefono")
 	@Column(name = "phone", length = 50)
 	private String telefono;
 	
@@ -62,6 +61,7 @@ public class Office {
 	}
 
 	public Office(String id, @NotEmpty(message = "Debe ingresar la ciudad") String ciudad,
+
 			@Min(value = 1000000, message = "El numero de telefono debe ser mayor a 1000000") @Max(value = 999999999, message = "El numero de telefono no debe superar los 9999999") String telefono,
 			@NotEmpty(message = "Debe ingresar la direccion") String direccion1, String direccion2,
 			@NotEmpty(message = "Debe ingresar el estado o provincia") String estado,
