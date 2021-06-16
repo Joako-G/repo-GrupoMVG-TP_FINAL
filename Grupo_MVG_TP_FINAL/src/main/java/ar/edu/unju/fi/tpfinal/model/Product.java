@@ -27,7 +27,7 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="productCode")
-	private long id;
+	private String id;
 	
 	@NotEmpty(message = "Debe ingresar nombre del producto")
 	@Column(name="productName", length = 20)
@@ -67,7 +67,7 @@ public class Product {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Product(long id, @NotEmpty(message = "Debe ingresar nombre del producto") String nombreProducto,
+	public Product(String id, @NotEmpty(message = "Debe ingresar nombre del producto") String nombreProducto,
 			@NotNull LocalDate productScale,
 			@NotEmpty(message = "Debe ingresar nombre de la empresa vendedora del producto") String vendedorProducto,
 			@NotEmpty(message = "Debe ingresar la descripcion del producto") String descripcion,
@@ -86,11 +86,11 @@ public class Product {
 		this.productLine = productLine;
 	}
 
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
