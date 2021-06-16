@@ -8,7 +8,7 @@ import ar.edu.unju.fi.tpfinal.repository.IProductLineRepository;
 import ar.edu.unju.fi.tpfinal.service.IProductLineService;
 
 @Service("productLineServiceMysql")
-public class ProductLineMysqlImp implements IProductLineService {
+public class ProductLineServiceMysqlImp implements IProductLineService {
 
 	@Autowired
 	private IProductLineRepository productLineRepository;
