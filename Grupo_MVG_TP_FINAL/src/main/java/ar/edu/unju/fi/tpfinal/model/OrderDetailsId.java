@@ -15,37 +15,37 @@ public class OrderDetailsId implements Serializable{
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name="orderNumber")
-	private Order orderNumber;
+	private Order order;
 	
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name="productCode")
-	private Product productCode;
+	private Product product;
 
 	public OrderDetailsId() {
 		super();
 	}
 
-	public OrderDetailsId(Order orderNumber, Product productCode) {
+	public OrderDetailsId(Order order, Product product) {
 		super();
-		this.orderNumber = orderNumber;
-		this.productCode = productCode;
+		this.order = order;
+		this.product = product;
 	}
 
 	public Order getOrderNumber() {
-		return orderNumber;
+		return order;
 	}
 
-	public void setOrderNumber(Order orderNumber) {
-		this.orderNumber = orderNumber;
+	public void setOrderNumber(Order order) {
+		this.order = order;
 	}
 
 	public Product getProductCode() {
-		return productCode;
+		return product;
 	}
 
-	public void setProductCode(Product productCode) {
-		this.productCode = productCode;
+	public void setProductCode(Product product) {
+		this.product = product;
 	}
 
 	public static long getSerialversionuid() {
@@ -54,7 +54,7 @@ public class OrderDetailsId implements Serializable{
 
 	@Override
 	public String toString() {
-		return "OrderDetailsId [orderNumber=" + orderNumber + ", productCode=" + productCode + "]";
+		return "OrderDetailsId [order=" + order + ", product=" + product + "]";
 	}
 
 }

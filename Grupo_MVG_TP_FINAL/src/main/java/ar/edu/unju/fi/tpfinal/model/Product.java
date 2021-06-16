@@ -53,10 +53,12 @@ public class Product {
 	@Column(name="MSRP")
 	private float MSRP;
 	
+	//Relacion con ProductLine
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="productLine")
 	private ProductLine productLine;
 	
+	//Relacion con OrderDetail
 	@OneToMany(mappedBy = "id.productCode")
 	private List<OrderDetail> orderDetails = new ArrayList<OrderDetail>();
 	

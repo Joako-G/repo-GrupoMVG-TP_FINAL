@@ -16,7 +16,7 @@ public class PaymentId implements Serializable{
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name="customerNumber")
-	private Customer customerNumber;
+	private Customer customer;
 	
 	@NotNull
 	@Column(name="checkNumber")
@@ -26,18 +26,18 @@ public class PaymentId implements Serializable{
 		super();
 	}
 
-	public PaymentId(@NotNull Customer customerNumber, @NotNull String numeroCheque) {
+	public PaymentId(@NotNull Customer customer, @NotNull String numeroCheque) {
 		super();
-		this.customerNumber = customerNumber;
+		this.customer = customer;
 		this.numeroCheque = numeroCheque;
 	}
 
 	public Customer getCustomerNumber() {
-		return customerNumber;
+		return customer;
 	}
 
-	public void setCustomerNumber(Customer customerNumber) {
-		this.customerNumber = customerNumber;
+	public void setCustomerNumber(Customer customer) {
+		this.customer = customer;
 	}
 
 	public String getNumeroCheque() {
@@ -54,7 +54,7 @@ public class PaymentId implements Serializable{
 
 	@Override
 	public String toString() {
-		return "PaymentId [customerNumber=" + customerNumber + ", numeroCheque=" + numeroCheque + "]";
+		return "PaymentId [customer=" + customer + ", numeroCheque=" + numeroCheque + "]";
 	}
 	
 	

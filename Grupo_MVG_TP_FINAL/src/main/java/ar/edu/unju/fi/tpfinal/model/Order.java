@@ -50,12 +50,14 @@ public class Order {
 	@Column(name = "comments")
 	private Clob comentarios;
 	
+	//Relacion con Customer
 	@NotNull(message = "Debe ingresar un cliente valido")
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "customerNumber")
-	private Customer customerNumber;
+	private Customer customer;
 	
-	@OneToMany(mappedBy = "id.orderNumber")
+	//Relacion con OrderDetail
+	@OneToMany(mappedBy = "id.order")
 	private List<OrderDetail> orderDetails = new ArrayList<OrderDetail>();
 
 	public Order() {
@@ -66,7 +68,7 @@ public class Order {
 			@NotNull(message = "Debe elegir una fecha valida") LocalDate fechaOrden,
 			@NotNull(message = "Debe elegir una fecha valida") LocalDate fechaRequerida,
 			@NotNull(message = "Debe elegir una fecha valida") LocalDate fechaEnvio,
-			@NotNull(message = "Debe ingresar el estado") String estado, Clob comentarios, Customer customerNumber,
+			@NotNull(message = "Debe ingresar el estado") String estado, Clob comentarios, Customer customer,
 			List<OrderDetail> orderDetails) {
 		super();
 		this.id = id;
@@ -75,7 +77,7 @@ public class Order {
 		this.fechaEnvio = fechaEnvio;
 		this.estado = estado;
 		this.comentarios = comentarios;
-		this.customerNumber = customerNumber;
+		this.customer = customer;
 		this.orderDetails = orderDetails;
 	}
 
@@ -128,11 +130,11 @@ public class Order {
 	}
 
 	public Customer getCustomerNumber() {
-		return customerNumber;
+		return customer;
 	}
 
 	public void setCustomerNumber(Customer customerNumber) {
-		this.customerNumber = customerNumber;
+		this.customer = customerNumber;
 	}
 
 	public List<OrderDetail> getOrderDetails() {
@@ -147,7 +149,7 @@ public class Order {
 	public String toString() {
 		return "Order [id=" + id + ", fechaOrden=" + fechaOrden + ", fechaRequerida=" + fechaRequerida + ", fechaEnvio="
 				+ fechaEnvio + ", estado=" + estado + ", comentarios=" + comentarios + ", customerNumber="
-				+ customerNumber + ", orderDetails=" + orderDetails + "]";
+				+ customer + ", orderDetails=" + orderDetails + "]";
 	}
 
 	
