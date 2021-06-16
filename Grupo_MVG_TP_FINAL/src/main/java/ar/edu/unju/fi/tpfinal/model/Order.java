@@ -49,7 +49,8 @@ public class Order {
 	
 	@Column(name = "comments")
 	private Clob comentarios;
-
+	
+	@NotNull(message = "Debe ingresar un cliente valido")
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "customerNumber")
 	private Customer customerNumber;

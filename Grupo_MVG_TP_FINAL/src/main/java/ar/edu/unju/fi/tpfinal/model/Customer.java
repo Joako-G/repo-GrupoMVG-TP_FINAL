@@ -1,5 +1,6 @@
 package ar.edu.unju.fi.tpfinal.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,8 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -32,47 +31,48 @@ public class Customer {
 	@Column(name="customerNumber")
 	private Long idCliente;
 	
-	@NotEmpty(message = "Debe ingresar nombre de la empresa/negocio")
+	@NotNull(message = "Debe ingresar nombre de la empresa/negocio")
 	@Column(name="customerName", length = 50)
-	private int empresaNombre;
+	private String clienteNombre;
 	
-	@NotEmpty(message = "Debe ingresar apellido del cliente")
-	@Column(name="contactLastName", length = 15)
+	@NotNull(message = "Debe ingresar apellido del cliente")
+	@Column(name="contactLastName", length = 50)
 	private String apellido;
 	
-	@NotEmpty(message = "Debe ingresar nombre del cliente")
-	@Column(name="contactFirsName", length = 20)
+	@NotNull(message = "Debe ingresar nombre del cliente")
+	@Column(name="contactFirsName", length = 50)
 	private String nombre;
 	
-	@Min(value=1000000, message = "El numero de telefono debe ser mayor a 1000000")
-	@Max(value=999999999, message = "El numero de telefono no debe pasar los 999999999")
-	@Column(name="phone")
-	private int telefono;
+	@NotNull
+	@Column(name="phone", length = 50)
+	private String telefono;
 	
-	@NotEmpty(message = "Debe ingresar la direccion")
+	@NotNull(message = "Debe ingresar la direccion")
 	@Column(name="addressLine1",length = 50)
 	private String direccion1;
 	
-	@Column(name="addressLine2")
+	@NotNull(message = "Debe ingresar la direccion")
+	@Column(name="addressLine2",length = 50)
 	private String direccion2;
 	
-	@NotEmpty(message = "Debe ingresar la ciudad")
-	@Column(name="city", length = 30)
+	@NotNull(message = "Debe ingresar la ciudad")
+	@Column(name="city", length = 50)
 	private String ciudad;
 	
-	@Column(name="state", length = 20)
+	@Column(name="state", length = 50)
 	private String estado;
 	
-	@Column(name="postalCode")
-	private int codigoPostal;
+	@Column(name="postalCode", length = 15)
+	private String codigoPostal;
 	
+	@NotNull
 	@NotEmpty(message = "Debe ingresar el pais")
-	@Column(name="country", length = 15)
+	@Column(name="country", length = 50)
 	private String pais;
 	
 	@NotNull(message = "Debe ingresar limite de credito")
 	@Column(name="creditLimit")
-	private double limiteCredito;
+	private BigDecimal limiteCredito;
 	
 	@Autowired
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -89,12 +89,19 @@ public class Customer {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Customer(Long idCliente, int empresaNombre, String apellido, String nombre, int telefono, String direccion1,
-			String direccion2, String ciudad, String estado, int codigoPostal, String pais, double limiteCredito,
-			Employee empleado) {
+	public Customer(Long idCliente,
+			@NotNull(message = "Debe ingresar nombre de la empresa/negocio") String clienteNombre,
+			@NotNull(message = "Debe ingresar apellido del cliente") String apellido,
+			@NotNull(message = "Debe ingresar nombre del cliente") String nombre, @NotNull String telefono,
+			@NotNull(message = "Debe ingresar la direccion") String direccion1,
+			@NotNull(message = "Debe ingresar la direccion") String direccion2,
+			@NotNull(message = "Debe ingresar la ciudad") String ciudad, String estado, String codigoPostal,
+			@NotEmpty(message = "Debe ingresar el pais") String pais,
+			@NotNull(message = "Debe ingresar limite de credito") BigDecimal limiteCredito, Employee empleado,
+			List<Order> pedidos, List<Payment> payments) {
 		super();
 		this.idCliente = idCliente;
-		this.empresaNombre = empresaNombre;
+		this.clienteNombre = clienteNombre;
 		this.apellido = apellido;
 		this.nombre = nombre;
 		this.telefono = telefono;
@@ -106,6 +113,8 @@ public class Customer {
 		this.pais = pais;
 		this.limiteCredito = limiteCredito;
 		this.empleado = empleado;
+		this.pedidos = pedidos;
+		this.payments = payments;
 	}
 
 	public Long getIdCliente() {
@@ -116,20 +125,12 @@ public class Customer {
 		this.idCliente = idCliente;
 	}
 
-	public int getEmpresaNombre() {
-		return empresaNombre;
+	public String getClienteNombre() {
+		return clienteNombre;
 	}
 
-	public void setEmpresaNombre(int empresaNombre) {
-		this.empresaNombre = empresaNombre;
-	}
-
-	public Employee getEmpleado() {
-		return empleado;
-	}
-
-	public void setEmpleado(Employee empleado) {
-		this.empleado = empleado;
+	public void setClienteNombre(String clienteNombre) {
+		this.clienteNombre = clienteNombre;
 	}
 
 	public String getApellido() {
@@ -148,11 +149,11 @@ public class Customer {
 		this.nombre = nombre;
 	}
 
-	public int getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(int telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 
@@ -188,11 +189,11 @@ public class Customer {
 		this.estado = estado;
 	}
 
-	public int getCodigoPostal() {
+	public String getCodigoPostal() {
 		return codigoPostal;
 	}
 
-	public void setCodigoPostal(int codigoPostal) {
+	public void setCodigoPostal(String codigoPostal) {
 		this.codigoPostal = codigoPostal;
 	}
 
@@ -204,30 +205,47 @@ public class Customer {
 		this.pais = pais;
 	}
 
-	public double getLimiteCredito() {
+	public BigDecimal getLimiteCredito() {
 		return limiteCredito;
 	}
 
-	public void setLimiteCredito(double limiteCredito) {
+	public void setLimiteCredito(BigDecimal limiteCredito) {
 		this.limiteCredito = limiteCredito;
 	}
 
-	public Employee getNumeroEmpleado() {
+	public Employee getEmpleado() {
 		return empleado;
 	}
 
-	public void setNumeroEmpleado(Employee empleado) {
+	public void setEmpleado(Employee empleado) {
 		this.empleado = empleado;
+	}
+
+	public List<Order> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Order> pedidos) {
+		this.pedidos = pedidos;
+	}
+
+	public List<Payment> getPayments() {
+		return payments;
+	}
+
+	public void setPayments(List<Payment> payments) {
+		this.payments = payments;
 	}
 
 	@Override
 	public String toString() {
-		return "Customer [idCliente=" + idCliente + ", empresaNombre=" + empresaNombre + ", apellido=" + apellido
+		return "Customer [idCliente=" + idCliente + ", clienteNombre=" + clienteNombre + ", apellido=" + apellido
 				+ ", nombre=" + nombre + ", telefono=" + telefono + ", direccion1=" + direccion1 + ", direccion2="
 				+ direccion2 + ", ciudad=" + ciudad + ", estado=" + estado + ", codigoPostal=" + codigoPostal
-				+ ", pais=" + pais + ", limiteCredito=" + limiteCredito + ", empleado=" + empleado + "]";
+				+ ", pais=" + pais + ", limiteCredito=" + limiteCredito + ", empleado=" + empleado + ", pedidos="
+				+ pedidos + ", payments=" + payments + "]";
 	}
-	
+
 	
 	
 }
