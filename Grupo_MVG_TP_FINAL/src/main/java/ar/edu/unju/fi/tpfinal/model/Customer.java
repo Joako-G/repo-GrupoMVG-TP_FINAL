@@ -70,7 +70,7 @@ public class Customer {
 	@Column(name="country", length = 50)
 	private String pais;
 	
-	@NotNull(message = "Debe ingresar limite de credito")
+	//@NotNull(message = "Debe ingresar limite de credito")
 	@Column(name="creditLimit")
 	private BigDecimal limiteCredito;
 	
