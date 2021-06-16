@@ -24,7 +24,7 @@ public class Employee {
 
 	@Id
 	@Column(name = "employeeNumber")
-	private Long id;
+	private Integer id;
 	
 	@NotEmpty(message = "Debe ingresar su apellido")
 	@Column(name = "lastName", length = 50)
@@ -70,7 +70,7 @@ public class Employee {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Employee(Long id, @NotEmpty(message = "Debe ingresar su apellido") String apellido,
+	public Employee(Integer id, @NotEmpty(message = "Debe ingresar su apellido") String apellido,
 			@NotEmpty(message = "Debe ingresar su nombre") String nombre, @NotNull String extension,
 			@NotNull String correo, @NotNull String titulo, Office oficina, Employee gerente,
 			List<Employee> empleados, List<Customer> clientes) {
@@ -87,11 +87,11 @@ public class Employee {
 		this.clientes = clientes;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
