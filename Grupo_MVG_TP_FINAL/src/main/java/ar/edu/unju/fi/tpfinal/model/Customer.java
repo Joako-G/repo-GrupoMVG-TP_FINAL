@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -79,10 +78,12 @@ public class Customer {
 	@JoinColumn(name="salesRepEmployeeNumber")
 	private Employee empleado;
 	
-	@OneToMany(mappedBy = "customerNumber",cascade = CascadeType.ALL)
+	//Relacion con Order
+	@OneToMany(mappedBy = "customer")
 	private List<Order> pedidos = new ArrayList<Order>();
 	
-	@OneToMany(mappedBy = "id.customerNumber",cascade = CascadeType.ALL)
+	//Relacion con Payment
+	@OneToMany(mappedBy = "id.customer")
 	private List<Payment> payments = new ArrayList<Payment>();
 	
 	public Customer() {

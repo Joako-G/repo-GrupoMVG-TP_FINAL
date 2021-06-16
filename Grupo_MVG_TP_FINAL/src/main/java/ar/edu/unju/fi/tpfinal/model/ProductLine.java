@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -33,7 +32,8 @@ public class ProductLine {
 	@Column(name = "image", length=100000)
 	private byte[] imagen;
 	
-	@OneToMany(mappedBy = "productLine",cascade = CascadeType.ALL)
+	//Relacion con Product
+	@OneToMany(mappedBy = "productLine")
 	private List<Product> productos = new ArrayList<Product>();
 	
 	public ProductLine() {

@@ -3,7 +3,6 @@ package ar.edu.unju.fi.tpfinal.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -53,7 +52,8 @@ public class Office {
 	@Column(name = "territory", length = 10)
 	private String territorio;
 	
-	@OneToMany(mappedBy = "oficina",cascade = CascadeType.ALL)
+	//Relacion con Employee
+	@OneToMany(mappedBy = "oficina")
 	private List<Employee> empleados = new ArrayList<Employee>();
 	
 	public Office() {
