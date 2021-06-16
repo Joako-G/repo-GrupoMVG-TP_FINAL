@@ -20,17 +20,17 @@ import org.springframework.stereotype.Component;
 public class ProductLine {
 	
 	@Id
-	@Column(name = "productLine")
+	@Column(name = "productLine", length = 50)
 	private String id;
 	
 	@NotEmpty(message = "Falta descripcion")
-	@Column(name = "textDescription")
+	@Column(name = "textDescription", length = 4000)
 	private String textDescripcion;
 	
-	@Column(name = "htmlDescription")
+	@Column(name = "htmlDescription",columnDefinition = "MEDIUMTEXT")
 	private String htmlDescripcion;
 	
-	@Column(name = "image")
+	@Column(name = "image", length=100000)
 	private byte[] imagen;
 	
 	@OneToMany(mappedBy = "productLine",cascade = CascadeType.ALL)
