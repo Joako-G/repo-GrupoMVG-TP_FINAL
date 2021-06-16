@@ -40,14 +40,12 @@ public class ProductLine {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ProductLine(String id, String textDescripcion, String htmlDescripcion, byte[] imagen,
-			List<Product> productos) {
+	public ProductLine(String id, String textDescripcion, String htmlDescripcion, byte[] imagen) {
 		super();
 		this.id = id;
 		this.textDescripcion = textDescripcion;
 		this.htmlDescripcion = htmlDescripcion;
 		this.imagen = imagen;
-		this.productos = productos;
 	}
 
 	public String getLineaDeProductos() {
