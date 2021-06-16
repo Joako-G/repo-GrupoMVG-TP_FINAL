@@ -31,7 +31,7 @@ public class Product {
 	private String nombreProducto;
 	
 	@NotNull
-	@Column(name="productSacle")
+	@Column(name="productScale")
 	private LocalDate productScale;
 	
 	@NotEmpty(message = "Debe ingresar nombre de la empresa vendedora del producto")
