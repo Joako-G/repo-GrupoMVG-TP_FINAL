@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+			<div class="container py-3">
+				<div class="row">
+					<div class="col-md-10">
+						<h1>Alta de Marca de Producto</h1>
+						<form th:action="@{/productline/guardar}" th:object="${productline}" method="POST">
+	
+						  	<div class="form-group row">
+								<label for="idProd" class="col-md-4 col-form-label">Nombre de linea del producto</label>
+								<div class="col-md-8">
+									<input type="text" class="form-control" id="idProd" th:field="*{id}">
+								</div>
+							</div>
+			
+							<div class="form-group row">
+								<label for="textDescripcion" class="col-md-4 col-form-label">Descripcion del producto</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control" id="textDescripcion" th:field="*{textDescripcion}">
+									</div>
+							</div>
+			
+							<div class="form-group row">
+								<label for="htmlDescripcion" class="col-md-4 col-form-label">Descripcion de pagina html</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control" id="htmlDescripcion" th:field="*{htmlDescripcion}">
+									</div>
+							</div>
+							
+							<div class="form-group row">
+								<label for="imagen" class="col-md-4 col-form-label">Imagen</label>
+								<div class="col-md-8">
+									<input type="image" class="form-control" id="imagen" th:field="*{imagen}">
+								</div>
+							</div>
+							
+							<div class="form-group row">
+						    	<div class="col-md-8">
+						      		<button type="submit" class="btn btn-info">Guardar</button>
+						   		 </div>
+						  	</div>
+							
+						</form>
+					</div>
+					<!-- PUBLICIDAD  -->
+				</div>
+		</div>
+		
+		<!-- FOOTER -->
+		
+	</body>
+</html>

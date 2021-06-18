@@ -48,11 +48,11 @@ public class ProductLine {
 		this.imagen = imagen;
 	}
 
-	public String getLineaDeProductos() {
+	public String getId() {
 		return id;
 	}
 
-	public void setLineaDeProductos(String id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
