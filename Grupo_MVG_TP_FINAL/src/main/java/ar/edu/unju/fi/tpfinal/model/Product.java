@@ -59,7 +59,7 @@ public class Product {
 	private ProductLine productLine;
 	
 	//Relacion con OrderDetail
-	@OneToMany(mappedBy = "id.productCode")
+	@OneToMany(mappedBy = "id.product")
 	private List<OrderDetail> orderDetails = new ArrayList<OrderDetail>();
 	
 	public Product() {
