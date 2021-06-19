@@ -1,5 +1,7 @@
 package ar.edu.unju.fi.tpfinal.service.imp;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,12 @@ public class PaymentServiceMysqlImp implements IPaymentService {
 	public void guardarPayment(Payment payment) {
 		paymentRepository.save(payment);
 
+	}
+
+	@Override
+	public List<Payment> getPayments() {
+		List<Payment> payments = (List<Payment>) paymentRepository.findAll();
+		return payments;
 	}
 
 }

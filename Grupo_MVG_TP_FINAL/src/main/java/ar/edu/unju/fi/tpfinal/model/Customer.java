@@ -39,7 +39,7 @@ public class Customer {
 	private String apellido;
 	
 	@NotNull(message = "Debe ingresar nombre del cliente")
-	@Column(name="contactFirsName", length = 50)
+	@Column(name="contactFirstName", length = 50)
 	private String nombre;
 	
 	@NotNull
@@ -50,7 +50,6 @@ public class Customer {
 	@Column(name="addressLine1",length = 50)
 	private String direccion1;
 	
-	@NotNull(message = "Debe ingresar la direccion")
 	@Column(name="addressLine2",length = 50)
 	private String direccion2;
 	

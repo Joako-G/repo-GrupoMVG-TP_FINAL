@@ -39,7 +39,6 @@ public class Order {
 	private LocalDate fechaRequerida;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@NotNull(message = "Debe elegir una fecha valida")
 	@Column(name = "shippedDate")
 	private LocalDate fechaEnvio;
 	
