@@ -1,6 +1,6 @@
 package ar.edu.unju.fi.tpfinal.model;
 
-import java.time.LocalDate;
+import java.sql.Clob;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,20 +27,20 @@ public class Product {
 	private String id;
 	
 	@NotEmpty(message = "Debe ingresar nombre del producto")
-	@Column(name="productName", length = 20)
+	@Column(name="productName", length = 70)
 	private String nombreProducto;
 	
 	@NotNull
 	@Column(name="productScale")
-	private LocalDate productScale;
+	private String productScale;
 	
 	@NotEmpty(message = "Debe ingresar nombre de la empresa vendedora del producto")
-	@Column(name="productVendor", length = 30)
+	@Column(name="productVendor", length = 50)
 	private String vendedorProducto;
 	
 	@NotEmpty(message = "Debe ingresar la descripcion del producto")
-	@Column(name="productDescription", length = 100)
-	private String descripcion;
+	@Column(name="productDescription")
+	private Clob descripcion;
 	
 	@NotNull(message = "Debe ingresar stock del producto")
 	@Column(name="quantityInStock")
@@ -67,9 +67,9 @@ public class Product {
 	}
 
 	public Product(String id, @NotEmpty(message = "Debe ingresar nombre del producto") String nombreProducto,
-			@NotNull LocalDate productScale,
+			@NotNull @NotNull String productScale,
 			@NotEmpty(message = "Debe ingresar nombre de la empresa vendedora del producto") String vendedorProducto,
-			@NotEmpty(message = "Debe ingresar la descripcion del producto") String descripcion,
+			@NotEmpty(message = "Debe ingresar la descripcion del producto") Clob descripcion,
 			@NotNull(message = "Debe ingresar stock del producto") int stock,
 			@NotNull(message = "Debe ingresar el precio de compra") float precioCompra, float mSRP,
 			ProductLine productLine) {
@@ -101,11 +101,11 @@ public class Product {
 		this.nombreProducto = nombreProducto;
 	}
 
-	public LocalDate getProductScale() {
+	public String getProductScale() {
 		return productScale;
 	}
 
-	public void setProductScale(LocalDate productScale) {
+	public void setProductScale(String productScale) {
 		this.productScale = productScale;
 	}
 
@@ -117,11 +117,11 @@ public class Product {
 		this.vendedorProducto = vendedorProducto;
 	}
 
-	public String getDescripcion() {
+	public Clob getDescripcion() {
 		return descripcion;
 	}
 
-	public void setDescripcion(String descripcion) {
+	public void setDescripcion(Clob descripcion) {
 		this.descripcion = descripcion;
 	}
 

@@ -8,6 +8,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.stereotype.Component;
+
+@Component
 @Embeddable
 public class PaymentId implements Serializable{
 
@@ -16,7 +19,7 @@ public class PaymentId implements Serializable{
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name="customerNumber")
-	private Customer customer;
+	public Customer customer;
 	
 	@NotNull
 	@Column(name="checkNumber")
