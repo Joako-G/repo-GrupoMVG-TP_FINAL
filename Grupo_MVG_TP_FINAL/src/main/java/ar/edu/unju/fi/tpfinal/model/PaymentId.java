@@ -8,14 +8,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 
-@Component
 @Embeddable
 public class PaymentId implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
+	@Autowired
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name="customerNumber")

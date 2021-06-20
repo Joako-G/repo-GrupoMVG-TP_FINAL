@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Pagos</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Moderna - v2.2.1
+  * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <header th:replace="/layout/header :: header"></header>
+  
+  <main id="main">
+  
+  <!-- ======= Payment Section ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Ordenes de Compra</h2>
+          <ol>
+            <li><a href="index">Inicio</a></li>
+            <li>Ordenes de Compra</li>
+          </ol>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======= Payment Section ======= -->
+    
+    
+	<div class="container py-3">
+			<div class="row">
+				<div class="col-sm-12 col-md-12">
+										
+					<h1>Registro de Ordenes</h1>
+					
+					<div class="btn-group justify-content-center">
+					  <a href="/orden-nueva" class="btn btn-outline-info"><i class="bi bi-plus-square mr-2"></i>Agregar nuevo</a>
+					</div>
+					
+					<div class="table-responsive py-2">
+						<table class="table table-hover table-dark text-center">
+							<thead>
+								<tr>
+									<th scope="col">Número de Orden</th>
+									<th scope="col">Fecha de Orden</th>
+									<th scope="col">Fecha Requerida </th>
+									<th scope="col">Fecha de Envío</th>
+									<th scope="col">Estado</th>
+									<th scope="col">Número de Cliente</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="o : ${orders}">
+									<td th:text="${o.id}"></td>
+									<td th:text="${o.fechaOrden}"></td>
+									<td th:text="${o.fechaRequerida}"></td>
+									<td th:text="${o.fechaEnvio}"></td>
+									<td th:text="${o.estado}"></td>
+									<td th:text="${o.customer.idCliente}"></td>				
+									<td> 
+										<a th:href="@{/orden-nueva}+${o.id}" class="btn btn-warning">Editar</a>
+										<a th:href="@{/orden-eliminar}+${o.id}" class="btn btn-danger">Eliminar</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</main>
+	
+  <footer th:replace="/layout/footer :: footer"></footer>  
+
+</body>
+
+</html>

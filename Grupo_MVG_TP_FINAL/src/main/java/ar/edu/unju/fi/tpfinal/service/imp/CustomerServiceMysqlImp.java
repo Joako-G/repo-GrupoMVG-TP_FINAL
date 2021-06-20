@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.tpfinal.service.imp;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,12 @@ public class CustomerServiceMysqlImp implements ICustomerService{
 
 	@Override
 	public Customer getCustomer() {
+		return customer;
+	}
+
+	@Override
+	public Optional<Customer> getCustomerPorId(Long id) {
+		Optional <Customer> customer = customerRepository.findById(id);
 		return customer;
 	}
 }
