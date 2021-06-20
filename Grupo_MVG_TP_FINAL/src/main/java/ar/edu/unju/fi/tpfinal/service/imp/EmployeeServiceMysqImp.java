@@ -1,5 +1,6 @@
 package ar.edu.unju.fi.tpfinal.service.imp;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,12 @@ public class EmployeeServiceMysqImp implements IEmployeeService {
 	public Optional<Employee> getEmployeePorId(Integer id) {
 		Optional<Employee> empleado = employeeRepository.findById(id);
 		return empleado;
+	}
+
+	@Override
+	public List<Employee> getEmployees() {
+		List<Employee> employees = (List<Employee>) employeeRepository.findAll();
+		return employees;
 	}
 
 }
