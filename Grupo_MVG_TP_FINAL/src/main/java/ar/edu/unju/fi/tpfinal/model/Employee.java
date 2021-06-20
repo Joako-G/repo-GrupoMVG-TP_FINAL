@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -23,6 +25,7 @@ import org.springframework.stereotype.Component;
 public class Employee {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "employeeNumber")
 	private Integer id;
 	
@@ -56,9 +59,9 @@ public class Employee {
 	@Autowired
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "reportsTo", referencedColumnName = "employeeNumber")
-	private Employee gerente;
+	private Employee superior;
 	
-	@OneToMany(mappedBy = "gerente")
+	@OneToMany(mappedBy = "superior")
 	private List<Employee> empleados = new ArrayList<Employee>();
 	
 	//Relacion con Customer
@@ -72,7 +75,7 @@ public class Employee {
 	
 	public Employee(Integer id, @NotEmpty(message = "Debe ingresar su apellido") String apellido,
 			@NotEmpty(message = "Debe ingresar su nombre") String nombre, @NotNull String extension,
-			@NotNull String correo, @NotNull String titulo, Office oficina, Employee gerente,
+			@NotNull String correo, @NotNull String titulo, Office oficina, Employee superior,
 			List<Employee> empleados, List<Customer> clientes) {
 		super();
 		this.id = id;
@@ -82,7 +85,7 @@ public class Employee {
 		this.correo = correo;
 		this.titulo = titulo;
 		this.oficina = oficina;
-		this.gerente = gerente;
+		this.superior = superior;
 		this.empleados = empleados;
 		this.clientes = clientes;
 	}
@@ -135,12 +138,12 @@ public class Employee {
 		this.oficina = oficina;
 	}
 
-	public Employee getGerente() {
-		return gerente;
+	public Employee getSuperior() {
+		return superior;
 	}
 
-	public void setGerente(Employee gerente) {
-		this.gerente = gerente;
+	public void setSuperior(Employee superior) {
+		this.superior = superior;
 	}
 
 	public List<Employee> getEmpleados() {
@@ -170,7 +173,7 @@ public class Employee {
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", apellido=" + apellido + ", nombre=" + nombre + ", extension=" + extension
-				+ ", correo=" + correo + ", titulo=" + titulo + ", oficina=" + oficina + ", gerente=" + gerente
+				+ ", correo=" + correo + ", titulo=" + titulo + ", oficina=" + oficina + ", superior=" + superior
 				+ ", empleados=" + empleados + ", clientes=" + clientes + "]";
 	}
 
