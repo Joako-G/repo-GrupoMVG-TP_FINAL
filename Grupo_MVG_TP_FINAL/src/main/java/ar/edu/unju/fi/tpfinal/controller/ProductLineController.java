@@ -1,5 +1,7 @@
 package ar.edu.unju.fi.tpfinal.controller;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,23 +26,47 @@ public class ProductLineController {
 	@Autowired
 	private IProductLineService productLineService;
 	
-	@GetMapping("/productline/nuevo")
+	@GetMapping("/productline")
 	public String getNewProductLine(Model model) {
 		model.addAttribute("productline", productLine);
 		return "productline";
 	}
 	
-	@PostMapping("/productline/guardar")
+	@PostMapping("/guardar")
 	public ModelAndView guardarProductLinePage(@Valid @ModelAttribute("productline")ProductLine productLine, BindingResult resultado) {
 		ModelAndView model;
+		
 		if(resultado.hasErrors()) {
 			model = new ModelAndView("productline");
 			return model;
 		}
 		else {
-			model = new ModelAndView("productlinelist");
-			productLineService.guardarProductLine(productLine);
-			return model;
+				model = new ModelAndView("productlinelist");
+				productLineService.guardarProductLine(productLine);
+				model.addObject("productlinelist", productLineService.getProductLines());
+				return model;
 		}
+	}
+	
+	@GetMapping("/listado")
+	public ModelAndView getListadoPage() {
+		ModelAndView model = new ModelAndView("productlinelist");
+		model.addObject("productlinelist", productLineService.getProductLines());
+		return model;
+	}
+	
+	@GetMapping("/productline/editar/{id}")
+	public ModelAndView getEditarProductLinePage(@PathVariable(value="id")String id) {
+		ModelAndView model = new ModelAndView("productline");
+		Optional<ProductLine> prodcutLine = productLineService.getProducLinePorId(id);
+		model.addObject("productline", prodcutLine);
+		return model;
+	}
+	
+	@GetMapping("/productline/eliminar/{id}")
+	public ModelAndView getProductLineEliminar(@PathVariable(value="id")String id) {
+		ModelAndView model = new ModelAndView("redirect:/listado");
+		productLineService.eliminarProductLine(id);
+		return model;
 	}
 }
