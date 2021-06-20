@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
@@ -50,10 +51,11 @@ public class Order {
 	private Clob comentarios;
 	
 	//Relacion con Customer
+	@Autowired
 	@NotNull(message = "Debe ingresar un cliente valido")
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "customerNumber")
-	private Customer customer;
+	public Customer customer;
 	
 	//Relacion con OrderDetail
 	@OneToMany(mappedBy = "id.order")
