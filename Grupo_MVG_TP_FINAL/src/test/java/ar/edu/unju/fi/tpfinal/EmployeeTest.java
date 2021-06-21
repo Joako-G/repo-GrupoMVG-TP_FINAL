@@ -16,13 +16,13 @@ class EmployeeTest {
 	IEmployeeService employeeService;
 	@Test
 	void testGuardarEmployee() {
-		Employee employee1 = new Employee(Integer.valueOf(1002), "Murphy", "Diane", "x5800", "dmurphy@classicmodelcars.com", "President", null, null, null, null);
+		Employee employee1 = new Employee(Integer.valueOf(1), "Murphy", "Diane", "x5800", "dmurphy@classicmodelcars.com", "President", null, null, null, null);
 		employeeService.guardarEmployee(employee1);
 		
-		Employee employee2 = new Employee(Integer.valueOf(1504), "Jones", "Barry", "x102", "bjones@classicmodelcars.com", "Sales Rep", null, null, null, null);
+		Employee employee2 = new Employee(Integer.valueOf(2), "Jones", "Barry", "x102", "bjones@classicmodelcars.com", "Sales Rep", null, null, null, null);
 		employeeService.guardarEmployee(employee2);
 		
-		Employee employee3 = new Employee(Integer.valueOf(1370), "Bondur", "Gerard", "x5408", "gbondur@classicmodelcars.com", "Sale Manager (EMEA)", null, null, null, null);
+		Employee employee3 = new Employee(Integer.valueOf(3), "Bondur", "Gerard", "x5408", "gbondur@classicmodelcars.com", "Sale Manager (EMEA)", null, null, null, null);
 		employeeService.guardarEmployee(employee3);
 		
 		assertEquals("Murphy",employee1.getApellido());

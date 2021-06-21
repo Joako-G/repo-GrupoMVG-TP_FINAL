@@ -52,7 +52,7 @@ public class Employee {
 	//Relacion con Office
 	@Autowired
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "officeCode", nullable = false)
+	@JoinColumn(name = "officeCode")
 	private Office oficina;
 	
 	//Relacion con Employee
