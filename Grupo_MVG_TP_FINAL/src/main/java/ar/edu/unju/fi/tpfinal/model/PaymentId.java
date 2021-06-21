@@ -9,7 +9,9 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 @Embeddable
 public class PaymentId implements Serializable{
 
@@ -35,11 +37,11 @@ public class PaymentId implements Serializable{
 		this.numeroCheque = numeroCheque;
 	}
 
-	public Customer getCustomerNumber() {
+	public Customer getCustomer() {
 		return customer;
 	}
 
-	public void setCustomerNumber(Customer customer) {
+	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
 
@@ -59,6 +61,6 @@ public class PaymentId implements Serializable{
 	public String toString() {
 		return "PaymentId [customer=" + customer + ", numeroCheque=" + numeroCheque + "]";
 	}
-	
+
 	
 }

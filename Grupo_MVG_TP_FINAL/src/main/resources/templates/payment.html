@@ -87,8 +87,8 @@
 									<td th:text="${p.fechaPago}"></td>
 									<td th:text="${p.cantidad}"></td>
 									<td> 
-										<a th:href="@{/pago-editar}+${p.id.customer.idCliente}" class="btn btn-warning">Editar</a>
-										<a th:href="@{/pago-eliminar}+${p.id.numeroCheque}" class="btn btn-danger">Eliminar</a>
+										<a th:href="@{/pago-editar-}+${p.id.customer.idCliente}+'-'+${p.id.numeroCheque}" class="btn btn-warning">Editar</a>
+										<a th:href="@{/pago-eliminar-}+${p.id.customer.idCliente}+'-'+${p.id.numeroCheque}" class="btn btn-danger">Eliminar</a>
 									</td>
 								</tr>
 							</tbody>

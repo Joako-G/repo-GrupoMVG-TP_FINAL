@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Nuevo Pago</title>
+  <title>Pagos</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -39,75 +39,53 @@
 <body>
 
   <header th:replace="/layout/header :: header"></header>
-
+  
   <main id="main">
+  
+  <!-- ======= Payment Section ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
 
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Pagos</h2>
+          <ol>
+            <li><a href="index">Inicio</a></li>
+            <li>Pagos</li>
+          </ol>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======= Payment Section ======= -->
+    
+    
 	<div class="container py-3">
 			<div class="row">
-				<div class="col-md-10">
-					
+				<div class="col-sm-12 col-md-10 ">
+						
 					<div class="btn-group justify-content-center">
 					  <a href="/pago" class="btn btn-outline-info"><i class="bi bi-plus-square mr-2"></i>Volver</a>
 					</div>
 					<br><br>
+									
+					<h1>Registro eliminado</h1>
 					
-					<h1>Nuevo pago</h1>
+					</div>
 					
-					<form th:action="@{/pago-guardar}" th:object="${pago}" method="POST">
-					
-<!-- 						<input type="hidden" th:field="*{id.customer.idCliente}"/> -->
-<!-- 						<input type="hidden" th:field="*{id.numeroCheque}"/> -->
-					
-						<div class="form-group row">
-			
-						   <label for="cliente" class="col-md-4 col-form-label">Seleccionar cliente</label>
-						      <div class="col-md-8">
-						      <select th:field="*{id.customer.idCliente}" id="cliente" class="form-control">
-								  <option th:each="cli : ${clientes}" th:value="${cli.idCliente}" th:text="${cli.clienteNombre}"></option>
-								</select>
-							  </div>
-							  
-						</div>
-		        		
-						<div class="form-group row">
-							<label for="nroCheque" class="col-md-4 col-form-label">Número de cheque</label>
-							<div class="col-md-8">
-								<input type="text" class="form-control" id="nroCheque" th:field="*{id.numeroCheque}" >
-							</div>
-							
-						</div>
-						
-						
-						<div class="form-group row">
-							<label for="fechaPago" class="col-md-4 col-form-label">Fecha de pago</label>
-							<div class="col-md-8">
-								<input type="date" class="form-control" id="fechaPago" th:field="*{fechaPago}">
-							</div>
-							
-						</div>
-						
-						<div class="form-group row">
-							<label for="total" class="col-md-4 col-form-label">Total</label>
-							<div class="col-md-8">
-								<input type="number" class="form-control" id="total" th:field="*{cantidad}" step="any">
-							</div>
-							
-						</div>
-						
-						<div class="form-group row">
-					    	<div class="col-md-8">
-					      		<button type="submit" class="btn btn-info">Guardar</button>
-					   		 </div>
-					  	</div>
-					</form>
-				</div>
-				
+					<div class="row justify-content-md-center" style="padding-left: 5rem;">
+				         <div class="col-md-12 col-lg-12 d-flex align-items-stretch " data-aos="fade-up">
+				           <div class="icon-box icon-box-pink">
+				             <img alt="" src="assets/img/alerta.png" style="height: 3rem;">
+				             <h4 class="title"> ID del cliente:  <span th:text=" ${pid.customer.idCliente}"></span></h4>
+				             <h4 class="title"> Número de cheque:  <span th:text=" ${pid.numeroCheque}"></span></h4>
+				           </div>
+				         </div>
+					</div>
 			</div>
 		</div>
-
-   </main>  
-
-  <footer th:replace="/layout/footer :: footer"></footer>
+	</main>
+  <footer th:replace="/layout/footer :: footer"></footer>  
 
 </body>
 

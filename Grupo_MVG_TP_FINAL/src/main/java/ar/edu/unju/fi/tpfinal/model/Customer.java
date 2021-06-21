@@ -28,7 +28,7 @@ public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="customerNumber")
-	private Long idCliente;
+	public Long idCliente;
 	
 	@NotNull(message = "Debe ingresar nombre de la empresa/negocio")
 	@Column(name="customerName", length = 50)
