@@ -54,36 +54,36 @@
 					<h1>Nuevo pago</h1>
 					
 					<form th:action="@{/pago-guardar}" th:object="${pago}" method="POST">
-<!--  						<input type="hidden" th:field="*{id}"/>  -->
+					
+<!-- 						<input type="hidden" th:field="*{id.customer.idCliente}"/> -->
+<!-- 						<input type="hidden" th:field="*{id.numeroCheque}"/> -->
 					
 						<div class="form-group row">
 			
 						   <label for="cliente" class="col-md-4 col-form-label">Seleccionar cliente</label>
 						      <div class="col-md-8">
-						      <select th:field="*{id}" id="cliente" class="form-control">
-								  <option th:each="cli : ${clientes}" th:value="${cli.idCliente}" th:text="${cli.clienteNombre}"></option> <!--ERROR--!>
+						      <select th:field="*{id.customer.idCliente}" id="cliente" class="form-control">
+								  <option th:each="cli : ${clientes}" th:value="${cli.idCliente}" th:text="${cli.clienteNombre}"></option>
 								</select>
 							  </div>
 							  
 						</div>
-		
-		        		<div th:object="${pagoid}">
 		        		
-		        		</div>
 						<div class="form-group row">
 							<label for="nroCheque" class="col-md-4 col-form-label">Número de cheque</label>
 							<div class="col-md-8">
-								<input type="text" class="form-control" id="nroCheque" th:field="*{id.numeroCheque}" > <!--ERROR--!>
+								<input type="text" class="form-control" id="nroCheque" th:field="*{id.numeroCheque}" >
 							</div>
-							<div class="form-text text-danger col-sm-5 offset-4" role="alert" th:if="${#fields.hasErrors('id.numeroCheque')}" th:errors="*{id.numeroCheque}"></div>
+							
 						</div>
-		
+						
+						
 						<div class="form-group row">
 							<label for="fechaPago" class="col-md-4 col-form-label">Fecha de pago</label>
 							<div class="col-md-8">
 								<input type="date" class="form-control" id="fechaPago" th:field="*{fechaPago}">
 							</div>
-<!-- 							<div class="form-text text-danger col-sm-5 offset-4" role="alert" th:if="${#fields.hasErrors('fechaPago')}" th:errors="*{fechaPago}"></div> -->
+							
 						</div>
 						
 						<div class="form-group row">
@@ -91,7 +91,7 @@
 							<div class="col-md-8">
 								<input type="number" class="form-control" id="total" th:field="*{cantidad}" step="any">
 							</div>
-<!-- 							<div class="form-text text-danger col-sm-5 offset-4" role="alert" th:if="${#fields.hasErrors('cantidad')}" th:errors="*{cantidad}"></div> -->
+							
 						</div>
 						
 						<div class="form-group row">
@@ -99,7 +99,6 @@
 					      		<button type="submit" class="btn btn-info">Guardar</button>
 					   		 </div>
 					  	</div>
-						
 					</form>
 				</div>
 				

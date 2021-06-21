@@ -47,10 +47,10 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Ordenes de Compra</h2>
+          <h2>Pagos</h2>
           <ol>
             <li><a href="index">Inicio</a></li>
-            <li>Ordenes de Compra</li>
+            <li>Pagos</li>
           </ol>
         </div>
 
@@ -62,48 +62,29 @@
     
 	<div class="container py-3">
 			<div class="row">
-				<div class="col-sm-12 col-md-12">
-										
-					<h1>Registro de Ordenes</h1>
-					
+				<div class="col-sm-12 col-md-10 ">
+						
 					<div class="btn-group justify-content-center">
-					  <a href="/orden-nueva" class="btn btn-outline-info"><i class="bi bi-plus-square mr-2"></i>Agregar nuevo</a>
+					  <a href="/pago" class="btn btn-outline-info"><i class="bi bi-plus-square mr-2"></i>Volver</a>
+					</div>
+					<br><br>
+									
+					<h1>Registro eliminado</h1>
+					
 					</div>
 					
-					<div class="table-responsive py-2">
-						<table class="table table-hover table-dark text-center">
-							<thead>
-								<tr>
-									<th scope="col">Número de Orden</th>
-									<th scope="col">Fecha de Orden</th>
-									<th scope="col">Fecha Requerida </th>
-									<th scope="col">Fecha de Envío</th>
-									<th scope="col">Estado</th>
-									<th scope="col">Número de Cliente</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr th:each="o : ${orders}">
-									<td th:text="${o.id}"></td>
-									<td th:text="${o.fechaOrden}"></td>
-									<td th:text="${o.fechaRequerida}"></td>
-									<td th:text="${o.fechaEnvio}"></td>
-									<td th:text="${o.estado}"></td>
-									<td th:text="${o.customer.idCliente}"></td>				
-									<td> 
-										<a th:href="@{/orden-editar-}+${o.id}" class="btn btn-warning">Editar</a>
-										<a th:href="@{/orden-eliminar-}+${o.id}" class="btn btn-danger">Eliminar</a>
-									</td>
-								</tr>
-							</tbody>
-						</table>
+					<div class="row justify-content-md-center" style="padding-left: 5rem;">
+				         <div class="col-md-12 col-lg-12 d-flex align-items-stretch " data-aos="fade-up">
+				           <div class="icon-box icon-box-pink">
+				             <img alt="" src="assets/img/alerta.png" style="height: 3rem;">
+				             <h4 class="title"> ID del cliente:  <span th:text=" ${pid.customer.idCliente}"></span></h4>
+				             <h4 class="title"> Número de cheque:  <span th:text=" ${pid.numeroCheque}"></span></h4>
+				           </div>
+				         </div>
 					</div>
-				</div>
 			</div>
 		</div>
-
 	</main>
-	
   <footer th:replace="/layout/footer :: footer"></footer>  
 
 </body>

@@ -1,6 +1,5 @@
 package ar.edu.unju.fi.tpfinal.model;
 
-import java.sql.Clob;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +47,7 @@ public class Order {
 	private String estado;
 	
 	@Column(name = "comments")
-	private Clob comentarios;
+	private String comentarios;
 	
 	//Relacion con Customer
 	@Autowired
@@ -65,11 +64,11 @@ public class Order {
 		super();
 	}
 
-	public Order(@NotNull(message = "Debe elegir un id valido") int id,
+	public Order(@NotNull(message = "Debe elegir un id valido") @NotNull(message = "Debe elegir un id valido") @NotNull(message = "Debe elegir un id valido") int id,
 			@NotNull(message = "Debe elegir una fecha valida") LocalDate fechaOrden,
 			@NotNull(message = "Debe elegir una fecha valida") LocalDate fechaRequerida,
 			@NotNull(message = "Debe elegir una fecha valida") LocalDate fechaEnvio,
-			@NotNull(message = "Debe ingresar el estado") String estado, Clob comentarios, Customer customer,
+			@NotNull(message = "Debe ingresar el estado") String estado, String comentarios, Customer customer,
 			List<OrderDetail> orderDetails) {
 		super();
 		this.id = id;
@@ -122,20 +121,20 @@ public class Order {
 		this.estado = estado;
 	}
 
-	public Clob getComentarios() {
+	public String getComentarios() {
 		return comentarios;
 	}
 
-	public void setComentarios(Clob comentarios) {
+	public void setComentarios(String comentarios) {
 		this.comentarios = comentarios;
 	}
 
-	public Customer getCustomerNumber() {
+	public Customer getCustomer() {
 		return customer;
 	}
 
-	public void setCustomerNumber(Customer customerNumber) {
-		this.customer = customerNumber;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	public List<OrderDetail> getOrderDetails() {
