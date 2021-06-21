@@ -54,7 +54,7 @@
 					<h1>Nueva Orden de Compra</h1>
 					
 					<form th:action="@{/orden-guardar}" th:object="${orden}" method="POST">
- 						<input type="hidden" th:field="*{id}"/> 
+<!--  						<input type="hidden" th:field="*{id}"/>  -->
 
 						<div class="form-group row">
 							<label for="id" class="col-md-4 col-form-label">Número de Orden</label>
@@ -109,7 +109,7 @@
 			
 						   <label for="customer" class="col-md-4 col-form-label">Seleccionar cliente</label>
 						      <div class="col-md-8">
-						      <select th:field="*{id}" id="customer" class="form-control">
+						      <select th:field="*{customer.idCliente}" id="customer" class="form-control">
 								  <option th:each="cli : ${clientes}" th:value="${cli.idCliente}" th:text="${cli.clienteNombre}"></option>
 								</select>
 							  </div>
