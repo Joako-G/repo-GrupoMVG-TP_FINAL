@@ -33,4 +33,9 @@ public class EmployeeServiceMysqImp implements IEmployeeService {
 		return employees;
 	}
 
+	@Override
+	public void eliminarEmployee(Integer id) {
+		employeeRepository.deleteById(id);		
+	}
+
 }
