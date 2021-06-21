@@ -20,6 +20,7 @@ import org.springframework.stereotype.Component;
 public class ProductLine {
 	
 	@Id
+	@NotEmpty
 	@Column(name = "productLine", length = 50)
 	private String id;
 	

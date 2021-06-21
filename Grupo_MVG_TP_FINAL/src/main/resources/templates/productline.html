@@ -129,11 +129,12 @@
 				</div>
 					
 					<!--  <form th:action="@{/productline/guardar}" th:object="${productline}" method="POST" enctype="multipar/form-data">-->
-					<form th:action="@{/guardar}" th:object="${productline}" method="POST">
+					<form th:action="@{/productline-guardar}" th:object="${productline}" method="POST">
 						  <div class="form-group row">
-							<label for="idProd" class="col-md-4 col-form-label">Nombre de linea del producto</label>
+							<label for="idProd" class="col-md-4 col-form-label">Numero Identificacion</label>
 							<div class="col-md-8">
 								<input type="text" class="form-control" id="idProd" th:field="*{id}">
+								
 							</div>
 						</div>
 			
@@ -141,6 +142,7 @@
 							<label for="textDescripcion" class="col-md-4 col-form-label">Descripcion de la marca</label>
 								<div class="col-md-8">
 									<input type="text" class="form-control" id="textDescripcion" th:field="*{textDescripcion}">
+									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('textDescripcion')}" th:errors="*{textDescripcion}"></div>
 								</div>
 						</div>
 			

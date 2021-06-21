@@ -39,8 +39,14 @@ public class CustomerServiceMysqlImp implements ICustomerService{
 	}
 
 	@Override
-	public Optional<Customer> getCustomerPorId(Long id) {
-		Optional <Customer> customer = customerRepository.findById(id);
+	public Optional<Customer> getCustomerPorId(Long idCliente) {
+		Optional <Customer> customer = customerRepository.findById(idCliente);
 		return customer;
+	}
+
+	@Override
+	public void elimarCustomer(Long idCliente) {
+		customerRepository.deleteById(idCliente);
+		
 	}
 }

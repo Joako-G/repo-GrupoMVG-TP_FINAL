@@ -10,5 +10,6 @@ public interface ICustomerService {
 	public void guardarCustomer(Customer customer);
 	public List<Customer> getCustomers();
 	public Customer getCustomer();
-	public Optional<Customer> getCustomerPorId(Long id);
+	public Optional<Customer> getCustomerPorId(Long idCliente);
+	public void elimarCustomer(Long idCliente);
 }
