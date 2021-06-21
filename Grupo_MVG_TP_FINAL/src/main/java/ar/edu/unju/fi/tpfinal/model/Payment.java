@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 public class Payment {
 	
 	@EmbeddedId
-	private PaymentId id;	
+	private PaymentId id;
 	
 	@NotNull
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -34,7 +34,7 @@ public class Payment {
 	public Payment() {
 		super();
 	}
-
+	
 	public Payment(PaymentId id, @NotNull LocalDate fechaPago,
 			@NotNull @Min(value = 0, message = "La cantidad no puede ser menor a 0") BigDecimal cantidad) {
 		super();
@@ -54,7 +54,7 @@ public class Payment {
 	public LocalDate getFechaPago() {
 		return fechaPago;
 	}
-
+	
 	public void setFechaPago(LocalDate fechaPago) {
 		this.fechaPago = fechaPago;
 	}
@@ -71,6 +71,5 @@ public class Payment {
 	public String toString() {
 		return "Payment [id=" + id + ", fechaPago=" + fechaPago + ", cantidad=" + cantidad + "]";
 	}
-
 	
 }

@@ -5,6 +5,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,15 +25,16 @@ public class ProductLineController {
 	private ProductLine productLine;
 	
 	@Autowired
+	@Qualifier("productLineServiceMysql")
 	private IProductLineService productLineService;
 	
-	@GetMapping("/productline")
+	@GetMapping("/productline-nuevo")
 	public String getNewProductLine(Model model) {
 		model.addAttribute("productline", productLine);
 		return "productline";
 	}
 	
-	@PostMapping("/guardar")
+	@PostMapping("/productline-guardar")
 	public ModelAndView guardarProductLinePage(@Valid @ModelAttribute("productline")ProductLine productLine, BindingResult resultado) {
 		ModelAndView model;
 		
@@ -48,14 +50,14 @@ public class ProductLineController {
 		}
 	}
 	
-	@GetMapping("/listado")
+	@GetMapping("/productline-listado")
 	public ModelAndView getListadoPage() {
 		ModelAndView model = new ModelAndView("productlinelist");
 		model.addObject("productlinelist", productLineService.getProductLines());
 		return model;
 	}
 	
-	@GetMapping("/productline/editar/{id}")
+	@GetMapping("/productline-editar-{id}")
 	public ModelAndView getEditarProductLinePage(@PathVariable(value="id")String id) {
 		ModelAndView model = new ModelAndView("productline");
 		Optional<ProductLine> prodcutLine = productLineService.getProducLinePorId(id);
@@ -65,7 +67,7 @@ public class ProductLineController {
 	
 	@GetMapping("/productline/eliminar/{id}")
 	public ModelAndView getProductLineEliminar(@PathVariable(value="id")String id) {
-		ModelAndView model = new ModelAndView("redirect:/listado");
+		ModelAndView model = new ModelAndView("redirect:/productline-listado");
 		productLineService.eliminarProductLine(id);
 		return model;
 	}

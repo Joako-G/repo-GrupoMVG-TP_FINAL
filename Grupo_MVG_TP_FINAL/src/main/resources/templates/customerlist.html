@@ -125,32 +125,50 @@
 		<div class="container">
 				<div class="row">
 					<div class="col-md-12">	
-						<h1 align="center">Marcas Registradas</h1>
+						<h1 align="center">Clientes Registrados</h1>
 						<div class="btn-group py-2">
-							<a href="/productline-nuevo" class="btn btn-outline-info"><i class="bi bi-person-plus-fill mr-2"></i>Agregar nueva marca de producto</a>
+							<a href="/cliente-nuevo" class="btn btn-outline-info"><i class="bi bi-person-plus-fill mr-2"></i>Agregar cliente</a>
 						</div>
 					</div>
 					<div class="table-responsive">
-						<table id="productlinelist" class="table table-hover table-dark text-center">
+						<table id="customerlist" class="table table-hover table-dark text-center">
 							<thead>
 								<tr>
-									<th scope="col">Marca</th>
-									<th scope="col">Descripción</th>
-									<th scope="col">pagina web</th>
-									<th scope="col">Logo</th>
+									<th scope="col">Id</th>
+									<th scope="col">Empresa/Negocio</th>
+									<th scope="col">Apellido</th>
+									<th scope="col">Nombre web</th>
+									<th scope="col">Telefono</th>
+									<th scope="col">Direccion 1</th>
+									<th scope="col">Direccion 2</th>
+									<th scope="col">Ciduad</th>
+									<th scope="col">Estado</th>
+									<th scope="col">Codigo Postal</th>
+									<th scope="col">País</th>
+									<th scope="col">Limite Credito</th>
+						<!--  		<th scope="col">Empleado Vendedor</th>-->
 									<th scope="col">Acciones</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="prod : ${productlinelist}">
-									<td th:text="${prod.id}"></td>
-									<td th:text="${prod.textDescripcion}"></td>
-									<td th:text="${prod.htmlDescripcion}"></td>
-									<td th:text="${prod.imagen}"></td>
+								<tr th:each="cus : ${customers}">
+									<td th:text="${cus.idCliente}"></td>						
+									<td th:text="${cus.clienteNombre}"></td>
+									<td th:text="${cus.apellido}"></td>
+									<td th:text="${cus.nombre}"></td>
+									<td th:text="${cus.telefono}"></td>
+									<td th:text="${cus.direccion1}"></td>
+									<td th:text="${cus.direccion2}"></td>
+									<td th:text="${cus.ciudad}"></td>
+									<td th:text="${cus.estado}"></td>
+									<td th:text="${cus.codigoPostal}"></td>
+									<td th:text="${cus.pais}"></td>
+									<td th:text="${cus.limiteCredito}"></td>
+					<!--  			<td th:text="${cus.empleado.apellido}"></td>-->	
 									<td> 
-										<a th:href="@{/productline-editar-}+${prod.id}" class="btn btn-warning">Editar</a>
-										<a th:href="@{/productline/eliminar/}+${prod.id}" class="btn btn-danger">Eliminar</a>
-									</td>
+							 			<a th:href="@{/cliente-editar-}+${cus.idCliente}" class="btn btn-warning">Editar</a>
+										<a th:href="@{/cliente-eliminar-}+${cus.idCliente}" class="btn btn-danger">Eliminar</a>
+									</td>	
 								</tr>
 							</tbody>
 						</table>

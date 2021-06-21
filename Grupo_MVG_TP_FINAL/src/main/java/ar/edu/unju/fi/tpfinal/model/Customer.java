@@ -30,15 +30,15 @@ public class Customer {
 	@Column(name="customerNumber")
 	private Long idCliente;
 	
-	@NotNull(message = "Debe ingresar nombre de la empresa/negocio")
+	@NotEmpty(message = "Debe ingresar nombre de la empresa/negocio")
 	@Column(name="customerName", length = 50)
 	private String clienteNombre;
 	
-	@NotNull(message = "Debe ingresar apellido del cliente")
+	@NotEmpty(message = "Debe ingresar apellido del cliente")
 	@Column(name="contactLastName", length = 50)
 	private String apellido;
 	
-	@NotNull(message = "Debe ingresar nombre del cliente")
+	@NotEmpty(message = "Debe ingresar nombre del cliente")
 	@Column(name="contactFirstName", length = 50)
 	private String nombre;
 	
@@ -46,14 +46,14 @@ public class Customer {
 	@Column(name="phone", length = 50)
 	private String telefono;
 	
-	@NotNull(message = "Debe ingresar la direccion")
+	@NotEmpty(message = "Debe ingresar la direccion")
 	@Column(name="addressLine1",length = 50)
 	private String direccion1;
 	
 	@Column(name="addressLine2",length = 50)
 	private String direccion2;
 	
-	@NotNull(message = "Debe ingresar la ciudad")
+	@NotEmpty(message = "Debe ingresar la ciudad")
 	@Column(name="city", length = 50)
 	private String ciudad;
 	
@@ -63,7 +63,6 @@ public class Customer {
 	@Column(name="postalCode", length = 15)
 	private String codigoPostal;
 	
-	@NotNull
 	@NotEmpty(message = "Debe ingresar el pais")
 	@Column(name="country", length = 50)
 	private String pais;
