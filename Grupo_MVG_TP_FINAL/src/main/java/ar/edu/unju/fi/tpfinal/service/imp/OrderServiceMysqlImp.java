@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.tpfinal.service.imp;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -31,6 +32,19 @@ public class OrderServiceMysqlImp implements IOrderService {
 		LOGGER.info("METHOD: getOrders ---- Se consultó la tabla de ordenes");
 		List<Order> orders = (List<Order>) orderRepository.findAll();
 		return orders;
+	}
+
+	@Override
+	public Optional<Order> getOrderPorId(int id) {
+		Optional<Order> order = orderRepository.findById(id);
+		LOGGER.info("METHOD: getOrderPorId ---- Se buscó un objeto payment en la lista: " + order);
+		return order;
+	}
+
+	@Override
+	public void eliminarOrder(int id) {
+		orderRepository.deleteById(id);
+		LOGGER.info("METHOD: eliminarOrder ---- Se borró un objeto payment en la lista: " + "id de la orden: " + id);
 	}
 
 }
