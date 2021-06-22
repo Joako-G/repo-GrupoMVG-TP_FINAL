@@ -65,7 +65,6 @@ public class EmployeeController {
 	
 	@GetMapping("/empleados")
 	public String listarEmpleadosPage(Model model) {
-		model.addAttribute("employee", employee);
 		model.addAttribute("employees", employeeService.getEmployees());
 		return "employeelist";
 	}
