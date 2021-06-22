@@ -35,118 +35,34 @@
 		======================================================== -->
 	</head>
 	<body>
-		<!-- HEADER -->
-		<!-- ======= Header ======= -->
-		<header id="header" th:fragment="header"
-				class="fixed-top header-transparent">
-		    <div class="container">
-		
-		      <div class="logo float-left">
-		        <h1 class="text-light"><a href="index"><span>Umbrella</span></a></h1>
-		        <!-- Uncomment below if you prefer to use an image logo -->
-<!-- 		        <a href="index.html"><img src="../../assets/img/logo.png" alt="" class="img-fluid"></a> -->
-		      </div>
-		
-		      <nav class="nav-menu float-right d-none d-lg-block">
-		        <ul>
-		          <li><a href="index">Inicio</a></li>
-		          <li><a href="about">Sobre Nosotros</a></li>
-		          <li><a href="galeria">Galería</a></li>
-		          <li><a href="equipo">Nuestro equipo</a></li>
-		          <li class="drop-down"><a href="">Categorías</a>
-		            <ul>
-		              <li><a href="#">Líneas de productos</a></li>
-		              <li><a href="#">Productos</a></li>
-		              <li class="drop-down"><a href="#">Clientes y Compras</a>
-		                <ul>
-		                  <li><a href="#">Clientes</a></li>
-		                  <li><a href="#">Ordenes de compra</a></li>
-		                  <li><a href="#">Detalles de compra</a></li>
-		                  <li><a href="#">Pagos</a></li>
-		                </ul>
-		              </li>
-		              <li><a href="#">Oficinas</a></li>
-		              <li><a href="#">Empleados</a></li>
-		            </ul>
-		          </li>
-		          <li><a href="contacto">Contáctenos</a></li>
-		        </ul>
-		      </nav><!-- .nav-menu -->
-		
-		    </div>
-		  </header><!-- End Header -->
 	
-	
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex justify-cntent-center align-items-center">
-    <div id="heroCarousel" class="container carousel carousel-fade" data-ride="carousel">
-
-      <!-- Slide 1 -->
-      <div class="carousel-item active">
-        <div class="carousel-container">
-          <h2 class="animate__animated animate__fadeInDown">Bienvenidos a <span>Umbrella Corp.</span></h2>
-          <p class="animate__animated animate__fadeInUp">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam pariatur tenetur eius. Nesciunt excepturi laborum quisquam earum eos tenetur mollitia repellat esse, quam, aperiam sapiente ab iusto dolor illo ipsum.</p>
-          <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
-        </div>
-      </div>
-
-      <!-- Slide 2 -->
-      <div class="carousel-item">
-        <div class="carousel-container">
-          <h2 class="animate__animated animate__fadeInDown">Lorem Ipsum Dolor</h2>
-          <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-          <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
-        </div>
-      </div>
-
-      <!-- Slide 3 -->
-      <div class="carousel-item">
-        <div class="carousel-container">
-          <h2 class="animate__animated animate__fadeInDown">Sequi ea ut et est quaerat</h2>
-          <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-          <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
-        </div>
-      </div>
-
-      <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon bx bx-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-
-      <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
-        <span class="carousel-control-next-icon bx bx-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-
-    </div>
-  </section><!-- End Hero -->
-  
-	<main id="main">
-		<div class="container">
+		<header th:replace="/layout/header :: header"></header>
+		
+		<main id="main">
+			<div class="container">
 				<div class="row">
-				<div class="col-md-8">	
-					<h1>Alta de Cliente</h1>
-				</div>
-					
-					<form th:action="@{/cliente-guardar}" th:object="${customer}" method="POST">
-					
+					<div class="col-md-8">	
+						<h1>Alta de Cliente</h1>
+					</div>
 						
-						  <div class="form-group row">
+					<form th:action="@{/cliente-guardar}" th:object="${customer}" method="POST">
+						
+						<div class="form-group row">
 							<label for="clienteNombre" class="col-md-4 col-form-label">Nombre Empresa/Negocio</label>
 							<div class="col-md-8">
 								<input type="text" class="form-control" id="clienteNombre" th:field="*{clienteNombre}">
 								<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('clienteNombre')}" th:errors="*{clienteNombre}"></div>
 							</div>
 						</div>
-			
+				
 						<div class="form-group row">
 							<label for="apellido" class="col-md-4 col-form-label">Apellido</label>
-								<div class="col-md-8">
-									<input type="text" class="form-control" id="apellido" th:field="*{apellido}">
-									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></div>
-								</div>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="apellido" th:field="*{apellido}">
+								<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></div>
+							</div>
 						</div>
-			
+				
 						<div class="form-group row">
 							<label for="nombre" class="col-md-4 col-form-label">Nombre</label>
 								<div class="col-md-8">
@@ -154,93 +70,93 @@
 									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
 								</div>
 						</div>
-						
+							
 						<div class="form-group row">
 							<label for="telefono" class="col-md-4 col-form-label">Telefono</label>
-								<div class="col-md-8">
-									<input type="number" class="form-control" id="telefono" th:field="*{telefono}">
-									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div>
-								</div>
+							<div class="col-md-8">
+								<input type="number" class="form-control" id="telefono" th:field="*{telefono}">
+								<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div>
+							</div>
 						</div>
-						
+							
 						<div class="form-group row">
 							<label for="direccion1" class="col-md-4 col-form-label">Direccion 1</label>
-								<div class="col-md-8">
-									<input type="text" class="form-control" id="direccion1" th:field="*{direccion1}">
-									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('direccion1')}" th:errors="*{direccion1}"></div>
-								</div>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="direccion1" th:field="*{direccion1}">
+								<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('direccion1')}" th:errors="*{direccion1}"></div>
+							</div>
 						</div>
-						
+							
 						<div class="form-group row">
 							<label for="direccion2" class="col-md-4 col-form-label">Direccion 2(opcional)</label>
-								<div class="col-md-8">
-									<input type="text" class="form-control" id="direccion2" th:field="*{direccion2}">
-								</div>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="direccion2" th:field="*{direccion2}">
+							</div>
 						</div>
-							
+								
 						<div class="form-group row">
 							<label for="ciudad" class="col-md-4 col-form-label">Ciudad</label>
-								<div class="col-md-8">
-									<input type="text" class="form-control" id="ciudad" th:field="*{ciudad}">
-									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('ciudad')}" th:errors="*{ciudad}"></div>
-								</div>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="ciudad" th:field="*{ciudad}">
+								<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('ciudad')}" th:errors="*{ciudad}"></div>
+							</div>
 						</div>
-						
+							
 						<div class="form-group row">
 							<label for="estado" class="col-md-4 col-form-label">Estado</label>
-								<div class="col-md-8">
-									<input type="text" class="form-control" id="estado" th:field="*{estado}">
-									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></div>
-								</div>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="estado" th:field="*{estado}">
+								<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></div>
+							</div>
 						</div>
-						
+							
 						<div class="form-group row">
 							<label for="codigoPostal" class="col-md-4 col-form-label">Codigo Postal</label>
-								<div class="col-md-8">
-									<input type="number" class="form-control" id="codigoPostal" th:field="*{codigoPostal}">
-									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('codigoPostal')}" th:errors="*{codigoPostal}"></div>
-								</div>
+							<div class="col-md-8">
+								<input type="number" class="form-control" id="codigoPostal" th:field="*{codigoPostal}">
+								<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('codigoPostal')}" th:errors="*{codigoPostal}"></div>
+							</div>
 						</div>
-						
+							
 						<div class="form-group row">
 							<label for="pais" class="col-md-4 col-form-label">Pais</label>
-								<div class="col-md-8">
-									<input type="text" class="form-control" id="pais" th:field="*{pais}">
-									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}"></div>
-								</div>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="pais" th:field="*{pais}">
+								<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}"></div>
+							</div>
 						</div>
-						
+							
 						<div class="form-group row">
 							<label for="limiteCredito" class="col-md-4 col-form-label">Limite Credito</label>
-								<div class="col-md-8">
-									<input type="number" class="form-control" id="limiteCredito" th:field="*{limiteCredito}">
-									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('limiteCredito')}" th:errors="*{limiteCredito}"></div>
-								</div>
+							<div class="col-md-8">
+								<input type="number" class="form-control" id="limiteCredito" th:field="*{limiteCredito}">
+								<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('limiteCredito')}" th:errors="*{limiteCredito}"></div>
+							</div>
 						</div>
-						
+							
 						<!--<div><input type="hidden" th:field="*{empleado.id}"/></div>-->
 						<div class="form-group row">
-					      <label for="empleado">Seleccionar Empleado Vendedor</label>
-					      <select th:field="*{empleado.id}" id="empleado" class="form-control">
-							  <option th:each="emp : ${employees}" th:value="${emp.id}" th:text="${emp.apellido}"></option>
+							<label for="empleado">Seleccionar Empleado Vendedor</label>
+						    <select th:field="*{empleado.id}" id="empleado" class="form-control">
+								<option th:each="emp : ${employees}" th:value="${emp.id}" th:text="${emp.apellido}"></option>
 							</select>
 							<!--  <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('producto.id')}" th:errors="*{producto.id}"></div>-->
-					    </div>
-							
+						</div>
+								
 						<div class="form-group row">
 						    <div class="col-md-8">
 						      	<button type="submit" class="btn btn-info">Guardar</button>
 						   	 </div>
-						  </div>
-						
+						</div>
+							
 					</form>
-				<!-- PUBLICIDAD  -->
+					<!-- PUBLICIDAD  -->
+				</div>
 			</div>
-		</div>
-	</main><!-- End #main -->
+		</main><!-- End #main -->
 		
 		<!-- ======= Footer ======= -->
-  <footer th:replace="/layout/footer :: footer"></footer>
+  		<footer th:replace="/layout/footer :: footer"></footer>
 		
 	</body>
 </html>
