@@ -61,7 +61,7 @@ public class CustomerController {
 		}
 	}
 	
-	@GetMapping("/cliente-listado")
+	@GetMapping("/clientes")
 	public ModelAndView getClienteListadoPage() {
 		ModelAndView model = new ModelAndView("customerlist");
 		model.addObject("customer", customer);
