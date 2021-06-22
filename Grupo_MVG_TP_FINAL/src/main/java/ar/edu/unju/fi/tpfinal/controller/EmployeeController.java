@@ -70,10 +70,8 @@ public class EmployeeController {
 		return "employeelist";
 	}
 	
-	//CORREGIR
-	
-	@GetMapping("/editar-empleado/{id}")
-	public ModelAndView editarEmpleadoPage(@PathVariable (value = "id")Integer id) {
+	@GetMapping("/editar-empleado-{id}")
+	public ModelAndView modificarEmpleadoPage(@PathVariable (value = "id")Integer id) {
 		ModelAndView model = new ModelAndView("employee");
 		Optional<Employee> empleadoEncontrado = employeeService.getEmployeePorId(id);
 		model.addObject("employee", empleadoEncontrado);

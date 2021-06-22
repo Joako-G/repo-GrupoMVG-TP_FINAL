@@ -79,7 +79,7 @@ public class PaymentController {
 		return model;
 	}
 	
-	@GetMapping("//pago-eliminar-{id}-{id2}") //Funciona OK
+	@GetMapping("/pago-eliminar-{id}-{id2}") //Funciona OK
 	public ModelAndView eliminarPaymentPage(@PathVariable (value = "id")Long idCliente, @PathVariable (value = "id2")String idCheque) {
 		ModelAndView model = new ModelAndView("redirect:/pago-borrado");
 		paymentid.customer.setIdCliente(idCliente);
