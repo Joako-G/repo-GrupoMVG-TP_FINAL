@@ -65,15 +65,12 @@ public class EmployeeController {
 	
 	@GetMapping("/empleados")
 	public String listarEmpleadosPage(Model model) {
-		model.addAttribute("employee", employee);
 		model.addAttribute("employees", employeeService.getEmployees());
 		return "employeelist";
 	}
 	
-	//CORREGIR
-	
-	@GetMapping("/editar-empleado/{id}")
-	public ModelAndView editarEmpleadoPage(@PathVariable (value = "id")Integer id) {
+	@GetMapping("/editar-empleado-{id}")
+	public ModelAndView modificarEmpleadoPage(@PathVariable (value = "id")Integer id) {
 		ModelAndView model = new ModelAndView("employee");
 		Optional<Employee> empleadoEncontrado = employeeService.getEmployeePorId(id);
 		model.addObject("employee", empleadoEncontrado);

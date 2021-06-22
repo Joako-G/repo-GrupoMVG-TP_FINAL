@@ -10,5 +10,6 @@ public interface IOfficeService {
 	void guardarOffice(Office office);
 	public List<Office> getOffices();
 	public Optional<Office> getOfficePorId(String id);
+	void eliminarOffice(String id);
 
 }

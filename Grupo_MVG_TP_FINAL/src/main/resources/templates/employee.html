@@ -43,7 +43,7 @@
 						<h1>Registrar un nuevo empleado</h1>
 						<form th:action="@{/guardar-empleado}" th:object="${employee}" th:method="POST">
 		
-							
+							<input type="hidden" th:field="*{id}">
 							
 							<div class="form-group row">
 								<label for="apellido" class="col-md-2 col-form-label">Apellido</label>

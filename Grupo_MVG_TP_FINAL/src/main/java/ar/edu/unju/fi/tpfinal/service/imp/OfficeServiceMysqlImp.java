@@ -33,4 +33,10 @@ public class OfficeServiceMysqlImp implements IOfficeService {
 		return office;
 	}
 
+	@Override
+	public void eliminarOffice(String id) {
+		officeRepository.deleteById(id);
+		
+	}
+
 }
