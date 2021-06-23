@@ -83,7 +83,7 @@ public class CustomerController {
 	
 	@GetMapping("/cliente-eliminar-{idCliente}")
 		public ModelAndView getEliminarClientePage(@PathVariable(name="idCliente")Long idCliente) {
-			ModelAndView model = new ModelAndView("redirect:/cliente-listado");
+			ModelAndView model = new ModelAndView("redirect:/clientes");
 			customerService.elimarCustomer(idCliente);
 			return model;
 		}
