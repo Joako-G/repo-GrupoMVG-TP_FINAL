@@ -7,6 +7,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.stereotype.Component;
+
+@Component
 @Embeddable
 public class OrderDetailsId implements Serializable{
 
@@ -32,19 +35,19 @@ public class OrderDetailsId implements Serializable{
 		this.product = product;
 	}
 
-	public Order getOrderNumber() {
+	public Order getOrder() {
 		return order;
 	}
 
-	public void setOrderNumber(Order order) {
+	public void setOrder(Order order) {
 		this.order = order;
 	}
 
-	public Product getProductCode() {
+	public Product getProduct() {
 		return product;
 	}
 
-	public void setProductCode(Product product) {
+	public void setProduct(Product product) {
 		this.product = product;
 	}
 
