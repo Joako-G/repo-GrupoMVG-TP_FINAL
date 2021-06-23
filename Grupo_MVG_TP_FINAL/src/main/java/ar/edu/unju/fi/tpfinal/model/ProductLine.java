@@ -1,13 +1,11 @@
 package ar.edu.unju.fi.tpfinal.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -31,9 +29,9 @@ public class ProductLine {
 	@Column(name = "htmlDescription",columnDefinition = "MEDIUMTEXT")
 	private String htmlDescripcion;
 	
-	@Lob
 	@Column(name = "image", length=100000)
-	private byte[] imagen;
+	private String imagen;
+	//private byte[] imagen;
 	
 	//Relacion con Product
 	@OneToMany(mappedBy = "productLine")
@@ -43,7 +41,7 @@ public class ProductLine {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ProductLine(String id, String textDescripcion, String htmlDescripcion, byte[] imagen) {
+	public ProductLine(String id, String textDescripcion, String htmlDescripcion, String imagen) {
 		super();
 		this.id = id;
 		this.textDescripcion = textDescripcion;
@@ -75,11 +73,11 @@ public class ProductLine {
 		this.htmlDescripcion = htmlDescripcion;
 	}
 
-	public byte[] getImagen() {
+	public String getImagen() {
 		return imagen;
 	}
 
-	public void setImagen(byte[] imagen) {
+	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
 
@@ -93,8 +91,10 @@ public class ProductLine {
 
 	@Override
 	public String toString() {
-		return "ProductLine [id=" + id + ", textDescripcion=" + textDescripcion
-				+ ", htmlDescripcion=" + htmlDescripcion + ", imagen=" + Arrays.toString(imagen) + "]";
+		return "ProductLine [id=" + id + ", textDescripcion=" + textDescripcion + ", htmlDescripcion=" + htmlDescripcion
+				+ ", imagen=" + imagen + ", productos=" + productos + "]";
 	}
+
+	
 
 }
