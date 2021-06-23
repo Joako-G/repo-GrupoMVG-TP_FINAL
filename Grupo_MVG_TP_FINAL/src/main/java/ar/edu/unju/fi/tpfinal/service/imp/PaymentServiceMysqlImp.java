@@ -43,7 +43,7 @@ public class PaymentServiceMysqlImp implements IPaymentService {
 	@Override
 	public void eliminarPayment(PaymentId id) {
 		paymentRepository.deleteById(id);
-		LOGGER.info("METHOD: eliminarPayment ---- Se eliminó un objeto payment en la lista: " + "id cliente " + id.getCustomer().getIdCliente() + " - id cheque: " + id.getNumeroCheque());
+		LOGGER.info("METHOD: eliminarPayment ---- Se eliminó un objeto payment de la lista: " + "id cliente " + id.getCustomer().getIdCliente() + " - id cheque: " + id.getNumeroCheque());
 	}
 
 }
