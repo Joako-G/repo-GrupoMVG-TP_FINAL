@@ -146,7 +146,7 @@
 									<td th:text="${prod.id}"></td>
 									<td th:text="${prod.textDescripcion}"></td>
 									<td th:text="${prod.htmlDescripcion}"></td>
-									<td th:text="${prod.imagen}"></td>
+									<td><img th:src="@{'/uploads/' + ${prod.imagen}}" style="max-width: 9%"></td>
 									<td> 
 										<a th:href="@{/productline-editar-}+${prod.id}" class="btn btn-warning">Editar</a>
 										<a th:href="@{/productline/eliminar/}+${prod.id}" class="btn btn-danger">Eliminar</a>

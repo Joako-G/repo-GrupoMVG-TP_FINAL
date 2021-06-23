@@ -128,8 +128,8 @@
 					<h1>Alta de Marca de Producto</h1>
 				</div>
 					
-					<!--  <form th:action="@{/productline/guardar}" th:object="${productline}" method="POST" enctype="multipar/form-data">-->
-					<form th:action="@{/productline-guardar}" th:object="${productline}" method="POST">
+					  <form th:action="@{/productline-guardar}" th:object="${productline}" method="POST" enctype="multipart/form-data">
+					<!--<form th:action="@{/productline-guardar}" th:object="${productline}" method="POST">-->
 						  <div class="form-group row">
 							<label for="idProd" class="col-md-4 col-form-label">Numero Identificacion</label>
 							<div class="col-md-8">
@@ -155,8 +155,8 @@
 							
 						<div class="form-group row">
 							<div class="custom-file">
-							  <input type="file" class="custom-file-input" id="imagen" lang="es">
-							  <label class="custom-file-label" for="customFileLang">Seleccionar Imagen</label>
+								<label class="custom-file-label" for="imagen">Seleccionar Imagen</label>
+							  	<input type="file" name="file" class="custom-file-input" id="imagen">
 							</div>
 						</div>
 							
