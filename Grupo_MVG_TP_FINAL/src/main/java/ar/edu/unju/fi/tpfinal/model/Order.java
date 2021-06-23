@@ -148,8 +148,7 @@ public class Order {
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", fechaOrden=" + fechaOrden + ", fechaRequerida=" + fechaRequerida + ", fechaEnvio="
-				+ fechaEnvio + ", estado=" + estado + ", comentarios=" + comentarios + ", customerNumber="
-				+ customer + ", orderDetails=" + orderDetails + "]";
+				+ fechaEnvio + ", estado=" + estado + ", comentarios=" + comentarios + ", orderDetails=" + orderDetails + "]";
 	}
 
 	
