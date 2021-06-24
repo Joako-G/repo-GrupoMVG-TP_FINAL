@@ -27,7 +27,7 @@ public class Product {
 	
 	@NotEmpty(message = "Debe ingresar nombre del producto")
 	@Column(name="productName", length = 70)
-	private String nombreProducto;
+	public String nombreProducto;
 	
 	@NotNull
 	@Column(name="productScale")
@@ -72,6 +72,7 @@ public class Product {
 			@NotNull(message = "Debe ingresar stock del producto") int stock,
 			@NotNull(message = "Debe ingresar el precio de compra") double precioCompra, double mSRP,
 			ProductLine productLine) {
+
 		super();
 		this.id = id;
 		this.nombreProducto = nombreProducto;
@@ -81,8 +82,9 @@ public class Product {
 		this.stock = stock;
 		this.precioCompra = precioCompra;
 		MSRP = mSRP;
-		this.productLine = productLine;
 	}
+
+
 
 	public String getId() {
 		return id;

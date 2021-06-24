@@ -69,6 +69,7 @@ public class Order {
 			@NotNull(message = "Debe elegir una fecha valida") LocalDate fechaRequerida, LocalDate fechaEnvio,
 			@NotNull(message = "Debe ingresar el estado") String estado, String comentarios,
 			@NotNull(message = "Debe ingresar un cliente valido") Customer customer) {
+
 		super();
 		this.id = id;
 		this.fechaOrden = fechaOrden;
@@ -76,7 +77,6 @@ public class Order {
 		this.fechaEnvio = fechaEnvio;
 		this.estado = estado;
 		this.comentarios = comentarios;
-		this.customer = customer;
 	}
 
 	public Integer getId() {

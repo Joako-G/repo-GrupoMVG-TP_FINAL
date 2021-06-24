@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Pagos</title>
+  <title>Detalles</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -62,47 +62,29 @@
     
 	<div class="container py-3">
 			<div class="row">
-				<div class="col-sm-12 col-md-12">
-										
-					<h1>Registro de Detalles de Ordenes de Compra</h1>
-					
+				<div class="col-sm-12 col-md-10 ">
+						
 					<div class="btn-group justify-content-center">
-					  <a href="/detalle-nuevo" class="btn btn-outline-info"><i class="bi bi-plus-square mr-2"></i>Agregar nuevo</a>
+					  <a href="/detalle" class="btn btn-outline-info"><i class="bi bi-plus-square mr-2"></i>Volver</a>
+					</div>
+					<br><br>
+									
+					<h1>Registro eliminado</h1>
+					
 					</div>
 					
-					<div class="table-responsive py-2">
-						<table class="table table-hover table-dark text-center">
-							<thead>
-								<tr>
-									<th scope="col">Número de Orden</th>
-									<th scope="col">Código de Producto</th>
-									<th scope="col">Cantidad</th>
-									<th scope="col">Precio</th>
-									<th scope="col">Número de Línea</th>
-								
-								</tr>
-							</thead>
-							<tbody>
-								<tr th:each="det : ${orderDetails}">
-									<td th:text="${det.id.order.id}"></td>
-									<td th:text="${det.id.product.id}"></td>
-									<td th:text="${det.cantidad}"></td>
-									<td th:text="${det.precio}"></td>
-									<td th:text="${det.numeroLinea}"></td>		
-									<td> 
-										<a th:href="@{/detalle-editar-}+${det.id.order.id}+'-'+${det.id.product.id}" class="btn btn-warning">Editar</a>
-										<a th:href="@{/detalle-eliminar-}+${det.id.order.id}+'-'+${det.id.product.id}" class="btn btn-danger">Eliminar</a>
-									</td>
-								</tr>
-							</tbody>
-						</table>
+					<div class="row justify-content-md-center" style="padding-left: 5rem;">
+				         <div class="col-md-12 col-lg-12 d-flex align-items-stretch " data-aos="fade-up">
+				           <div class="icon-box icon-box-pink">
+				             <img alt="" src="assets/img/alerta.png" style="height: 3rem;">
+					             <h4 class="title"> ID de la Orden de Compra:  <span th:text=" ${oid.order.id}"></span></h4>
+					             <h4 class="title"> ID del Producto:  <span th:text=" ${oid.product.id}"></span></h4>
+				           </div>
+				         </div>
 					</div>
-				</div>
 			</div>
 		</div>
-
 	</main>
-	
   <footer th:replace="/layout/footer :: footer"></footer>  
 
 </body>

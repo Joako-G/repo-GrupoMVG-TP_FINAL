@@ -69,7 +69,7 @@ public class CustomerController {
 		return model;
 	}
 	
-	//DUPLICA LOS CLIENTES AL EDITAR
+	//ARREGLADO EL PROBLEMA DE LA DUPLICACION
 	
 	@GetMapping("/cliente-editar-{idCliente}")
 	public ModelAndView getEditarClientePage(@PathVariable(value="idCliente") Long idCliente) {
