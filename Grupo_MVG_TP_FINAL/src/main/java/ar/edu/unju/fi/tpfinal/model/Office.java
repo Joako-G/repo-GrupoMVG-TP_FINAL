@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -53,20 +54,18 @@ public class Office {
 	private String territorio;
 	
 	//Relacion con Employee
-	@OneToMany(mappedBy = "oficina")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "oficina")
 	private List<Employee> empleados = new ArrayList<Employee>();
 	
 	public Office() {
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	public Office(String id, @NotEmpty(message = "Debe ingresar la ciudad") String ciudad,
-
-			@Min(value = 1000000, message = "El numero de telefono debe ser mayor a 1000000") @Max(value = 999999999, message = "El numero de telefono no debe superar los 9999999") String telefono,
+			@NotEmpty(message = "Debe ingresar el telefono") String telefono,
 			@NotEmpty(message = "Debe ingresar la direccion") String direccion1, String direccion2,
 			@NotEmpty(message = "Debe ingresar el estado o provincia") String estado,
-			@NotEmpty(message = "Debe ingresar el pais") String pais, String codigoPostal, String territorio,
-			List<Employee> empleados) {
+			@NotEmpty(message = "Debe ingresar el pais") String pais, String codigoPostal, String territorio) {
 		super();
 		this.id = id;
 		this.ciudad = ciudad;
@@ -77,9 +76,8 @@ public class Office {
 		this.pais = pais;
 		this.codigoPostal = codigoPostal;
 		this.territorio = territorio;
-		this.empleados = empleados;
 	}
-	
+
 	public String getId() {
 		return id;
 	}

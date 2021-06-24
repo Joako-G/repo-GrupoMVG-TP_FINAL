@@ -9,6 +9,6 @@ public interface IOrderService {
 
 	void guardarOrder(Order order);
 	public List<Order> getOrders();
-	public Optional<Order> getOrderPorId(int id);
+	public Optional<Order> getOrderPorId(Integer id);
 	public void eliminarOrder(int id);
 }

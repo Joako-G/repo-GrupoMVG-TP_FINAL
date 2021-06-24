@@ -77,6 +77,7 @@ public class OrderController {
 	public ModelAndView modificarOrderPage(@PathVariable (value = "id")int id) {
 		ModelAndView model = new ModelAndView("neworder");
 		Optional<Order> order = orderService.getOrderPorId(id);
+		System.out.println(order.get().getId());
 		model.addObject("orden",order);
 		model.addObject("clientes",customerService.getCustomers());
 		return model;

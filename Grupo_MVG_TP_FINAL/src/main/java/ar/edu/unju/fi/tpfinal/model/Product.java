@@ -1,6 +1,5 @@
 package ar.edu.unju.fi.tpfinal.model;
 
-import java.sql.Clob;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,8 +38,8 @@ public class Product {
 	private String vendedorProducto;
 	
 	@NotEmpty(message = "Debe ingresar la descripcion del producto")
-	@Column(name="productDescription")
-	private Clob descripcion;
+	@Column(name="productDescription", columnDefinition="TEXT")
+	private String descripcion;
 	
 	@NotNull(message = "Debe ingresar stock del producto")
 	@Column(name="quantityInStock")
@@ -48,18 +47,18 @@ public class Product {
 	
 	@NotNull(message = "Debe ingresar el precio de compra")
 	@Column(name="buyPrice")
-	private float precioCompra;
+	private double precioCompra;
 	
 	@Column(name="MSRP")
-	private float MSRP;
+	private double MSRP;
 	
 	//Relacion con ProductLine
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="productLine")
 	private ProductLine productLine;
 	
 	//Relacion con OrderDetail
-	@OneToMany(mappedBy = "id.product")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "id.product")
 	private List<OrderDetail> orderDetails = new ArrayList<OrderDetail>();
 	
 	public Product() {
@@ -67,11 +66,11 @@ public class Product {
 	}
 
 	public Product(String id, @NotEmpty(message = "Debe ingresar nombre del producto") String nombreProducto,
-			@NotNull @NotNull String productScale,
+			@NotNull String productScale,
 			@NotEmpty(message = "Debe ingresar nombre de la empresa vendedora del producto") String vendedorProducto,
-			@NotEmpty(message = "Debe ingresar la descripcion del producto") Clob descripcion,
+			@NotEmpty(message = "Debe ingresar la descripcion del producto") String descripcion,
 			@NotNull(message = "Debe ingresar stock del producto") int stock,
-			@NotNull(message = "Debe ingresar el precio de compra") float precioCompra, float mSRP,
+			@NotNull(message = "Debe ingresar el precio de compra") double precioCompra, double mSRP,
 			ProductLine productLine) {
 		super();
 		this.id = id;
@@ -117,11 +116,11 @@ public class Product {
 		this.vendedorProducto = vendedorProducto;
 	}
 
-	public Clob getDescripcion() {
+	public String getDescripcion() {
 		return descripcion;
 	}
 
-	public void setDescripcion(Clob descripcion) {
+	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 
@@ -133,19 +132,19 @@ public class Product {
 		this.stock = stock;
 	}
 
-	public float getPrecioCompra() {
+	public double getPrecioCompra() {
 		return precioCompra;
 	}
 
-	public void setPrecioCompra(float precioCompra) {
+	public void setPrecioCompra(double precioCompra) {
 		this.precioCompra = precioCompra;
 	}
 
-	public float getMSRP() {
+	public double getMSRP() {
 		return MSRP;
 	}
 
-	public void setMSRP(float mSRP) {
+	public void setMSRP(double mSRP) {
 		MSRP = mSRP;
 	}
 
@@ -157,11 +156,19 @@ public class Product {
 		this.productLine = productLine;
 	}
 
+	public List<OrderDetail> getOrderDetails() {
+		return orderDetails;
+	}
+
+	public void setOrderDetails(List<OrderDetail> orderDetails) {
+		this.orderDetails = orderDetails;
+	}
+
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", nombreProducto=" + nombreProducto + ", productScale=" + productScale
 				+ ", vendedorProducto=" + vendedorProducto + ", descripcion=" + descripcion + ", stock=" + stock
-				+ ", precioCompra=" + precioCompra + ", MSRP=" + MSRP + ", productLine=" + productLine + "]";
+				+ ", precioCompra=" + precioCompra + ", MSRP=" + MSRP + "]";
 	}
 	
 }

@@ -53,7 +53,6 @@ public class Customer {
 	@Column(name="addressLine2",length = 50)
 	private String direccion2;
 	
-	@NotEmpty(message = "Debe ingresar la ciudad")
 	@Column(name="city", length = 50)
 	private String ciudad;
 	
@@ -71,13 +70,14 @@ public class Customer {
 	@Column(name="creditLimit")
 	private BigDecimal limiteCredito;
 	
+	//Relacion con Employee
 	@Autowired
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="salesRepEmployeeNumber")
 	private Employee empleado;
 	
 	//Relacion con Order
-	@OneToMany(mappedBy = "customer")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "customer")
 	private List<Order> pedidos = new ArrayList<Order>();
 	
 	//Relacion con Payment
@@ -89,15 +89,13 @@ public class Customer {
 	}
 
 	public Customer(Long idCliente,
-			@NotNull(message = "Debe ingresar nombre de la empresa/negocio") String clienteNombre,
-			@NotNull(message = "Debe ingresar apellido del cliente") String apellido,
-			@NotNull(message = "Debe ingresar nombre del cliente") String nombre, @NotNull String telefono,
-			@NotNull(message = "Debe ingresar la direccion") String direccion1,
-			@NotNull(message = "Debe ingresar la direccion") String direccion2,
-			@NotNull(message = "Debe ingresar la ciudad") String ciudad, String estado, String codigoPostal,
+			@NotEmpty(message = "Debe ingresar nombre de la empresa/negocio") String clienteNombre,
+			@NotEmpty(message = "Debe ingresar apellido del cliente") String apellido,
+			@NotEmpty(message = "Debe ingresar nombre del cliente") String nombre, @NotNull String telefono,
+			@NotEmpty(message = "Debe ingresar la direccion") String direccion1, String direccion2,
+			@NotEmpty(message = "Debe ingresar la ciudad") String ciudad, String estado, String codigoPostal,
 			@NotEmpty(message = "Debe ingresar el pais") String pais,
-			@NotNull(message = "Debe ingresar limite de credito") BigDecimal limiteCredito, Employee empleado,
-			List<Order> pedidos, List<Payment> payments) {
+			@NotNull(message = "Debe ingresar limite de credito") BigDecimal limiteCredito, Employee empleado) {
 		super();
 		this.idCliente = idCliente;
 		this.clienteNombre = clienteNombre;
@@ -112,8 +110,6 @@ public class Customer {
 		this.pais = pais;
 		this.limiteCredito = limiteCredito;
 		this.empleado = empleado;
-		this.pedidos = pedidos;
-		this.payments = payments;
 	}
 
 	public Long getIdCliente() {
@@ -241,8 +237,7 @@ public class Customer {
 		return "Customer [idCliente=" + idCliente + ", clienteNombre=" + clienteNombre + ", apellido=" + apellido
 				+ ", nombre=" + nombre + ", telefono=" + telefono + ", direccion1=" + direccion1 + ", direccion2="
 				+ direccion2 + ", ciudad=" + ciudad + ", estado=" + estado + ", codigoPostal=" + codigoPostal
-				+ ", pais=" + pais + ", limiteCredito=" + limiteCredito + ", empleado=" + empleado + ", pedidos="
-				+ pedidos + ", payments=" + payments + "]";
+				+ ", pais=" + pais + ", limiteCredito=" + limiteCredito + "]";
 	}
 
 	
