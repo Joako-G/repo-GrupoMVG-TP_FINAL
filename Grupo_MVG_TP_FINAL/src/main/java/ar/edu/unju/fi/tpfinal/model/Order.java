@@ -148,7 +148,5 @@ public class Order {
 		return "Order [id=" + id + ", fechaOrden=" + fechaOrden + ", fechaRequerida=" + fechaRequerida + ", fechaEnvio="
 				+ fechaEnvio + ", estado=" + estado + ", comentarios=" + comentarios + "]";
 	}
-
-	
 	
 }
