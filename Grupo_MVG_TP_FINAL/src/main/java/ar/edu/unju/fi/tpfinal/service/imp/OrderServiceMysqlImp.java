@@ -35,16 +35,16 @@ public class OrderServiceMysqlImp implements IOrderService {
 	}
 
 	@Override
-	public Optional<Order> getOrderPorId(int id) {
+	public Optional<Order> getOrderPorId(Integer id) {
 		Optional<Order> order = orderRepository.findById(id);
-		LOGGER.info("METHOD: getOrderPorId ---- Se buscó un objeto payment en la lista: " + order);
+		LOGGER.info("METHOD: getOrderPorId ---- Se buscó un objeto order en la lista: " + order);
 		return order;
 	}
 
 	@Override
 	public void eliminarOrder(int id) {
 		orderRepository.deleteById(id);
-		LOGGER.info("METHOD: eliminarOrder ---- Se borró un objeto payment en la lista: " + "id de la orden: " + id);
+		LOGGER.info("METHOD: eliminarOrder ---- Se borró un objeto order en la lista: " + "id de la orden: " + id);
 	}
 
 }

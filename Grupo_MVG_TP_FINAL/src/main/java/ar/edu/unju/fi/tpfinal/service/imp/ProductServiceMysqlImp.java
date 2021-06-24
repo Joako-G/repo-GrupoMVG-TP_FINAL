@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.tpfinal.service.imp;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,12 @@ public class ProductServiceMysqlImp implements IProductService{
 
 	@Override
 	public Product getProduct() {
+		return product;
+	}
+
+	@Override
+	public Optional<Product> getProductPorId(String id) {
+		Optional<Product> product = productRepository.findById(id);
 		return product;
 	}
 }
