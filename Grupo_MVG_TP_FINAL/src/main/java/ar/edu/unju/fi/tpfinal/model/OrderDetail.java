@@ -23,7 +23,7 @@ public class OrderDetail implements Serializable{
 	private OrderDetailsId id;
 	
 	@NotNull
-	@Min(value = 0, message = "La cantidad no puede ser menor a 0")
+	@Min(value = 1, message = "La cantidad no puede ser menor a 1")
 	@Column(name = "quantityOrdered")
 	private int cantidad;
 	
@@ -92,5 +92,8 @@ public class OrderDetail implements Serializable{
 		return "OrderDetail [id=" + id + ", cantidad=" + cantidad + ", precio=" + precio + ", numeroLinea="
 				+ numeroLinea + "]";
 	}
+
+	
+
 
 }

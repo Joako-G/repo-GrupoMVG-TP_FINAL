@@ -64,12 +64,10 @@ public class Order {
 		super();
 	}
 
-	public Order(@NotNull(message = "Debe elegir un id valido") @NotNull(message = "Debe elegir un id valido") @NotNull(message = "Debe elegir un id valido") int id,
+	public Order(@NotNull(message = "Debe elegir un id valido") int id,
 			@NotNull(message = "Debe elegir una fecha valida") LocalDate fechaOrden,
-			@NotNull(message = "Debe elegir una fecha valida") LocalDate fechaRequerida,
-			@NotNull(message = "Debe elegir una fecha valida") LocalDate fechaEnvio,
-			@NotNull(message = "Debe ingresar el estado") String estado, String comentarios, Customer customer,
-			List<OrderDetail> orderDetails) {
+			@NotNull(message = "Debe elegir una fecha valida") LocalDate fechaRequerida, LocalDate fechaEnvio,
+			@NotNull(message = "Debe ingresar el estado") String estado, String comentarios) {
 		super();
 		this.id = id;
 		this.fechaOrden = fechaOrden;
@@ -77,8 +75,6 @@ public class Order {
 		this.fechaEnvio = fechaEnvio;
 		this.estado = estado;
 		this.comentarios = comentarios;
-		this.customer = customer;
-		this.orderDetails = orderDetails;
 	}
 
 	public int getId() {
@@ -148,9 +144,7 @@ public class Order {
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", fechaOrden=" + fechaOrden + ", fechaRequerida=" + fechaRequerida + ", fechaEnvio="
-				+ fechaEnvio + ", estado=" + estado + ", comentarios=" + comentarios + ", orderDetails=" + orderDetails + "]";
+				+ fechaEnvio + ", estado=" + estado + ", comentarios=" + comentarios + "]";
 	}
-
-	
 	
 }

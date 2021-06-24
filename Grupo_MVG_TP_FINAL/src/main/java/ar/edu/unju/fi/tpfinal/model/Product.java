@@ -28,7 +28,7 @@ public class Product {
 	
 	@NotEmpty(message = "Debe ingresar nombre del producto")
 	@Column(name="productName", length = 70)
-	private String nombreProducto;
+	public String nombreProducto;
 	
 	@NotNull
 	@Column(name="productScale")
@@ -67,12 +67,11 @@ public class Product {
 	}
 
 	public Product(String id, @NotEmpty(message = "Debe ingresar nombre del producto") String nombreProducto,
-			@NotNull @NotNull String productScale,
+			@NotNull String productScale,
 			@NotEmpty(message = "Debe ingresar nombre de la empresa vendedora del producto") String vendedorProducto,
 			@NotEmpty(message = "Debe ingresar la descripcion del producto") Clob descripcion,
 			@NotNull(message = "Debe ingresar stock del producto") int stock,
-			@NotNull(message = "Debe ingresar el precio de compra") float precioCompra, float mSRP,
-			ProductLine productLine) {
+			@NotNull(message = "Debe ingresar el precio de compra") float precioCompra, float mSRP) {
 		super();
 		this.id = id;
 		this.nombreProducto = nombreProducto;
@@ -82,8 +81,9 @@ public class Product {
 		this.stock = stock;
 		this.precioCompra = precioCompra;
 		MSRP = mSRP;
-		this.productLine = productLine;
 	}
+
+
 
 	public String getId() {
 		return id;
@@ -161,7 +161,7 @@ public class Product {
 	public String toString() {
 		return "Product [id=" + id + ", nombreProducto=" + nombreProducto + ", productScale=" + productScale
 				+ ", vendedorProducto=" + vendedorProducto + ", descripcion=" + descripcion + ", stock=" + stock
-				+ ", precioCompra=" + precioCompra + ", MSRP=" + MSRP + ", productLine=" + productLine + "]";
+				+ ", precioCompra=" + precioCompra + ", MSRP=" + MSRP + "]";
 	}
 	
 }
