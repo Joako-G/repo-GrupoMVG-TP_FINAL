@@ -11,4 +11,5 @@ public interface IProductService {
 	public List<Product> getProductos();
 	public Optional<Product> getProductPorId(String id);
 	public Product getProduct();
+	public Optional<Product> getProductPorId(String id);
 }

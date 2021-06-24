@@ -61,7 +61,8 @@ public class ProductLineController {
 				}*/
 				
 				//Path directorio = Paths.get("src//main//resources//static/image");
-				String ruta = "D://Joaquin//uploads";
+				//String ruta = "D://Joaquin//uploads";
+				String ruta = "E://Documentos//Flor";
 				try {
 					byte[] byteImg = imagen.getBytes();
 					Path rutaCompleta = Paths.get(ruta + "//" + imagen.getOriginalFilename());

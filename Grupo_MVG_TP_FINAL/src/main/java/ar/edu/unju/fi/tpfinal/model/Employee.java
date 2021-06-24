@@ -51,7 +51,7 @@ public class Employee {
 	
 	//Relacion con Office
 	@Autowired
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "officeCode")
 	private Office oficina;
 	
@@ -66,7 +66,7 @@ public class Employee {
 	
 	//Relacion con Customer
 	@Autowired
-	@OneToMany(mappedBy = "empleado")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "empleado")
 	private List<Customer> clientes = new ArrayList<Customer>();
 	
 	public Employee() {
@@ -75,8 +75,7 @@ public class Employee {
 	
 	public Employee(Integer id, @NotEmpty(message = "Debe ingresar su apellido") String apellido,
 			@NotEmpty(message = "Debe ingresar su nombre") String nombre, @NotNull String extension,
-			@NotNull String correo, @NotNull String titulo, Office oficina, Employee superior,
-			List<Employee> empleados, List<Customer> clientes) {
+			@NotNull String correo, @NotNull String titulo, Office oficina, Employee superior) {
 		super();
 		this.id = id;
 		this.apellido = apellido;
@@ -86,8 +85,6 @@ public class Employee {
 		this.titulo = titulo;
 		this.oficina = oficina;
 		this.superior = superior;
-		this.empleados = empleados;
-		this.clientes = clientes;
 	}
 
 	public Integer getId() {
@@ -173,8 +170,7 @@ public class Employee {
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", apellido=" + apellido + ", nombre=" + nombre + ", extension=" + extension
-				+ ", correo=" + correo + ", titulo=" + titulo + ", oficina=" + oficina + ", superior=" + superior
-				+ ", empleados=" + empleados + ", clientes=" + clientes + "]";
+				+ ", correo=" + correo + ", titulo=" + titulo + "]";
 	}
 
 }

@@ -26,7 +26,7 @@ public class Order {
 	@Id
 	@NotNull(message = "Debe elegir un id valido")
 	@Column(name = "orderNumber")
-	private int id;
+	private Integer id;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message = "Debe elegir una fecha valida")
@@ -57,17 +57,19 @@ public class Order {
 	public Customer customer;
 	
 	//Relacion con OrderDetail
-	@OneToMany(mappedBy = "id.order")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "id.order")
 	private List<OrderDetail> orderDetails = new ArrayList<OrderDetail>();
 
 	public Order() {
 		super();
 	}
-
-	public Order(@NotNull(message = "Debe elegir un id valido") int id,
+	
+	public Order(@NotNull(message = "Debe elegir un id valido") Integer id,
 			@NotNull(message = "Debe elegir una fecha valida") LocalDate fechaOrden,
 			@NotNull(message = "Debe elegir una fecha valida") LocalDate fechaRequerida, LocalDate fechaEnvio,
-			@NotNull(message = "Debe ingresar el estado") String estado, String comentarios) {
+			@NotNull(message = "Debe ingresar el estado") String estado, String comentarios,
+			@NotNull(message = "Debe ingresar un cliente valido") Customer customer) {
+
 		super();
 		this.id = id;
 		this.fechaOrden = fechaOrden;
@@ -77,11 +79,11 @@ public class Order {
 		this.comentarios = comentarios;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
