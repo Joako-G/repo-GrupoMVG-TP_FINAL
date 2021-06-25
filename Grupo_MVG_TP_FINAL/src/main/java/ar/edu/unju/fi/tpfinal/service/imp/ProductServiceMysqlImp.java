@@ -41,4 +41,9 @@ public class ProductServiceMysqlImp implements IProductService{
 		Optional<Product> product = productRepository.findById(id);
 		return product;
 	}
+
+	@Override
+	public void eliminarProduct(String id) {
+		productRepository.deleteById(id);
+	}
 }

@@ -42,39 +42,66 @@
 		<div class="container">
 				<div class="row">
 				<div class="col-md-8">	
-					<h1>Alta de Marca de Producto</h1>
+					<h1>Alta de Producto</h1>
 				</div>
 					
-					  <form th:action="@{/productline-guardar}" th:object="${productline}" method="POST" enctype="multipart/form-data">
-					<!--<form th:action="@{/productline-guardar}" th:object="${productline}" method="POST">-->
+					<form th:action="@{/producto-guardar}" th:object="${product}" method="POST">
 						  <div class="form-group row">
-							<label for="idProd" class="col-md-4 col-form-label">Nombre Marca</label>
+							<label for="id" class="col-md-4 col-form-label">Codigo Producto</label>
 							<div class="col-md-8">
-								<input type="text" class="form-control" id="idProd" th:field="*{id}">
-								
+								<input type="text" class="form-control" id="id" th:field="*{id}">
 							</div>
 						</div>
 			
 						<div class="form-group row">
-							<label for="textDescripcion" class="col-md-4 col-form-label">Descripcion de la marca</label>
+							<label for="nombreProducto" class="col-md-4 col-form-label">Nombre Producto</label>
 								<div class="col-md-8">
-									<input type="text" class="form-control" id="textDescripcion" th:field="*{textDescripcion}">
-									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('textDescripcion')}" th:errors="*{textDescripcion}"></div>
+									<input type="text" class="form-control" id="nombreProducto" th:field="*{nombreProducto}">
+									
 								</div>
 						</div>
 			
 						<div class="form-group row">
-							<label for="htmlDescripcion" class="col-md-4 col-form-label">Descripcion de pagina web</label>
+							<label for="vendedor" class="col-md-4 col-form-label">Empresa Vendedora</label>
 								<div class="col-md-8">
-									<input type="text" class="form-control" id="htmlDescripcion" th:field="*{htmlDescripcion}">
+									<input type="text" class="form-control" id="vendedor" th:field="*{vendedorProducto}">
 								</div>
 						</div>
 							
 						<div class="form-group row">
-							<div class="custom-file">
-								<label class="custom-file-label" for="imagen">Seleccionar Imagen</label>
-							  	<input type="file" name="file" class="custom-file-input" id="imagen">
-							</div>
+							<label for="descripcion" class="col-md-4 col-form-label">Descripcion</label>
+								<div class="col-md-8">
+									<input type="text" class="form-control" id="descripcion" th:field="*{descripcion}">
+								</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="stock" class="col-md-4 col-form-label">Stock</label>
+								<div class="col-md-8">
+									<input type="number" class="form-control" id="stock" th:field="*{stock}">
+								</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="precio" class="col-md-4 col-form-label">Precio</label>
+								<div class="col-md-8">
+									<input type="number" class="form-control" id="precio" th:field="*{precioCompra}">
+								</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="msrp" class="col-md-4 col-form-label">MSRP</label>
+								<div class="col-md-8">
+									<input type="text" class="form-control" id="msrp" th:field="*{MSRP}">
+								</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="productline">Marca</label>
+						    <select th:field="*{productLine.id}" id="productline" class="form-control">
+								<option th:each="p : ${productlines}" th:value="${p.id}" th:text="${p.id}"></option>
+							</select>
+							<!--  <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('producto.id')}" th:errors="*{producto.id}"></div>-->
 						</div>
 							
 						<div class="form-group row">
