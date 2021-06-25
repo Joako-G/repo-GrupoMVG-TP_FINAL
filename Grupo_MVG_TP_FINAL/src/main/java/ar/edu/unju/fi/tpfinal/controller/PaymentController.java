@@ -2,16 +2,20 @@ package ar.edu.unju.fi.tpfinal.controller;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unju.fi.tpfinal.model.Customer;
 import ar.edu.unju.fi.tpfinal.model.Payment;
 import ar.edu.unju.fi.tpfinal.model.PaymentId;
 import ar.edu.unju.fi.tpfinal.service.ICustomerService;
@@ -56,24 +60,32 @@ public class PaymentController {
 
 	
 	@PostMapping("/pago-guardar") //Funciona OK. Sin validaciones
-	public ModelAndView guardarPaymentPage(@ModelAttribute("payment")Payment payment) {
-			ModelAndView model = new ModelAndView("payment");
-			System.out.println(payment);
+	public ModelAndView guardarPaymentPage(@Valid @ModelAttribute("payment")Payment payment, BindingResult resultado) {
+		ModelAndView model;
+		if(resultado.hasErrors()) {
+			model = new ModelAndView("newpayment");
+			model.addObject("pago",payment);
+			model.addObject("clientes",customerService.getCustomers());
+			return model;
+		}
+		else {
+			model = new ModelAndView("payment");
 			paymentService.guardarPayment(payment);
 			model.addObject("payments", paymentService.getPayments());
-			
 			return model;
-		
+		}
 	}
 	
 	@GetMapping("/pago-editar-{id}-{id2}") //No funciona. Problemas con el id oculto del template newpayment
 	public ModelAndView modificarPaymentPage(@PathVariable (value = "id")Long idCliente, @PathVariable (value = "id2")String idCheque) {
 		ModelAndView model = new ModelAndView("newpayment");
-		paymentid.customer.setIdCliente(idCliente);
+		//Seteo un orderDetailId con los id traidos desde el template
+		Optional<Customer> cliente = customerService.getCustomerPorId(idCliente);
+		paymentid.setCustomer(cliente.get());
 		paymentid.setNumeroCheque(idCheque);
+		//busco el orderDetail por el orderDetailId
 		Optional<Payment> payment = paymentService.getPaymentPorId(paymentid);
-		System.out.println("id cliente: " + paymentid.customer.getIdCliente());
-		System.out.println("id cheque: " +paymentid.getNumeroCheque());
+		paymentService.eliminarPayment(paymentid);//LINEA AGREGADA PARA CAMBIAR ID Y QUE NO SE DUPLIQUE
 		model.addObject("pago",payment);
 		model.addObject("clientes",customerService.getCustomers());
 		return model;
@@ -82,10 +94,14 @@ public class PaymentController {
 	@GetMapping("/pago-eliminar-{id}-{id2}") //Funciona OK
 	public ModelAndView eliminarPaymentPage(@PathVariable (value = "id")Long idCliente, @PathVariable (value = "id2")String idCheque) {
 		ModelAndView model = new ModelAndView("redirect:/pago-borrado");
-		paymentid.customer.setIdCliente(idCliente);
+		
+		Optional<Customer> cliente = customerService.getCustomerPorId(idCliente);
+		paymentid.setCustomer(cliente.get());
 		paymentid.setNumeroCheque(idCheque);
+		payment.setId(paymentid);
 		paymentService.eliminarPayment(paymentid);
 		model.addObject("pid",paymentid);
+		
 		return model;
 	}
 	
