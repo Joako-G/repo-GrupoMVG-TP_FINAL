@@ -67,6 +67,7 @@ public class ProductController {
 	@GetMapping("/productos")
 	public ModelAndView getProductosListadoPage() {
 		ModelAndView model = new ModelAndView("products");
+		//System.out.println(product.getProductScale());
 		model.addObject("product", product);
 		model.addObject("products", productService.getProductos());
 		return model;
