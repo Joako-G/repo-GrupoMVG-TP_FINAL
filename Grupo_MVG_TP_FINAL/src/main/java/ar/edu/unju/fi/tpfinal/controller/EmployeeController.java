@@ -39,14 +39,14 @@ public class EmployeeController {
 		model.addAttribute("employee", employee);
 		model.addAttribute("employees", employeeService.getEmployees());
 		model.addAttribute("offices", officeService.getOffices());
-		return "employee";
+		return "newemployee";
 	}
 	
 	@PostMapping("/guardar-empleado")
 	public ModelAndView guardarEmpleadoPage(@Valid @ModelAttribute ("employee")Employee employee, BindingResult resultadoValidacion) {
 		ModelAndView model;
 		if(resultadoValidacion.hasErrors()) {
-			model = new ModelAndView("employee");
+			model = new ModelAndView("newemployee");
 			model.addObject("employees", employeeService.getEmployees());
 			model.addObject("offices", officeService.getOffices());
 			return model;
@@ -71,7 +71,7 @@ public class EmployeeController {
 	
 	@GetMapping("/editar-empleado-{id}")
 	public ModelAndView modificarEmpleadoPage(@PathVariable (value = "id")Integer id) {
-		ModelAndView model = new ModelAndView("employee");
+		ModelAndView model = new ModelAndView("newemployee");
 		Optional<Employee> empleadoEncontrado = employeeService.getEmployeePorId(id);
 		model.addObject("employee", empleadoEncontrado);
 		model.addObject("employees", employeeService.getEmployees());

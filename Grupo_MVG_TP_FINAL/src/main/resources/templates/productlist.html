@@ -12,6 +12,7 @@
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
@@ -62,16 +63,16 @@
     
 	<div class="container py-3">
 			<div class="row">
-				<div class="col-sm-12 col-md-12">
+				<div class="col-sm-12">
 										
-					<h1>Registro de Ordenes</h1>
+					<h1>Registro de Productos</h1>
 					
 					<div class="btn-group justify-content-center">
-					  <a href="/producto-nuevo" class="btn btn-outline-info"><i class="bi bi-plus-square mr-2"></i>Agregar nuevo</a>
+					  <a href="/producto-nuevo" class="btn btn-outline-secondary"><i class="bi bi-plus-square mr-2"></i>Agregar nuevo</a>
 					</div>
 					
-					<div class="table-responsive py-2">
-						<table class="table table-hover table-dark text-center">
+					<div class="table-responsive py-3">
+						<table class="table table-hover table-bordered text-center">
 							<thead>
 								<tr>
 									<th scope="col">Codigo Producto</th>
@@ -82,7 +83,7 @@
 									<th scope="col">Stock</th>
 									<th scope="col">Precio</th>
 									<th scope="col">MSRP</th>
-									<th scope="col">ACCIONES</th>
+									<th scope="col">Acciones</th>
 								<!--<th scope="col">Marca</th>-->
 								</tr>
 							</thead>
@@ -98,8 +99,8 @@
 									<td th:text="${p.MSRP}"></td>
 									<!--<td th:text="${p.productline.id}"></td>-->
 									<td> 
-								  		<a th:href="@{/producto-editar-}+${p.id}" class="btn btn-warning">Editar</a>
-										<a th:href="@{/producto-eliminar-}+${p.id}" class="btn btn-danger">Eliminar</a>
+								  		<a th:href="@{/producto-editar-}+${p.id}" class="btn btn-warning my-1">Editar</a>
+										<a th:href="@{/producto-eliminar-}+${p.id}" class="btn btn-danger my-1">Eliminar</a>
 									</td>
 								</tr>
 							</tbody>

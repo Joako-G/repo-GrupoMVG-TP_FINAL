@@ -47,12 +47,12 @@
 				<div class="col-md-10">
 					
 					<div class="btn-group justify-content-center py-3">
-					  <a href="/orden" class="btn btn-outline-secondary"><i class="bi bi-plus-square mr-2"></i>Volver</a>
+					  <a href="/ordenes" class="btn btn-outline-secondary">Volver</a>
 					</div>
 					
 					<h1>Nueva Orden de Compra</h1>
           
-          <form class="py-3" th:action="@{/orden-guardar}" th:object="${orden}" method="POST">
+          			<form class="py-3" th:action="@{/orden-guardar}" th:object="${orden}" method="POST">
 
 						<div class="form-group">
 							<label for="id" class="col-form-label">Número de Orden</label>

@@ -38,14 +38,14 @@ public class CustomerController {
 	public String getNewCustomer(Model model){
 		model.addAttribute("customer", customer);
 		model.addAttribute("employees", employeeService.getEmployees());
-		return "customer";
+		return "newcustomer";
 	}
 	
 	@PostMapping("/cliente-guardar")
 	public ModelAndView guardarClientePage(@Valid @ModelAttribute("customer") Customer customer, BindingResult resultado) {
 		ModelAndView model;
 		if(resultado.hasErrors()) {
-			model = new ModelAndView("customer");
+			model = new ModelAndView("newcustomer");
 			model.addObject("customer", customer);
 			model.addObject("employees", employeeService.getEmployees());
 			return model;
@@ -73,7 +73,7 @@ public class CustomerController {
 	
 	@GetMapping("/cliente-editar-{idCliente}")
 	public ModelAndView getEditarClientePage(@PathVariable(value="idCliente") Long idCliente) {
-		ModelAndView model = new ModelAndView("customer");
+		ModelAndView model = new ModelAndView("newcustomer");
 		Optional<Customer> customer = customerService.getCustomerPorId(idCliente);
 		model.addObject("customer", customer);
 		//model.addObject("customers", customerService.getCustomers());

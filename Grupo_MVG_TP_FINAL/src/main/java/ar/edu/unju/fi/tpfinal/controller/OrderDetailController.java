@@ -44,9 +44,9 @@ public class OrderDetailController {
 	@Qualifier("orderServiceMysql")
 	private IOrderService orderService;
 	
-	@GetMapping("/detalle") //Funciona OK
+	@GetMapping("/detalles") //Funciona OK
 	public ModelAndView getOrderDetailPage() { 
-		ModelAndView model = new ModelAndView("orderdetail");
+		ModelAndView model = new ModelAndView("orderdetaillist");
 		model.addObject("orderDetails", orderDetailService.getOrderDetails());
 		return model;
 	}
@@ -78,7 +78,7 @@ public class OrderDetailController {
 			return model;
 		}
 		else {
-			model = new ModelAndView("orderdetail");
+			model = new ModelAndView("orderdetaillist");
 			System.out.println(detalle);
 			orderDetailService.guardarOrderDetail(detalle);
 			model.addObject("orderDetails", orderDetailService.getOrderDetails());	

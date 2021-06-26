@@ -31,14 +31,14 @@ public class OfficeController {
 	@GetMapping("/nueva-oficina")
 	public String getOficinaNuevaPage(Model model) {
 		model.addAttribute("office", office);
-		return "office";
+		return "newoffice";
 	}
 	
 	@PostMapping("/guardar-oficina")
 	public ModelAndView guardarOficinaPage(@Valid @ModelAttribute("office")Office office, BindingResult resultadoValidacion) {
 		ModelAndView model;
 		if(resultadoValidacion.hasErrors()) {
-			model = new ModelAndView("office");
+			model = new ModelAndView("newoffice");
 			return model;
 		}
 		else {
@@ -57,7 +57,7 @@ public class OfficeController {
 	
 	@GetMapping("/editar-oficina-{id}")
 	public ModelAndView modificarOficinaPage(@PathVariable(value = "id")String id) {
-		ModelAndView model = new ModelAndView("office");
+		ModelAndView model = new ModelAndView("newoffice");
 		Optional<Office> oficinaEncontrada = officeService.getOfficePorId(id);
 		model.addObject("office", oficinaEncontrada);
 		return model;
