@@ -37,7 +37,7 @@ public class ProductLineController {
 	@GetMapping("/productline-nuevo")
 	public String getNewProductLine(Model model) {
 		model.addAttribute("productline", productLine);
-		return "productline";
+		return "newproductline";
 	}
 	
 	@PostMapping("/productline-guardar")
@@ -46,7 +46,7 @@ public class ProductLineController {
 		ModelAndView model;
 		
 		if(resultado.hasErrors()) {
-			model = new ModelAndView("productline");
+			model = new ModelAndView("newproductline");
 			return model;
 		}
 		else {
@@ -88,7 +88,7 @@ public class ProductLineController {
 	
 	@GetMapping("/productline-editar-{id}")
 	public ModelAndView getEditarProductLinePage(@PathVariable(value="id")String id) {
-		ModelAndView model = new ModelAndView("productline");
+		ModelAndView model = new ModelAndView("newproductline");
 		Optional<ProductLine> prodcutLine = productLineService.getProducLinePorId(id);
 		model.addObject("productline", prodcutLine);
 		return model;

@@ -39,14 +39,14 @@ public class ProductController {
 		model.addAttribute("product", product);
 		model.addAttribute("products",productService.getProductos());
 		model.addAttribute("productlines", productLineService.getProductLines());
-		return "product";
+		return "newproduct";
 	}
 	
 	@PostMapping("/producto-guardar")
 	public ModelAndView guardarProductoPage(@Valid @ModelAttribute("product")Product product, BindingResult resultado) {
 		ModelAndView model;
 		if(resultado.hasErrors()) {
-			model = new ModelAndView("product");
+			model = new ModelAndView("newproduct");
 			System.out.println(resultado);
 			model.addObject("product", product);
 			model.addObject("products",productService.getProductos());
@@ -54,7 +54,7 @@ public class ProductController {
 			return model;
 		}
 		else {
-			model = new ModelAndView("products");
+			model = new ModelAndView("productlist");
 			Optional<ProductLine> encontrado = productLineService.getProducLinePorId(product.getProductLine().getId());
 			System.out.println(encontrado);
 			product.setProductLine(encontrado.get());
@@ -66,7 +66,7 @@ public class ProductController {
 	
 	@GetMapping("/productos")
 	public ModelAndView getProductosListadoPage() {
-		ModelAndView model = new ModelAndView("products");
+		ModelAndView model = new ModelAndView("productlist");
 		//System.out.println(product.getProductScale());
 		model.addObject("product", product);
 		model.addObject("products", productService.getProductos());
@@ -75,7 +75,7 @@ public class ProductController {
 	
 	@GetMapping("/producto-editar-{id}")
 	public ModelAndView getEditarProductoPage(@PathVariable(value="id")String id) {
-		ModelAndView model = new ModelAndView("product");
+		ModelAndView model = new ModelAndView("newproduct");
 		Optional<Product> product = productService.getProductPorId(id);
 		model.addObject("product", product);
 		model.addObject("productlines", productLineService.getProductLines());

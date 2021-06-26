@@ -33,9 +33,9 @@ public class OrderController {
 	@Qualifier("customerServiceImpMysql")
 	private ICustomerService customerService;
 	
-	@GetMapping("/orden") //Funciona OK
+	@GetMapping("/ordenes") //Funciona OK
 	public ModelAndView getOrderPage() {
-		ModelAndView model = new ModelAndView("order");
+		ModelAndView model = new ModelAndView("orderlist");
 		model.addObject("orders", orderService.getOrders());
 		return model;
 	}
@@ -63,7 +63,7 @@ public class OrderController {
 			return model;
 		}
 		else {
-			model = new ModelAndView("order");
+			model = new ModelAndView("orderlist");
 			orderService.guardarOrder(order);
 			model.addObject("orders", orderService.getOrders());
 			return model;

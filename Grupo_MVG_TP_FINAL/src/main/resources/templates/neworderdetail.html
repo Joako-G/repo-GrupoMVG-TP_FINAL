@@ -47,7 +47,7 @@
 				<div class="col-md-10">
 					
 					<div class="btn-group justify-content-center py-3">
-					  <a href="/orden" class="btn btn-outline-secondary"><i class="bi bi-plus-square mr-2"></i>Volver</a>
+					  <a href="/detalles" class="btn btn-outline-secondary">Volver</a>
 					</div>
 					
 					<h1>Nuevo Detalle de Orden de Compra</h1>
@@ -55,12 +55,12 @@
 					<form class="py-3" th:action="@{/detalle-guardar}" th:object="${detalle}" method="POST">
 					
 						<div class="form-row">
-              <div class="form-group col-md-4">
-						   <label for="orden" class="col-form-label">Seleccionar Orden de Compra</label>
-						   <select th:field="*{id.order.id}" id="orden" class="form-control">
-								  <option th:each="o : ${ordenes}" th:value="${o.id}" th:text="${o.id}"></option>
+              				<div class="form-group col-md-4">
+						   		<label for="orden" class="col-form-label">Seleccionar Orden de Compra</label>
+						   		<select th:field="*{id.order.id}" id="orden" class="form-control">
+									<option th:each="o : ${ordenes}" th:value="${o.id}" th:text="${o.id}"></option>
 								</select>	  
-						  </div>
+						  	</div>
 							
 							<div class="form-group col-md-8">
 								<label for="producto" class="col-form-label">Seleccionar Producto</label>

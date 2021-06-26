@@ -12,6 +12,7 @@
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
@@ -67,17 +68,18 @@
 					<h1>Registro de pagos</h1>
 					
 					<div class="btn-group justify-content-center">
-					  <a href="/pago-nuevo" class="btn btn-outline-info"><i class="bi bi-plus-square mr-2"></i>Agregar nuevo</a>
+					  <a href="/pago-nuevo" class="btn btn-outline-secondary"><i class="bi bi-plus-square mr-2"></i>Agregar nuevo</a>
 					</div>
 					
-					<div class="table-responsive py-2">
-						<table class="table table-hover table-dark text-center">
+					<div class="table-responsive py-3">
+						<table class="table table-hover table-bordered text-center">
 							<thead>
 								<tr>
 									<th scope="col">Número de Cliente</th>
 									<th scope="col">Número de Cheque</th>
 									<th scope="col">Fecha de Pago</th>
 									<th scope="col">Total</th>
+									<th scope="col">Acciones</th>
 								</tr>
 							</thead>
 							<tbody>

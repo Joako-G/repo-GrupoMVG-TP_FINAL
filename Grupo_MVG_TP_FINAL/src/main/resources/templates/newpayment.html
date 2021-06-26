@@ -47,7 +47,7 @@
 				<div class="col-md-10">
 					
 					<div class="btn-group justify-content-center py-3">
-					  <a href="/orden" class="btn btn-outline-secondary"><i class="bi bi-plus-square mr-2"></i>Volver</a>
+					  <a href="/pagos" class="btn btn-outline-secondary">Volver</a>
 					</div>
 					
 					<h1>Nuevo pago</h1>
@@ -63,23 +63,23 @@
 		        		
 						<div class="form-group">
 							<label for="nroCheque" class="col-form-label">Número de cheque</label>
-              <input type="text" class="form-control" id="nroCheque" th:field="*{id.numeroCheque}" placeholder="Ingrese número de cheque">
+              				<input type="text" class="form-control" id="nroCheque" th:field="*{id.numeroCheque}" placeholder="Ingrese número de cheque">
 							<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('id.numeroCheque')}" th:errors="*{id.numeroCheque}"></div>
 						</div>
 						
 						<div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="fechaPago" class="col-form-label">Fecha de pago</label>
-                <input type="date" class="form-control" id="fechaPago" th:field="*{fechaPago}">
-                <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('fechaPago')}" th:errors="*{fechaPago}"></div>	
-              </div>
+             				<div class="form-group col-md-6">
+                				<label for="fechaPago" class="col-form-label">Fecha de pago</label>
+                				<input type="date" class="form-control" id="fechaPago" th:field="*{fechaPago}">
+                				<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('fechaPago')}" th:errors="*{fechaPago}"></div>	
+              				</div>
               
-              <div class="form-group col-md-6">
-							  <label for="total" class="col-form-label">Total</label>
+              				<div class="form-group col-md-6">
+								<label for="total" class="col-form-label">Total</label>
 								<input type="number" class="form-control" id="total" th:field="*{cantidad}" step="any">
 								<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('cantidad')}" th:errors="*{cantidad}"></div>
-               </div>
-            </div>
+               				</div>
+            			</div>
 						
 						<button type="submit" class="btn btn-secondary">Guardar</button>
 					</form>
