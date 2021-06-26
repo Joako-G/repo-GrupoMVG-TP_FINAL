@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -29,7 +30,7 @@ public class Product {
 	@Column(name="productName", length = 70)
 	public String nombreProducto;
 	
-	@NotNull
+	@NotEmpty(message = "Ingresar escala")
 	@Column(name="productScale")
 	private String productScale;
 	
@@ -41,14 +42,15 @@ public class Product {
 	@Column(name="productDescription", columnDefinition="TEXT")
 	private String descripcion;
 	
-	@NotNull(message = "Debe ingresar stock del producto")
+	@Min(value = 0, message = "Debe ser igual o mayor a 0")
 	@Column(name="quantityInStock")
 	private int stock;
 	
-	@NotNull(message = "Debe ingresar el precio de compra")
+	@Min(value = 1, message = "Debe ser igual o mayor a 1")
 	@Column(name="buyPrice")
 	private double precioCompra;
 	
+	@Min(value = 1, message = "Debe ser igual o mayor a 1")
 	@Column(name="MSRP")
 	private double MSRP;
 	

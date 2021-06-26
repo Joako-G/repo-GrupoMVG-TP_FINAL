@@ -46,59 +46,42 @@
 			<div class="row">
 				<div class="col-md-10">
 					
-					<div class="btn-group justify-content-center">
-					  <a href="/pago" class="btn btn-outline-info"><i class="bi bi-plus-square mr-2"></i>Volver</a>
+					<div class="btn-group justify-content-center py-3">
+					  <a href="/orden" class="btn btn-outline-secondary"><i class="bi bi-plus-square mr-2"></i>Volver</a>
 					</div>
-					<br><br>
 					
 					<h1>Nuevo pago</h1>
 					
-					<form th:action="@{/pago-guardar}" th:object="${pago}" method="POST">
+					<form class="py-3" th:action="@{/pago-guardar}" th:object="${pago}" method="POST">
 					
 <!-- 						<input type="hidden" th:field="*{id.customer.idCliente}"/> -->
 <!-- 						<input type="hidden" th:field="*{id.numeroCheque}"/> -->
 					
-						<div class="form-group row">
-			
-						   <label for="cliente" class="col-md-4 col-form-label">Seleccionar cliente</label>
-						      <div class="col-md-8">
-						      <select th:field="*{id.customer.idCliente}" id="cliente" class="form-control">
-								  <option th:each="cli : ${clientes}" th:value="${cli.idCliente}" th:text="${cli.clienteNombre}"></option>
-								</select>
-							  </div>
-							  
+						<div class="form-group">
+							<label for="cliente" class="col-form-label">Seleccionar cliente</label>
+							<select th:field="*{id.customer.idCliente}" id="cliente" class="form-control">
+								<option th:each="cli : ${clientes}" th:value="${cli.idCliente}" th:text="${cli.clienteNombre}"></option>
+							</select>
 						</div>
 		        		
-						<div class="form-group row">
-							<label for="nroCheque" class="col-md-4 col-form-label">Número de cheque</label>
-							<div class="col-md-8">
-								<input type="text" class="form-control" id="nroCheque" th:field="*{id.numeroCheque}" >
-							</div>
-							
+						<div class="form-group">
+							<label for="nroCheque" class="col-form-label">Número de cheque</label>
+							<input type="text" class="form-control" id="nroCheque" th:field="*{id.numeroCheque}" placeholder="Ingrese número de cheque">
 						</div>
 						
-						
-						<div class="form-group row">
-							<label for="fechaPago" class="col-md-4 col-form-label">Fecha de pago</label>
-							<div class="col-md-8">
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="fechaPago" class="col-form-label">Fecha de pago</label>
 								<input type="date" class="form-control" id="fechaPago" th:field="*{fechaPago}">
 							</div>
 							
-						</div>
-						
-						<div class="form-group row">
-							<label for="total" class="col-md-4 col-form-label">Total</label>
-							<div class="col-md-8">
+							<div class="form-group col-md-6">
+								<label for="total" class="col-form-label">Total</label>
 								<input type="number" class="form-control" id="total" th:field="*{cantidad}" step="any">
 							</div>
-							
 						</div>
 						
-						<div class="form-group row">
-					    	<div class="col-md-8">
-					      		<button type="submit" class="btn btn-info">Guardar</button>
-					   		 </div>
-					  	</div>
+						<button type="submit" class="btn btn-secondary">Guardar</button>
 					</form>
 				</div>
 				

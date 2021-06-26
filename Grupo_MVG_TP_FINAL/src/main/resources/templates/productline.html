@@ -39,51 +39,46 @@
 	<header th:replace="/layout/header :: header"></header>
   
 	<main id="main">
-		<div class="container">
+		<div class="container py-3">
 				<div class="row">
-				<div class="col-md-8">	
-					<h1>Alta de Marca de Producto</h1>
-				</div>
+				<div class="col-md-10">
 					
-					  <form th:action="@{/productline-guardar}" th:object="${productline}" method="POST" enctype="multipart/form-data">
-					<!--<form th:action="@{/productline-guardar}" th:object="${productline}" method="POST">-->
-						  <div class="form-group row">
-							<label for="idProd" class="col-md-4 col-form-label">Nombre Marca</label>
-							<div class="col-md-8">
-								<input type="text" class="form-control" id="idProd" th:field="*{id}">
-								
-							</div>
-						</div>
-			
-						<div class="form-group row">
-							<label for="textDescripcion" class="col-md-4 col-form-label">Descripcion de la marca</label>
-								<div class="col-md-8">
-									<input type="text" class="form-control" id="textDescripcion" th:field="*{textDescripcion}">
-									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('textDescripcion')}" th:errors="*{textDescripcion}"></div>
-								</div>
-						</div>
-			
-						<div class="form-group row">
-							<label for="htmlDescripcion" class="col-md-4 col-form-label">Descripcion de pagina web</label>
-								<div class="col-md-8">
-									<input type="text" class="form-control" id="htmlDescripcion" th:field="*{htmlDescripcion}">
-								</div>
-						</div>
-							
-						<div class="form-group row">
+					<div class="btn-group justify-content-center py-3">
+					  <a href="/orden" class="btn btn-outline-secondary"><i class="bi bi-plus-square mr-2"></i>Volver</a>
+					</div>
+					
+					<h1>Alta de Linea de Producto</h1>
+					
+					<form class="py-3" th:action="@{/productline-guardar}" th:object="${productline}" method="POST" enctype="multipart/form-data">
+					
+						<div class="form-group">
+					    	<label for="idProd">Nombre de Linea</label>
+					    	<input type="text" class="form-control" id="idProd" th:field="*{id}" placeholder="Ingrese un nombre para la categoría">
+					  	</div>
+					  	
+					  	<div class="form-group">
+					    	<label for="textDescripcion">Descripción</label>
+					    	<input type="text" class="form-control" id="textDescripcion" th:field="*{textDescripcion}" placeholder="Ingrese una descripción del tipo de productos">
+					    	<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('textDescripcion')}" th:errors="*{textDescripcion}"></div>
+					  	</div>
+					  	
+					  	<div class="form-group">
+					    	<label for="htmlDescripcion">Descripción de pagina web</label>
+					    	<input type="text" class="form-control" id="htmlDescripcion" th:field="*{htmlDescripcion}" placeholder="Ingrese una descripción de la página web">
+					  	</div>
+					  	
+					  	<div class="form-group">
+					  		<p>Cargar Imagen</p>
 							<div class="custom-file">
 								<label class="custom-file-label" for="imagen">Seleccionar Imagen</label>
 							  	<input type="file" name="file" class="custom-file-input" id="imagen">
 							</div>
 						</div>
-							
-						<div class="form-group row">
-						    <div class="col-md-8">
-						      	<button type="submit" class="btn btn-info">Guardar</button>
-						   	 </div>
-						  </div>
-							
+					  	
+					  	<button type="submit" class="btn btn-secondary">Guardar</button>
 					</form>
+					
+				</div>
 				<!-- PUBLICIDAD  -->
 			</div>
 		</div>

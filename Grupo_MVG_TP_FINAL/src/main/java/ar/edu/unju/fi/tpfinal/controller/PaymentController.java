@@ -74,7 +74,7 @@ public class PaymentController {
 		Optional<Payment> payment = paymentService.getPaymentPorId(paymentid);
 		System.out.println("id cliente: " + paymentid.customer.getIdCliente());
 		System.out.println("id cheque: " +paymentid.getNumeroCheque());
-		model.addObject("pago",payment);
+		model.addObject("pago",payment.get());
 		model.addObject("clientes",customerService.getCustomers());
 		return model;
 	}

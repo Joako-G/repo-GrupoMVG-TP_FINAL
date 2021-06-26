@@ -9,8 +9,6 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 import org.springframework.stereotype.Component;
@@ -28,28 +26,29 @@ public class Office {
 	@Column(name = "city", length = 50)
 	private String ciudad;
 	
-	@NotEmpty(message = "Debe ingresar el telefono")
+	@NotEmpty(message = "Debe ingresar el teléfono")
 	@Column(name = "phone", length = 50)
 	private String telefono;
 	
-	@NotEmpty(message = "Debe ingresar la direccion")
+	@NotEmpty(message = "Debe ingresar la dirección")
 	@Column(name = "addressLine1", length = 50)
 	private String direccion1;
 	
 	@Column(name = "addressLine2", length = 50)
 	private String direccion2;
 	
-	@NotEmpty(message = "Debe ingresar el estado o provincia")
 	@Column(name = "state", length = 50)
 	private String estado;
 	
-	@NotEmpty(message = "Debe ingresar el pais")
+	@NotEmpty(message = "Debe ingresar el país")
 	@Column(name = "country", length = 50)
 	private String pais;
 	
+	@NotEmpty(message = "Debe ingresar código postal")
 	@Column(name = "postalCode", length = 15)
 	private String codigoPostal;
 	
+	@NotEmpty(message = "Debe ingresar el territorio")
 	@Column(name = "territory", length = 10)
 	private String territorio;
 	
