@@ -59,7 +59,7 @@
 										<th scope="col">Extension</th>
 										<th scope="col">Email</th>
 										<th scope="col">Oficina</th>
-										<!--<th scope="col">Superior</th>-->
+										<th scope="col">Superior</th>
 										<th scope="col">Puesto</th>
 										<th scope="col">Acciones</th>
 									</tr>
@@ -72,11 +72,11 @@
 										<td th:text="${e.extension}"></td>
 										<td th:text="${e.correo}"></td>
 										<td th:text="${e.oficina.id}"></td>
-										<!--<td th:text="${e.superior.id}"></td>-->
+										<td th:text="${e?.superior?.id}"></td>
 										<td th:text="${e.titulo}"></td>
 										<td>
-											<a th:href="@{/editar-empleado-}+${e.id}" class="btn btn-warning">Editar</a>
-											<a th:href="@{/eliminar-empleado/}+${e.id}" class="btn btn-danger">Eliminar</a>
+											<a th:href="@{/editar-empleado-}+${e.id}" class="btn btn-warning my-1">Editar</a>
+											<a th:href="@{/eliminar-empleado/}+${e.id}" class="btn btn-danger my-1">Eliminar</a>
 										</td>
 									</tr>
 								</tbody>

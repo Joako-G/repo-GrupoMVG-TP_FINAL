@@ -40,6 +40,8 @@ class EmployeeTest {
 		Employee employee2 = new Employee(Integer.valueOf(2), "Patterson", "Mary", "x4611", "mpatterso@classicmodelcars.com", "VP Sales", oficina1.get(),superior1.get());
 		employeeService.guardarEmployee(employee2);
 		
+		System.out.println("Superior: " + employee2.getSuperior().getId());
+		
 		Employee employee3 = new Employee(Integer.valueOf(3), "Firrelli", "Jeff", "x9273", "jfirrelli@classicmodelcars.com", "VP Marketing", oficina1.get(), superior1.get());
 		employeeService.guardarEmployee(employee3);
 		

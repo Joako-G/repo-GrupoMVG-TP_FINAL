@@ -53,7 +53,7 @@ public class Order {
 	//Relacion con Customer
 	@Autowired
 	@NotNull(message = "Debe ingresar un cliente valido")
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "customerNumber")
 	public Customer customer;
 	
@@ -64,13 +64,12 @@ public class Order {
 	public Order() {
 		super();
 	}
-	
-	public Order(@NotNull(message = "Debe elegir un id valido") Integer id,
-			@NotNull(message = "Debe elegir una fecha valida") LocalDate fechaOrden,
-			@NotNull(message = "Debe elegir una fecha valida") LocalDate fechaRequerida, LocalDate fechaEnvio,
-			@NotNull(message = "Debe ingresar el estado") String estado, String comentarios,
-			@NotNull(message = "Debe ingresar un cliente valido") Customer customer) {
 
+	public Order(@NotNull(message = "Debe elegir un ID válido") Integer id,
+			@NotNull(message = "Debe elegir una fecha válida") LocalDate fechaOrden,
+			@NotNull(message = "Debe elegir una fecha válida") LocalDate fechaRequerida, LocalDate fechaEnvio,
+			@NotEmpty(message = "Debe ingresar el estado") String estado, String comentarios,
+			@NotNull(message = "Debe ingresar un cliente valido") Customer customer) {
 		super();
 		this.id = id;
 		this.fechaOrden = fechaOrden;
@@ -78,6 +77,7 @@ public class Order {
 		this.fechaEnvio = fechaEnvio;
 		this.estado = estado;
 		this.comentarios = comentarios;
+		this.customer = customer;
 	}
 
 	public Integer getId() {
@@ -147,7 +147,8 @@ public class Order {
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", fechaOrden=" + fechaOrden + ", fechaRequerida=" + fechaRequerida + ", fechaEnvio="
-				+ fechaEnvio + ", estado=" + estado + ", comentarios=" + comentarios + "]";
+				+ fechaEnvio + ", estado=" + estado + ", comentarios=" + comentarios + ", customer=" + customer + "]";
 	}
+	
 	
 }
