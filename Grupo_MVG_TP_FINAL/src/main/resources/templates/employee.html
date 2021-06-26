@@ -42,76 +42,75 @@
 			<div class="container py-3">
 				<div class="row">
 					<div class="col-md-10">
+						
+						<div class="btn-group justify-content-center py-3">
+						  <a href="/orden" class="btn btn-outline-secondary"><i class="bi bi-plus-square mr-2"></i>Volver</a>
+						</div>
+						
 						<h1>Registrar un nuevo empleado</h1>
-						<form th:action="@{/guardar-empleado}" th:object="${employee}" th:method="POST">
+						
+						<form class="py-3" th:action="@{/guardar-empleado}" th:object="${employee}" th:method="POST">
 		
 							<input type="hidden" th:field="*{id}">
 							
-							<div class="form-group row">
-								<label for="apellido" class="col-md-2 col-form-label">Apellido</label>
-								<div class="col-md-6">
-									<input type="text" class="form-control" id="apellido" th:field="*{apellido}">
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="apellido" class="col-form-label">Apellido</label>
+									<input type="text" class="form-control" id="apellido" th:field="*{apellido}" placeholder="Ingrese apellido">
 									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></div>
 								</div>
-							</div>
-				
-							<div class="form-group row">
-								<label for="nombre" class="col-md-2 col-form-label">Nombre</label>
-									<div class="col-md-6">
-										<input type="text" class="form-control" id="nombre" th:field="*{nombre}">
-										<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
-									</div>
-							</div>
-				
-							<div class="form-group row">
-								<label for="extension" class="col-md-2 col-form-label">Extension</label>
-									<div class="col-md-6">
-										<input type="text" class="form-control" id="extension" th:field="*{extension}">
-										<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('extension')}" th:errors="*{extension}"></div>
-									</div>
-							</div>
-								
-							<div class="form-group row">
-								<label for="correo" class="col-md-2 col-form-label">Email</label>
-								<div class="col-md-6">
-									<input type="email" class="form-control" id="correo" th:field="*{correo}">
-									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}"></div>
+					
+								<div class="form-group col-md-6">
+									<label for="nombre" class="col-form-label">Nombre</label>
+										<div class="">
+											<input type="text" class="form-control" id="nombre" th:field="*{nombre}" placeholder="Ingrese nombre">
+											<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+										</div>
 								</div>
 							</div>
-							<!-- 
-							<div class="form-group row">
-								<label for="puesto" class="col-md-2 col-form-label">Oficina</label>
-								<div class="col-md-6">
+							
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="correo" class="col-form-label">Email</label>
+									<input type="email" class="form-control" id="correo" th:field="*{correo}" placeholder="Ingrese dirección de correo electrónico">
+									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}"></div>
+								</div>
+					
+								<div class="form-group col-md-6">
+									<label for="puesto" class="col-form-label">Puesto</label>
+									<input type="text" class="form-control" id="puesto" th:field="*{titulo}" placeholder="Ingrese puesto de trabajo">
+									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></div>
+								</div>
+							</div>
+							
+							<div class="form-row">
+								<div class="form-group col-md-4">
+									<label for="extension" class="col-form-label">Extensión</label>
+									<input type="text" class="form-control" id="extension" th:field="*{extension}" placeholder="Ingrese extensión">
+									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('extension')}" th:errors="*{extension}"></div>
+								</div>
+					
+								<div class="form-group col-md-4">
+									<label for="oficina" class="col-form-label">Oficina</label>
 									<select th:field="*{oficina.id}" id="oficina" class="form-control">
 										<option th:each="o : ${offices}" th:value="${o.id}" th:text="${o.id}"></option>
 									</select>
 								</div>
-							</div>
-							 -->
-							<div class="form-group row">
-								<label for="superior" class="col-md-2 col-form-label">Superior</label>
-								<div class="col-md-6">
+								
+								<div class="form-group col-md-4">
+									<label for="superior" class="col-form-label">Superior</label>
 									<select th:field="*{superior.id}" id="superior" class="form-control">
 										<option th:each="e : ${employees}" th:value="${e.id}" th:text="${e.titulo}"></option>
 									</select>
 								</div>
 							</div>
 							
-							<div class="form-group row">
-								<label for="puesto" class="col-md-2 col-form-label">Puesto</label>
-								<div class="col-md-6">
-									<input type="text" class="form-control" id="puesto" th:field="*{titulo}">
-									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></div>
-								</div>
-							</div>
-								
-							<div class="form-group row">
-						    	<div class="col-md-6">
-						      		<button type="submit" class="btn btn-secondary">Guardar</button>
-						   		</div>
-						  	</div>
+							<button type="submit" class="btn btn-secondary">Guardar</button>
 								
 						</form>
+						
+						
+						
 					</div>
 						<!-- PUBLICIDAD  -->
 				</div>

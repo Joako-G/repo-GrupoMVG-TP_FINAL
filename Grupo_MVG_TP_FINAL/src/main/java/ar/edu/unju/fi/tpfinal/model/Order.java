@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,17 +25,17 @@ import org.springframework.stereotype.Component;
 public class Order {
 	
 	@Id
-	@NotNull(message = "Debe elegir un id valido")
+	@NotNull(message = "Debe elegir un ID válido")
 	@Column(name = "orderNumber")
 	private Integer id;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@NotNull(message = "Debe elegir una fecha valida")
+	@NotNull(message = "Debe elegir una fecha válida")
 	@Column(name = "orderDate")
 	private LocalDate fechaOrden;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@NotNull(message = "Debe elegir una fecha valida")
+	@NotNull(message = "Debe elegir una fecha válida")
 	@Column(name = "requiredDate")
 	private LocalDate fechaRequerida;
 	
@@ -42,7 +43,7 @@ public class Order {
 	@Column(name = "shippedDate")
 	private LocalDate fechaEnvio;
 	
-	@NotNull(message = "Debe ingresar el estado")
+	@NotEmpty(message = "Debe ingresar el estado")
 	@Column(name = "status", length = 15)
 	private String estado;
 	

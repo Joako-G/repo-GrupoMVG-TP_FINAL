@@ -46,66 +46,51 @@
 			<div class="row">
 				<div class="col-md-10">
 					
-					<div class="btn-group justify-content-center">
-					  <a href="/detalle" class="btn btn-outline-info"><i class="bi bi-plus-square mr-2"></i>Volver</a>
+					<div class="btn-group justify-content-center py-3">
+					  <a href="/orden" class="btn btn-outline-secondary"><i class="bi bi-plus-square mr-2"></i>Volver</a>
 					</div>
-					<br><br>
 					
 					<h1>Nuevo Detalle de Orden de Compra</h1>
 					
-					<form th:action="@{/detalle-guardar}" th:object="${detalle}" method="POST">
+					<form class="py-3" th:action="@{/detalle-guardar}" th:object="${detalle}" method="POST">
 					
-						<div class="form-group row">
-						   <label for="orden" class="col-md-4 col-form-label">Seleccionar Orden de Compra</label>
-						      <div class="col-md-8">
-						      <select th:field="*{id.order.id}" id="orden" class="form-control">
+						<div class="form-row">
+              <div class="form-group col-md-4">
+						   <label for="orden" class="col-form-label">Seleccionar Orden de Compra</label>
+						   <select th:field="*{id.order.id}" id="orden" class="form-control">
 								  <option th:each="o : ${ordenes}" th:value="${o.id}" th:text="${o.id}"></option>
-								</select>
-							  </div>				  
-						</div>
-						
-						<div class="form-group row">
-						   <label for="producto" class="col-md-4 col-form-label">Seleccionar Producto</label>
-						      <div class="col-md-8">
-						      <select th:field="*{id.product.id}" id="producto" class="form-control">
-								  <option th:each="prod : ${productos}" th:value="${prod.id}" th:text="${prod.nombreProducto}"></option>
-								</select>
-							  </div>				  
-						</div>
+								</select>	  
+						  </div>
+							
+							<div class="form-group col-md-8">
+								<label for="producto" class="col-form-label">Seleccionar Producto</label>
+								<select th:field="*{id.product.id}" id="producto" class="form-control">
+									<option th:each="prod : ${productos}" th:value="${prod.id}" th:text="${prod.nombreProducto}"></option>
+								</select>			  
+							</div>
+		        		</div>
 		        		
-						<div class="form-group row">
-							<label for="cantidad" class="col-md-4 col-form-label">Cantidad</label>
-							<div class="col-md-8">
+		        		<div class="form-row">
+							<div class="form-group col-md-4">
+								<label for="cantidad" class="col-form-label">Cantidad</label>
 								<input type="number" class="form-control" id="cantidad" th:field="*{cantidad}" >
 								<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('cantidad')}" th:errors="*{cantidad}"></div>
 							</div>
 							
-						</div>
-						
-						
-						<div class="form-group row">
-							<label for="precio" class="col-md-4 col-form-label">Precio</label>
-							<div class="col-md-8">
+							<div class="form-group col-md-4">
+								<label for="precio" class="col-form-label">Precio</label>
 								<input type="number" class="form-control" id="precio" th:field="*{precio}" step="any">
 								<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></div>
 							</div>
 							
-						</div>
-						
-						<div class="form-group row">
-							<label for="numeroLinea" class="col-md-4 col-form-label">Número de Linea</label>
-							<div class="col-md-8">
+							<div class="form-group col-md-4">
+								<label for="numeroLinea" class="col-form-label">Número de Línea</label>
 								<input type="number" class="form-control" id="numeroLinea" th:field="*{numeroLinea}">
 								<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('numeroLinea')}" th:errors="*{numeroLinea}"></div>
 							</div>
-							
 						</div>
 						
-						<div class="form-group row">
-					    	<div class="col-md-8">
-					      		<button type="submit" class="btn btn-info">Guardar</button>
-					   		 </div>
-					  	</div>
+						<button type="submit" class="btn btn-secondary">Guardar</button>
 					</form>
 				</div>
 				

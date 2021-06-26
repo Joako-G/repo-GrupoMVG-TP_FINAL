@@ -77,18 +77,22 @@ public class PaymentController {
 	}
 	
 	@GetMapping("/pago-editar-{id}-{id2}") //No funciona. Problemas con el id oculto del template newpayment
-	public ModelAndView modificarPaymentPage(@PathVariable (value = "id")Long idCliente, @PathVariable (value = "id2")String idCheque) {
-		ModelAndView model = new ModelAndView("newpayment");
+	public ModelAndView modificarOrderDetailPage(@PathVariable (value = "id")int orderId, @PathVariable (value = "id2")String productId) {
+		ModelAndView model = new ModelAndView("neworderdetail");
 		//Seteo un orderDetailId con los id traidos desde el template
-		Optional<Customer> cliente = customerService.getCustomerPorId(idCliente);
-		paymentid.setCustomer(cliente.get());
-		paymentid.setNumeroCheque(idCheque);
+		Optional<Order> order = orderService.getOrderPorId(orderId);
+		orderDetailsId.setOrder(order.get());
+		Optional<Product> product = productService.getProductPorId(productId);
+		orderDetailsId.setProduct(product.get());
+		
 		//busco el orderDetail por el orderDetailId
-		Optional<Payment> payment = paymentService.getPaymentPorId(paymentid);
-		paymentService.eliminarPayment(paymentid);//LINEA AGREGADA PARA CAMBIAR ID Y QUE NO SE DUPLIQUE
-		model.addObject("pago",payment);
-		model.addObject("clientes",customerService.getCustomers());
+		Optional<OrderDetail> orderDetail = orderDetailService.getOrderDetailPorId(orderDetailsId);
+		orderDetailService.eliminarOrderDetail(orderDetailsId); //LINEA AGREGADA PARA CAMBIAR ID Y QUE NO SE DUPLIQUE
+		model.addObject("detalle",orderDetail);
+		model.addObject("ordenes", orderService.getOrders());
+		model.addObject("productos", productService.getProductos());
 		return model;
+
 	}
 	
 	@GetMapping("/pago-eliminar-{id}-{id2}") //Funciona OK

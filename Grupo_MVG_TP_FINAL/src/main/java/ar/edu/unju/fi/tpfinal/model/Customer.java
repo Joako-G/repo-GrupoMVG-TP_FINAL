@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -42,7 +43,7 @@ public class Customer {
 	@Column(name="contactFirstName", length = 50)
 	private String nombre;
 	
-	@NotNull
+	@Min(value = 1000000, message = "Ingrese teléfono")
 	@Column(name="phone", length = 50)
 	private String telefono;
 	

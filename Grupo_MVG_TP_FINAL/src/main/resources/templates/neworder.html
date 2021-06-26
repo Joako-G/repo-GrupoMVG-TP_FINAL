@@ -46,80 +46,65 @@
 			<div class="row">
 				<div class="col-md-10">
 					
-					<div class="btn-group justify-content-center">
-					  <a href="/orden" class="btn btn-outline-info"><i class="bi bi-plus-square mr-2"></i>Volver</a>
+					<div class="btn-group justify-content-center py-3">
+					  <a href="/orden" class="btn btn-outline-secondary"><i class="bi bi-plus-square mr-2"></i>Volver</a>
 					</div>
-					<br><br>
 					
 					<h1>Nueva Orden de Compra</h1>
-					
-					<form th:action="@{/orden-guardar}" th:object="${orden}" method="POST">
+          
+          <form class="py-3" th:action="@{/orden-guardar}" th:object="${orden}" method="POST">
 
-						<div class="form-group row">
-							<label for="id" class="col-md-4 col-form-label">Número de Orden</label>
-							<div class="col-md-8">
-								<input type="number" class="form-control" id="id" th:field="*{id}">
-							</div>
-							<div class="form-text text-danger col-sm-5 offset-4" role="alert" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></div>
+						<div class="form-group">
+							<label for="id" class="col-form-label">Número de Orden</label>
+							<input type="number" class="form-control" id="id" th:field="*{id}" placeholder="Ingrese número de orden">
+							<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></div>
 						</div>
 						
-						<div class="form-group row">
-							<label for="fechaOrden" class="col-md-4 col-form-label">Fecha de Orden</label>
-							<div class="col-md-8">
+						<div class="form-row">
+							<div class="form-group col-md-4">
+								<label for="fechaOrden" class="col-form-label">Fecha de Orden</label>
 								<input type="date" class="form-control" id="fechaOrden" th:field="*{fechaOrden}">
+								<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('fechaOrden')}" th:errors="*{fechaOrden}"></div>
 							</div>
-							<div class="form-text text-danger col-sm-5 offset-4" role="alert" th:if="${#fields.hasErrors('fechaOrden')}" th:errors="*{fechaOrden}"></div>
-						</div>
-						
-						<div class="form-group row">
-							<label for="fechaReq" class="col-md-4 col-form-label">Fecha Requerida</label>
-							<div class="col-md-8">
+							
+							<div class="form-group col-md-4">
+								<label for="fechaReq" class="col-form-label">Fecha Requerida</label>
 								<input type="date" class="form-control" id="fechaReq" th:field="*{fechaRequerida}">
+								<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('fechaRequerida')}" th:errors="*{fechaRequerida}"></div>
 							</div>
-							<div class="form-text text-danger col-sm-5 offset-4" role="alert" th:if="${#fields.hasErrors('fechaRequerida')}" th:errors="*{fechaRequerida}"></div>
-						</div>
-						
-						<div class="form-group row">
-							<label for="fechaEnvio" class="col-md-4 col-form-label">Fecha de Envío</label>
-							<div class="col-md-8">
+							
+							<div class="form-group col-md-4">
+								<label for="fechaEnvio" class="col-form-label">Fecha de Envío</label>
 								<input type="date" class="form-control" id="fechaEnvio" th:field="*{fechaEnvio}">
+								<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('fechaEnvio')}" th:errors="*{fechaEnvio}"></div>
 							</div>
-							<div class="form-text text-danger col-sm-5 offset-4" role="alert" th:if="${#fields.hasErrors('fechaEnvio')}" th:errors="*{fechaEnvio}"></div>
 						</div>
 						
-						<div class="form-group row">
-							<label for="estado" class="col-md-4 col-form-label">Estado</label>
-							<div class="col-md-8">
-								<input type="text" class="form-control" id="estado" th:field="*{estado}">
-							</div>
-							<div class="form-text text-danger col-sm-5 offset-4" role="alert" th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></div>
-						</div>
-						
-						<div class="form-group row">
-							<label for="comentarios" class="col-md-4 col-form-label">Comentarios</label>
-							<div class="col-md-8">
-								<input type="text" class="form-control" id="comentarios" th:field="*{comentarios}">
-							</div>
-							<div class="form-text text-danger col-sm-5 offset-4" role="alert" th:if="${#fields.hasErrors('comentarios')}" th:errors="*{comentarios}"></div>
-						</div>
-						
-					
-						<div class="form-group row">
-			
-						   <label for="customer" class="col-md-4 col-form-label">Seleccionar cliente</label>
-						      <div class="col-md-8">
-						      <select th:field="*{customer.idCliente}" id="customer" class="form-control">
-								  <option th:each="cli : ${clientes}" th:value="${cli.idCliente}" th:text="${cli.clienteNombre}"></option>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="estado" class="col-form-label">Estado</label>
+								<select th:field="*{estado}" id="estado" class="form-control">
+									<option th:value="''">Seleccionar</option>
+									<option th:value="'Enviado'" th:text="Enviado">Enviado</option>
+									<option th:value="'Cancelado'" th:text="Cancelado"></option>
 								</select>
-							  </div>
-							  
+								<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></div>
+							</div>
+							
+							<div class="form-group col-md-6">
+								<label for="customer" class="col-form-label">Seleccionar cliente</label>
+							    <select th:field="*{customer.idCliente}" id="customer" class="form-control">
+									<option th:each="cli : ${clientes}" th:value="${cli.idCliente}" th:text="${cli.clienteNombre}"></option>
+								</select>
+							</div>
 						</div>
 						
-						<div class="form-group row">
-					    	<div class="col-md-8">
-					      		<button type="submit" class="btn btn-info">Guardar</button>
-					   		 </div>
-					  	</div>
+						<div class="form-group">
+						    <label for="comentarios">Comentarios</label>
+						    <textarea class="form-control" id="comentarios" rows="3" th:field="*{comentarios}" placeholder="Ingrese comentario"></textarea>
+						</div>
+						
+						<button type="submit" class="btn btn-secondary">Guardar</button>
 						
 					</form>
 				</div>

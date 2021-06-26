@@ -37,15 +37,15 @@ public class Employee {
 	@Column(name = "firstName", length = 50)
 	private String nombre;
 	
-	@NotNull
+	@NotEmpty(message = "Debe ingresar extensión")
 	@Column(name = "extension", length = 10)
 	private String extension;
 	
-	@NotNull(message = "Debe ingresar su email")
+	@NotEmpty(message = "Debe ingresar su email")
 	@Column(name = "email", length = 100)
 	private String correo;
 	
-	@NotNull
+	@NotEmpty(message = "Debe ingresar el puesto de trabajo")
 	@Column(name = "jobTitle", length = 50)
 	private String titulo;
 	
