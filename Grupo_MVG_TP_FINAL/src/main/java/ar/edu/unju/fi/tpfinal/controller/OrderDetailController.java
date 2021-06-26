@@ -110,7 +110,7 @@ public class OrderDetailController {
 		
 		//busco el orderDetail por el orderDetailId
 		Optional<OrderDetail> orderDetail = orderDetailService.getOrderDetailPorId(orderDetailsId);
-		
+		orderDetailService.eliminarOrderDetail(orderDetailsId); //LINEA AGREGADA PARA CAMBIAR ID Y QUE NO SE DUPLIQUE
 		model.addObject("detalle",orderDetail);
 		model.addObject("ordenes", orderService.getOrders());
 		model.addObject("productos", productService.getProductos());

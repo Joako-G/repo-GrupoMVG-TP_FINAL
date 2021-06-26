@@ -60,24 +60,22 @@ public class OrderController {
 			model = new ModelAndView("neworder");
 			model.addObject("orden",order);
 			model.addObject("clientes",customerService.getCustomers());
-			System.out.println(order);
 			return model;
 		}
 		else {
 			model = new ModelAndView("order");
-			System.out.println(order);
 			orderService.guardarOrder(order);
 			model.addObject("orders", orderService.getOrders());
-			System.out.println(order);
 			return model;
 		}
 	}
 	
-	@GetMapping("/orden-editar-{id}") //No funciona!
+	@GetMapping("/orden-editar-{id}")
 	public ModelAndView modificarOrderPage(@PathVariable (value = "id")int id) {
 		ModelAndView model = new ModelAndView("neworder");
 		Optional<Order> order = orderService.getOrderPorId(id);
 		System.out.println(order.get().getId());
+		orderService.eliminarOrder(id);//LINEA AGREGADA PARA CAMBIAR ID Y QUE NO SE DUPLIQUE
 		model.addObject("orden",order);
 		model.addObject("clientes",customerService.getCustomers());
 		return model;
@@ -87,7 +85,7 @@ public class OrderController {
 	public ModelAndView eliminarOrderPage(@PathVariable(value = "id") int id) {
 		ModelAndView model = new ModelAndView("redirect:/orden-borrada");
 		orderService.eliminarOrder(id);
-		model.addObject(id);
+//		model.addObject(id);
 		return model;
 	}
 }

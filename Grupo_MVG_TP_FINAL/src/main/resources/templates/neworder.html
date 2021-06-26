@@ -51,9 +51,8 @@
 					</div>
 					
 					<h1>Nueva Orden de Compra</h1>
-					
-					<form class="py-3" th:action="@{/orden-guardar}" th:object="${orden}" method="POST">
-<!--  						<input type="hidden" th:field="*{id}"/>  -->
+          
+          <form class="py-3" th:action="@{/orden-guardar}" th:object="${orden}" method="POST">
 
 						<div class="form-group">
 							<label for="id" class="col-form-label">Número de Orden</label>

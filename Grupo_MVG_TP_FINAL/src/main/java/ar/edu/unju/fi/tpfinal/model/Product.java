@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.tpfinal.model;
 
 import java.util.ArrayList;
+//import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -86,8 +87,6 @@ public class Product {
 		MSRP = mSRP;
 	}
 
-
-
 	public String getId() {
 		return id;
 	}
@@ -105,6 +104,11 @@ public class Product {
 	}
 
 	public String getProductScale() {
+		/*Calendar horaActual = Calendar.getInstance();
+		int hora = horaActual.get(Calendar.HOUR);
+		int minuto = horaActual.get(Calendar.MINUTE);
+		
+		productScale = hora +  ":" + minuto;*/
 		return productScale;
 	}
 
