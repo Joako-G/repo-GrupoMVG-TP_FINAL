@@ -77,7 +77,7 @@ public class Customer {
 	private Employee empleado;
 	
 	//Relacion con Order
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "customer")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
 	private List<Order> pedidos = new ArrayList<Order>();
 	
 	//Relacion con Payment
