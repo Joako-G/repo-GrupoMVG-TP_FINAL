@@ -23,29 +23,39 @@ public class ManejadorAuth implements AuthenticationSuccessHandler {
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		
-		boolean userCliente = false;
-		boolean userAdmin = false;
+		boolean userVendedor = false;
+		boolean userAdmin1 = false;
+		boolean userAdmin2 = false;
 		
 		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 		
 		for(GrantedAuthority grantedAuthority : authorities) {
-			if(grantedAuthority.getAuthority().equals("CLIENTE")) {
-				userCliente = true;
+			if(grantedAuthority.getAuthority().equals("Sales Rep")) {
+				userVendedor = true;
 				break;
 			}else {
-				if(grantedAuthority.getAuthority().equals("ADMINISTRADOR")) {
-					userAdmin = true;
+				if(grantedAuthority.getAuthority().equals("President") || grantedAuthority.getAuthority().equals("VP Sales")) {
+					userAdmin1 = true;
 					break;
+				}else {
+					if(grantedAuthority.getAuthority().equals("Sales Manager (APAC)") ) {
+						userAdmin2 = true;
+						break;
+					}
 				}
 			}
 		}
-		if(userCliente) {
-			redirectStrategy.sendRedirect(request, response, "/productos");
+		if(userVendedor) {
+			redirectStrategy.sendRedirect(request, response, "/orden-nueva");
 		} else {
-			if(userAdmin) {
-				redirectStrategy.sendRedirect(request, response, "/producto-nuevo");
+			if(userAdmin1) {
+				redirectStrategy.sendRedirect(request, response, "/nuevo-empleado");
 			} else {
-				throw new IllegalStateException();
+				if(userAdmin2) {
+					redirectStrategy.sendRedirect(request, response, "/producto-nuevo");
+				}else {
+					throw new IllegalStateException();
+				}
 			}
 		}
 	}

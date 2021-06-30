@@ -19,7 +19,7 @@ import ar.edu.unju.fi.tpfinal.service.IOfficeService;
 class AccountTest {
 	
 	@Autowired
-	IAccountService usuarioService;
+	IAccountService cuentaService;
 	
 	@Autowired
 	IEmployeeService employeeService;
@@ -34,10 +34,10 @@ class AccountTest {
 		cuentaNueva.setNombreUsuario("administrador");
 		cuentaNueva.setRol("ADMINISTRADOR");
 		
-		usuarioService.guardarUsuario(cuentaNueva);
+		cuentaService.guardarUsuario(cuentaNueva);
 		
 		Optional<Office> oficina1 = officeService.getOfficePorId("1");
-		Employee empleadoNuevo = new Employee(Integer.valueOf(2), "Patterson", "Mary", "x4611", "mpatterso@classicmodelcars.com", "VP Sales", oficina1.get(), null, cuentaNueva);
+		Employee empleadoNuevo = new Employee(Integer.valueOf(6), "Thompson", "Leslie", "x4065", "lthompson@classicmodelcars.com", "Sales Rep", oficina1.get(), null, cuentaNueva);
 		
 		employeeService.guardarEmployee(empleadoNuevo);
 		
