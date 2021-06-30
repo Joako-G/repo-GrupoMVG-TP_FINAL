@@ -3,6 +3,7 @@ package ar.edu.unju.fi.tpfinal.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,12 +13,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 
 @Component
 @Entity
@@ -69,13 +73,20 @@ public class Employee {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "empleado")
 	private List<Customer> clientes = new ArrayList<Customer>();
 	
+	//Relacion con Usuario
+	@Valid
+	@Autowired
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_user")
+	private Usuario usuario;
+	
 	public Employee() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	public Employee(Integer id, @NotEmpty(message = "Debe ingresar su apellido") String apellido,
 			@NotEmpty(message = "Debe ingresar su nombre") String nombre, @NotNull String extension,
-			@NotNull String correo, @NotNull String titulo, Office oficina, Employee superior) {
+			@NotNull String correo, @NotNull String titulo, Office oficina, Employee superior, Usuario usuario) {
 		super();
 		this.id = id;
 		this.apellido = apellido;
@@ -85,6 +96,7 @@ public class Employee {
 		this.titulo = titulo;
 		this.oficina = oficina;
 		this.superior = superior;
+		this.usuario = usuario;
 	}
 
 	public Integer getId() {
@@ -170,7 +182,7 @@ public class Employee {
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", apellido=" + apellido + ", nombre=" + nombre + ", extension=" + extension
-				+ ", correo=" + correo + ", titulo=" + titulo + "]";
+				+ ", correo=" + correo + ", titulo=" + titulo + ", usuario=" + usuario + "]";
 	}
 
 }

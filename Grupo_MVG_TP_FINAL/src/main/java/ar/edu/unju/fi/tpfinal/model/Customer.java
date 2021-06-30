@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,7 +14,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -77,12 +80,19 @@ public class Customer {
 	private Employee empleado;
 	
 	//Relacion con Order
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "customer")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
 	private List<Order> pedidos = new ArrayList<Order>();
 	
 	//Relacion con Payment
 	@OneToMany(mappedBy = "id.customer")
 	private List<Payment> payments = new ArrayList<Payment>();
+	
+	//Relacion con Usuario
+	@Valid
+	@Autowired
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_user")
+	private Usuario usuario;
 	
 	public Customer() {
 		// TODO Auto-generated constructor stub
@@ -95,7 +105,7 @@ public class Customer {
 			@NotEmpty(message = "Debe ingresar la direccion") String direccion1, String direccion2,
 			@NotEmpty(message = "Debe ingresar la ciudad") String ciudad, String estado, String codigoPostal,
 			@NotEmpty(message = "Debe ingresar el pais") String pais,
-			@NotNull(message = "Debe ingresar limite de credito") BigDecimal limiteCredito, Employee empleado) {
+			@NotNull(message = "Debe ingresar limite de credito") BigDecimal limiteCredito, Employee empleado, Usuario usuario) {
 		super();
 		this.idCliente = idCliente;
 		this.clienteNombre = clienteNombre;
@@ -110,6 +120,7 @@ public class Customer {
 		this.pais = pais;
 		this.limiteCredito = limiteCredito;
 		this.empleado = empleado;
+		this.usuario = usuario;
 	}
 
 	public Long getIdCliente() {
@@ -231,13 +242,22 @@ public class Customer {
 	public void setPayments(List<Payment> payments) {
 		this.payments = payments;
 	}
+	
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
 	@Override
 	public String toString() {
 		return "Customer [idCliente=" + idCliente + ", clienteNombre=" + clienteNombre + ", apellido=" + apellido
 				+ ", nombre=" + nombre + ", telefono=" + telefono + ", direccion1=" + direccion1 + ", direccion2="
 				+ direccion2 + ", ciudad=" + ciudad + ", estado=" + estado + ", codigoPostal=" + codigoPostal
-				+ ", pais=" + pais + ", limiteCredito=" + limiteCredito + "]";
+				+ ", pais=" + pais + ", limiteCredito=" + limiteCredito + ", usuario=" + usuario + "]";
 	}
 
 	
