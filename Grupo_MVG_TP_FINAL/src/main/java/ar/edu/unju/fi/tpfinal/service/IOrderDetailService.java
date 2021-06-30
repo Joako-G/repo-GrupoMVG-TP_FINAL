@@ -12,4 +12,5 @@ public interface IOrderDetailService {
 	public List<OrderDetail> getOrderDetails();
 	public Optional<OrderDetail> getOrderDetailPorId(OrderDetailsId id);
 	public void eliminarOrderDetail(OrderDetailsId id);
+	public void eliminarOrderDetailByOrderId(int id);
 }

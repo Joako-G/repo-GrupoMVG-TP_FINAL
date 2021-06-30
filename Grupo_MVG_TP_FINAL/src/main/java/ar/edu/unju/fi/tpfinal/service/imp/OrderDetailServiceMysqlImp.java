@@ -21,6 +21,9 @@ public class OrderDetailServiceMysqlImp implements IOrderDetailService {
 
 	@Autowired
 	private IOrderDetailRepository orderDetailRepository;
+	
+	@Autowired
+	private OrderDetailsId orderDetailsId;
 
 	@Override
 	public void guardarOrderDetail(OrderDetail orderDetail) {
@@ -47,6 +50,19 @@ public class OrderDetailServiceMysqlImp implements IOrderDetailService {
 		orderDetailRepository.deleteById(id);
 		LOGGER.info("METHOD: eliminarOrderDetail ---- Se eliminó un objeto order detail de la lista: " + "id order: " + id.getOrder().getId() + " - id producto: " + id.getProduct().getId());
 		
+	}
+
+	@Override
+	public void eliminarOrderDetailByOrderId(int id) {
+		List<OrderDetail> orderDetails = (List<OrderDetail>) orderDetailRepository.findAll();
+		for (int i=0;i<orderDetails.size();i++) {
+			OrderDetail elementoLista = orderDetails.get(i);
+			if (elementoLista.getId().getOrder().getId().compareTo(id) == 0) {
+				orderDetailsId.setOrder(elementoLista.getId().getOrder());
+				orderDetailsId.setProduct(elementoLista.getId().getProduct());
+				eliminarOrderDetail(orderDetailsId);
+			}		
+		}
 	}
 
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.tpfinal.model.Employee;
+import ar.edu.unju.fi.tpfinal.service.ICustomerService;
 //import ar.edu.unju.fi.tpfinal.model.Office;
 import ar.edu.unju.fi.tpfinal.service.IEmployeeService;
 import ar.edu.unju.fi.tpfinal.service.IOfficeService;
@@ -33,6 +34,10 @@ public class EmployeeController {
 	@Autowired
 	@Qualifier("officeServiceMysql")
 	private IOfficeService officeService;
+	
+	@Autowired
+	@Qualifier("customerServiceImpMysql")
+	private ICustomerService customerService;
 	
 	@GetMapping("/nuevo-empleado")
 	public String getEmpleadoNuevoPage(Model model) {
@@ -73,16 +78,27 @@ public class EmployeeController {
 	public ModelAndView modificarEmpleadoPage(@PathVariable (value = "id")Integer id) {
 		ModelAndView model = new ModelAndView("newemployee");
 		Optional<Employee> empleadoEncontrado = employeeService.getEmployeePorId(id);
+//		employeeService.eliminarEmployee(id);
 		model.addObject("employee", empleadoEncontrado);
 		model.addObject("employees", employeeService.getEmployees());
 		model.addObject("offices", officeService.getOffices());
 		return model;
 	}
 	
-	@GetMapping("/eliminar-empleado/{id}")
+	@GetMapping("/eliminar-empleado-{id}")
 	public ModelAndView eliminarEmpleadoPage(@PathVariable(value = "id")Integer id) {
-		ModelAndView model = new ModelAndView("redirect:/empleados");
-		employeeService.eliminarEmployee(id);
-		return model;
+		if (customerService.existCustomerPorEmpleado(id) == false) {
+			if(employeeService.existEmpleadoPorEmpleado(id) == false) {
+				ModelAndView model = new ModelAndView("redirect:/empleados");
+				employeeService.eliminarEmployee(id);
+				return model;
+			}else {
+				ModelAndView model = new ModelAndView("errors");
+				return model;	
+			}		
+		}else {
+			ModelAndView model = new ModelAndView("errors");
+			return model;	
+		}
 	}
 }

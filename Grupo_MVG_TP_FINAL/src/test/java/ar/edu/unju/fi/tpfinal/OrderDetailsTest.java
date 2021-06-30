@@ -37,9 +37,9 @@ class OrderDetailsTest {
 		Optional<Product> productEncontrado = productService.getProductPorId("S12_1108");
 		System.out.println(productEncontrado);
 		
-		OrderDetailsId id = new OrderDetailsId(ordenEncontrada.get(), productEncontrado.get());
-		OrderDetail orderDetail = new OrderDetail(id, 30, BigDecimal.valueOf(136.00), (short)3);
-		orderDetailService.guardarOrderDetail(orderDetail);
+//		OrderDetailsId id = new OrderDetailsId(ordenEncontrada.get(), productEncontrado.get());
+//		OrderDetail orderDetail = new OrderDetail(id, 30, BigDecimal.valueOf(136.00), (short)3);
+//		orderDetailService.guardarOrderDetail(orderDetail);
 		
 		assertTrue(true);
 	}
