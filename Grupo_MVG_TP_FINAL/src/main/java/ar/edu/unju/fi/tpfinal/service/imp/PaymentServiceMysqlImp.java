@@ -46,4 +46,18 @@ public class PaymentServiceMysqlImp implements IPaymentService {
 		LOGGER.info("METHOD: eliminarPayment ---- Se eliminó un objeto payment de la lista: " + "id cliente " + id.getCustomer().getIdCliente() + " - id cheque: " + id.getNumeroCheque());
 	}
 
+	@Override
+	public boolean existPaymentByCustomer(Long customerId) {
+		LOGGER.info("METHOD: existPaymentByCustomer ---- Se consultó si un cliente existe en la tabla de payments. Id del cliente: " + customerId);
+		boolean band = false;
+		List<Payment> payments = (List<Payment>) paymentRepository.findAll();
+		for (int i=0;i<payments.size();i++) {
+			Payment elementoLista = payments.get(i);
+			if (elementoLista.getId().getCustomer().getIdCliente() == customerId)
+				band = true;	
+		}
+		return band;
+	}
+
+
 }

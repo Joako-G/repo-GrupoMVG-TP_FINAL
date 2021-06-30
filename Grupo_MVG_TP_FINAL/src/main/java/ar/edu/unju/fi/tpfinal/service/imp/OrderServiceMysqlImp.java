@@ -47,4 +47,17 @@ public class OrderServiceMysqlImp implements IOrderService {
 		LOGGER.info("METHOD: eliminarOrder ---- Se borró un objeto order en la lista: " + "id de la orden: " + id);
 	}
 
+	@Override
+	public boolean existOrderByCustomer(Long customerId) {
+		LOGGER.info("METHOD: existOrderByCustomer ---- Se consultó si un cliente existe en la tabla de ordenes. Id del cliente: " + customerId);
+		boolean band = false;
+		List<Order> orders = (List<Order>) orderRepository.findAll();
+		for (int i=0;i<orders.size();i++) {
+			Order elementoLista = orders.get(i);
+			if (elementoLista.customer.idCliente == customerId)
+				band = true;	
+		}
+		return band;
+	}
+
 }

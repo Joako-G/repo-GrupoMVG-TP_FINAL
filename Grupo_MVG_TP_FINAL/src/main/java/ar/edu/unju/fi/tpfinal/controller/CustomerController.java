@@ -19,6 +19,8 @@ import ar.edu.unju.fi.tpfinal.model.Customer;
 import ar.edu.unju.fi.tpfinal.model.Employee;
 import ar.edu.unju.fi.tpfinal.service.ICustomerService;
 import ar.edu.unju.fi.tpfinal.service.IEmployeeService;
+import ar.edu.unju.fi.tpfinal.service.IOrderService;
+import ar.edu.unju.fi.tpfinal.service.IPaymentService;
 
 @Controller
 public class CustomerController {
@@ -34,11 +36,25 @@ public class CustomerController {
 	@Qualifier("employeeServiceMysql")
 	private IEmployeeService employeeService;
 	
+	@Autowired
+	@Qualifier("paymentServiceMysql")
+	private IPaymentService paymentService;
+	
+	@Autowired
+	@Qualifier("orderServiceMysql")
+	private IOrderService orderService;
+	
+	
 	@GetMapping("/cliente-nuevo")
 	public String getNewCustomer(Model model){
 		model.addAttribute("customer", customer);
 		model.addAttribute("employees", employeeService.getEmployees());
 		return "newcustomer";
+	}
+	
+	@GetMapping("/errors")
+	public String getErrorCustomer(){
+		return "errors";
 	}
 	
 	@PostMapping("/cliente-guardar")
@@ -83,9 +99,17 @@ public class CustomerController {
 	
 	@GetMapping("/cliente-eliminar-{idCliente}")
 		public ModelAndView getEliminarClientePage(@PathVariable(name="idCliente")Long idCliente) {
-			ModelAndView model = new ModelAndView("redirect:/clientes");
-			customerService.elimarCustomer(idCliente);
-			return model;
+			if (orderService.existOrderByCustomer(idCliente) == false) {
+				if (paymentService.existPaymentByCustomer(idCliente) == false) {
+					ModelAndView model = new ModelAndView("redirect:/clientes");
+					customerService.elimarCustomer(idCliente);
+					return model;
+				}else {
+					ModelAndView model = new ModelAndView("redirect:/errors");
+					return model;	}
+			}else {
+				ModelAndView model = new ModelAndView("redirect:/errors");
+				return model;
+			}
 		}
-	
 }

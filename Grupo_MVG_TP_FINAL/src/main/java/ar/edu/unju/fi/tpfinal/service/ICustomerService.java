@@ -11,5 +11,6 @@ public interface ICustomerService {
 	public List<Customer> getCustomers();
 	public Customer getCustomer();
 	public Optional<Customer> getCustomerPorId(Long idCliente);
+	public boolean existCustomerPorEmpleado(Integer employeeId);
 	public void elimarCustomer(Long idCliente);
 }

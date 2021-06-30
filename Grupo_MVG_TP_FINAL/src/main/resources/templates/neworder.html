@@ -54,11 +54,7 @@
           
           			<form class="py-3" th:action="@{/orden-guardar}" th:object="${orden}" method="POST">
 
-						<div class="form-group">
-							<label for="id" class="col-form-label">Número de Orden</label>
-							<input type="number" class="form-control" id="id" th:field="*{id}" placeholder="Ingrese número de orden">
-							<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></div>
-						</div>
+						<input type="hidden" th:field="*{id}">
 						
 						<div class="form-row">
 							<div class="form-group col-md-4">

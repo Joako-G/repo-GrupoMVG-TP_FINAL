@@ -1,7 +1,6 @@
 package ar.edu.unju.fi.tpfinal.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -30,7 +29,7 @@ public class OrderDetail implements Serializable{
 	@NotNull
 	@Min(value = 0, message = "El precio no puede ser menor a 0")
 	@Column(name = "priceEach")
-	private BigDecimal precio;
+	private double precio;
 	
 	@NotNull
 	@Column(name = "orderLineNumber")
@@ -42,7 +41,7 @@ public class OrderDetail implements Serializable{
 
 	public OrderDetail(OrderDetailsId id,
 			@NotNull @Min(value = 0, message = "La cantidad no puede ser menor a 0") int cantidad,
-			@NotNull @Min(value = 0, message = "El precio no puede ser menor a 0") BigDecimal precio,
+			@NotNull @Min(value = 0, message = "El precio no puede ser menor a 0") double precio,
 			@NotNull short numeroLinea) {
 		super();
 		this.id = id;
@@ -67,11 +66,11 @@ public class OrderDetail implements Serializable{
 		this.cantidad = cantidad;
 	}
 
-	public BigDecimal getPrecio() {
+	public double getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(BigDecimal precio) {
+	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
 

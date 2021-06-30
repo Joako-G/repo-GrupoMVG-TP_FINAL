@@ -9,6 +9,7 @@ public interface IEmployeeService {
 	
 	void guardarEmployee(Employee employee);
 	public Optional<Employee> getEmployeePorId(Integer id);
+	public boolean existEmpleadoPorEmpleado(Integer employeeId);
 	public List<Employee> getEmployees();
 	void eliminarEmployee(Integer id);
 

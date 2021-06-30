@@ -38,29 +38,29 @@ public class PaymentController {
 	@Qualifier("customerServiceImpMysql")
 	private ICustomerService customerService;
 	
-	@GetMapping("/pagos") //Funciona OK		pagos
+	@GetMapping("/pagos")
 	public ModelAndView getPaymentPage() { 
 		ModelAndView model = new ModelAndView("paymentlist");
 		model.addObject("payments", paymentService.getPayments());
 		return model;
 	}
 	
-	@GetMapping("/pago-nuevo") //Funciona OK
+	@GetMapping("/pago-nuevo") 
 	public String getPaymentPage(Model model) {
 		model.addAttribute("pago",payment);
 		model.addAttribute("clientes",customerService.getCustomers());
 		return "newpayment";
 	}
 	
-	@GetMapping("/pago-borrado") //Funciona OK
+	@GetMapping("/pago-borrado") 
 	public String getPaymentDeletedPage(Model model) {
 		model.addAttribute("pid",paymentid);
 		return "paymentdeleted";
 	}
 
 	
-	@PostMapping("/pago-guardar") //Funciona OK. Sin validaciones
-	public ModelAndView guardarPaymentPage(@Valid @ModelAttribute("payment")Payment payment, BindingResult resultado) {
+	@PostMapping("/pago-guardar") //No funcionan las validaciones(carteles)
+	public ModelAndView guardarPaymentPage(@Valid @ModelAttribute("payment")Payment payment,BindingResult resultado) {
 		ModelAndView model;
 		if(resultado.hasErrors()) {
 			model = new ModelAndView("newpayment");
@@ -76,7 +76,7 @@ public class PaymentController {
 		}
 	}
 	
-	@GetMapping("/pago-editar-{id}-{id2}") //No funciona. Problemas con el id oculto del template newpayment
+	@GetMapping("/pago-editar-{id}-{id2}")
 	public ModelAndView modificarPaymentPage(@PathVariable (value = "id")Long idCliente, @PathVariable (value = "id2")String idCheque) {
 		ModelAndView model = new ModelAndView("newpayment");
 		//Seteo un orderDetailId con los id traidos desde el template
@@ -85,13 +85,13 @@ public class PaymentController {
 		paymentid.setNumeroCheque(idCheque);
 		//busco el orderDetail por el orderDetailId
 		Optional<Payment> payment = paymentService.getPaymentPorId(paymentid);
-		paymentService.eliminarPayment(paymentid);//LINEA AGREGADA PARA CAMBIAR ID Y QUE NO SE DUPLIQUE
+		paymentService.eliminarPayment(paymentid);//LINEA AGREGADA PARA CAMBIAR ID Y QUE NO SE DUPLIQUE 
 		model.addObject("pago",payment);
 		model.addObject("clientes",customerService.getCustomers());
 		return model;
 	}
 	
-	@GetMapping("/pago-eliminar-{id}-{id2}") //Funciona OK
+	@GetMapping("/pago-eliminar-{id}-{id2}")
 	public ModelAndView eliminarPaymentPage(@PathVariable (value = "id")Long idCliente, @PathVariable (value = "id2")String idCheque) {
 		ModelAndView model = new ModelAndView("redirect:/pago-borrado");
 		
