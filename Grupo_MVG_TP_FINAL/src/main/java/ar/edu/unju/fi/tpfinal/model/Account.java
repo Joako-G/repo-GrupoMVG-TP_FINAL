@@ -29,7 +29,6 @@ public class Account {
 	@NotEmpty(message = "Ingrese contraseña")
 	private String password;
 	
-	@NotEmpty(message = "Ingrese rol")
 	private String rol;
 	
 	//Relacion con Employee
@@ -41,7 +40,7 @@ public class Account {
 	}
 	
 	public Account(Long id, @NotEmpty(message = "Ingrese nombre de usuario") String nombreUsuario,
-			@NotEmpty(message = "Ingrese contraseña") String password, @NotEmpty(message = "Ingrese rol") String rol,
+			@NotEmpty(message = "Ingrese contraseña") String password, String rol,
 			@Valid Employee empleado) {
 		super();
 		this.id = id;
