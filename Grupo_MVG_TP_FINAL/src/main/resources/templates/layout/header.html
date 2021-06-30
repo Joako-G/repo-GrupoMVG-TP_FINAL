@@ -37,8 +37,29 @@
 					    	</ul>
 					    </li>
 						<li><a href="contacto">Contáctenos</a></li>
-						<li><a href="logout">Salir</a></li>
+						
+						<li sec:authorize="isAuthenticated()">		    
+								<form th:action="@{/logout}" method="post">
+			    					<spam sec:authentication="name"></spam>
+			    					<input class="btn btn-light" type="submit" value ="logout">
+			 					</form>
+						</li>
+						<!-- 
+						<form th:action="@{/logout}" method="post">
+				  	 		<input class="btn btn-light" type="submit" th:value="${#authentication.getPrincipal().getUsername()}+' - Salir'">
+				  	 	</form>
+						
+						<ul class="navbar-nav mt-2 mt-lg-0">
+							<li class="nav-item">
+								<a class="btn btn-outline-light" href="#" th:href="@{/logout}">
+									<span th:text="${#authentication.getPrincipal().getUsername()}"></span> - <span> Salir </span>
+									<span class="float-right"> <i class="fas fa-sign-out-alt"></i></span>
+								</a>
+							</li>
+						</ul>
+						 -->
 					</ul>
+					
 				</nav><!-- .nav-menu -->
 			</div>
 		</header><!-- End Header -->

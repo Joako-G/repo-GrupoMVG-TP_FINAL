@@ -9,46 +9,52 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import ar.edu.unju.fi.tpfinal.service.imp.UsuarioDetailServiceImp;
+import ar.edu.unju.fi.tpfinal.service.imp.LoginAccountServiceImp;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
-	AutSuccesHandler autSuccesHandler;
-
-	@Autowired
-	UsuarioDetailServiceImp usuarioDetailService;
+	ManejadorAuth autenticacion;
 	
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
-
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(usuarioDetailService).passwordEncoder(passwordEncoder());
-	}
+	String[] resources = new String[] {
+			"/include/**","/assets/**","/css/**","/img/**","/js/**","/layer/**","/webjars/**","/layout/**"
+	};
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.antMatchers("/include/**","/css/**","icons/**","/js/**","/layer/**","/layout/**","/webjars/**").permitAll()
-				.antMatchers("/","/logout").permitAll()
-				.antMatchers("/nuevo-empleado","/guardar-empleado","/empleados","/").hasAnyAuthority("ADMIN")
-				.antMatchers("/productos","/productline-listado","/cliente-nuevo","/cliente-guardar","/").hasAnyAuthority("")
+				.antMatchers(resources).permitAll()
+				.antMatchers("/","/home","/index","/about","/galeria","/equipo","/contacto").permitAll()
+				.antMatchers("/producto-nuevo","/productline-nuevo","/oficina-nueva","/nuevo-empleado","/cliente-nuevo","/orden-nueva","/detalle-nuevo","/pago-nuevo","/").hasAuthority("ADMINISTRADOR")
 				.anyRequest().authenticated()
-			.and()
-				.formLogin().loginPage("/login")
-				.successHandler(autSuccesHandler)
+				.and()
+			.formLogin()
+				.loginPage("/login").permitAll()
+				.successHandler(autenticacion)
 				.failureUrl("/login?error=true")
+				.usernameParameter("username")
+				.passwordParameter("password")
+				.and()
+			.logout()
 				.permitAll()
-			.and()
-				.logout()
-				.logoutUrl("/logout")
-				.logoutSuccessUrl("/logout");
+				.logoutSuccessUrl("/login");
+		//http.csrf().disable();
 	}
 	
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		return encoder;
+	}
+	
+	@Autowired
+	LoginAccountServiceImp userDetailsService;
+	
+	@Autowired
+	protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+	}
 }

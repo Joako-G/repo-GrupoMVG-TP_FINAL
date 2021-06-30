@@ -73,12 +73,11 @@ public class Employee {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "empleado")
 	private List<Customer> clientes = new ArrayList<Customer>();
 	
-	//Relacion con Usuario
-	@Valid
+	//Relacion con Account
 	@Autowired
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_user")
-	private Usuario usuario;
+	@JoinColumn(name = "id_account")
+	private Account cuenta;
 	
 	public Employee() {
 		// TODO Auto-generated constructor stub
@@ -86,7 +85,7 @@ public class Employee {
 	
 	public Employee(Integer id, @NotEmpty(message = "Debe ingresar su apellido") String apellido,
 			@NotEmpty(message = "Debe ingresar su nombre") String nombre, @NotNull String extension,
-			@NotNull String correo, @NotNull String titulo, Office oficina, Employee superior, Usuario usuario) {
+			@NotNull String correo, @NotNull String titulo, Office oficina, Employee superior, Account cuenta) {
 		super();
 		this.id = id;
 		this.apellido = apellido;
@@ -96,7 +95,7 @@ public class Employee {
 		this.titulo = titulo;
 		this.oficina = oficina;
 		this.superior = superior;
-		this.usuario = usuario;
+		this.cuenta = cuenta;
 	}
 
 	public Integer getId() {
@@ -178,11 +177,19 @@ public class Employee {
 	public void setClientes(List<Customer> clientes) {
 		this.clientes = clientes;
 	}
+	
+	public Account getCuenta() {
+		return cuenta;
+	}
+
+	public void setCuenta(Account cuenta) {
+		this.cuenta = cuenta;
+	}
 
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", apellido=" + apellido + ", nombre=" + nombre + ", extension=" + extension
-				+ ", correo=" + correo + ", titulo=" + titulo + ", usuario=" + usuario + "]";
+				+ ", correo=" + correo + ", titulo=" + titulo + ", cuenta=" + cuenta +"]";
 	}
 
 }
