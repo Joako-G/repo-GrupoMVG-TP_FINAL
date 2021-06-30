@@ -25,26 +25,36 @@ class OrderTest {
 	
 	@Test
 	void testGuardarOrder() {
-		Optional<Customer> cliente1 = customerService.getCustomerPorId(Long.valueOf(1));
-		Order orden1 = new Order(Integer.valueOf(10100), LocalDate.of(2021, 6, 12), LocalDate.of(2021, 6, 24), LocalDate.of(2021, 6, 22), "Shipped", null, cliente1.get());
-		orderService.guardarOrder(orden1);
+//		Optional<Customer> cliente1 = customerService.getCustomerPorId(Long.valueOf(1));
+//		Order orden1 = new Order(Integer.valueOf(10100), LocalDate.of(2021, 6, 12), LocalDate.of(2021, 6, 24), LocalDate.of(2021, 6, 22), "Shipped", null, cliente1.get());
+//		orderService.guardarOrder(orden1);
+//		
+//		Order orden2 = new Order(Integer.valueOf(10102), LocalDate.of(2021, 6, 15), LocalDate.of(2021, 6, 24), LocalDate.of(2021, 6, 22), "Shipped", null, cliente1.get());
+//		orderService.guardarOrder(orden2);
+//		
+//		Optional<Customer> cliente2 = customerService.getCustomerPorId(Long.valueOf(5));
+//		Order orden3 = new Order(Integer.valueOf(10103), LocalDate.of(2021, 6, 19), LocalDate.of(2021, 6, 25), LocalDate.of(2021, 6, 20), "Shipped", null, cliente2.get());
+//		orderService.guardarOrder(orden3);
+//		
+//		Order orden4 = new Order(Integer.valueOf(10104), LocalDate.of(2021, 6, 18), LocalDate.of(2021, 6, 27), LocalDate.of(2021, 6, 23), "Shipped", null, cliente2.get());
+//		orderService.guardarOrder(orden4);
+//		
+//		Optional<Customer> cliente3 = customerService.getCustomerPorId(Long.valueOf(3));
+//		Order orden5 = new Order(Integer.valueOf(10105), LocalDate.of(2021, 6, 5), LocalDate.of(2021, 6, 26), LocalDate.of(2021, 6, 20), "Shipped", null, cliente3.get());
+//		orderService.guardarOrder(orden5);
+//		
+//		assertEquals(3, cliente3.get().idCliente);
+//		assertEquals(10105, orden5.getId());
 		
-		Order orden2 = new Order(Integer.valueOf(10102), LocalDate.of(2021, 6, 15), LocalDate.of(2021, 6, 24), LocalDate.of(2021, 6, 22), "Shipped", null, cliente1.get());
-		orderService.guardarOrder(orden2);
+		Optional<Customer> customer1 = customerService.getCustomerPorId((long) 103);
+		System.out.println(customer1);
+		System.out.println("customer 1: "+ orderService.existOrderByCustomer(customer1.get().idCliente));
+		Customer customer2 = new Customer();
+		customer2.setIdCliente((long) 998);
+		System.out.println("customer2: " + orderService.existOrderByCustomer(customer2.idCliente));
 		
-		Optional<Customer> cliente2 = customerService.getCustomerPorId(Long.valueOf(5));
-		Order orden3 = new Order(Integer.valueOf(10103), LocalDate.of(2021, 6, 19), LocalDate.of(2021, 6, 25), LocalDate.of(2021, 6, 20), "Shipped", null, cliente2.get());
-		orderService.guardarOrder(orden3);
 		
-		Order orden4 = new Order(Integer.valueOf(10104), LocalDate.of(2021, 6, 18), LocalDate.of(2021, 6, 27), LocalDate.of(2021, 6, 23), "Shipped", null, cliente2.get());
-		orderService.guardarOrder(orden4);
 		
-		Optional<Customer> cliente3 = customerService.getCustomerPorId(Long.valueOf(3));
-		Order orden5 = new Order(Integer.valueOf(10105), LocalDate.of(2021, 6, 5), LocalDate.of(2021, 6, 26), LocalDate.of(2021, 6, 20), "Shipped", null, cliente3.get());
-		orderService.guardarOrder(orden5);
-		
-		assertEquals(3, cliente3.get().idCliente);
-		assertEquals(10105, orden5.getId());
 	}
 
 }

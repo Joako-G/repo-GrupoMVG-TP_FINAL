@@ -11,6 +11,7 @@ public interface IPaymentService {
 	void guardarPayment(Payment payment);
 	public List<Payment> getPayments();
 	public Optional<Payment> getPaymentPorId(PaymentId id);
+	public boolean existPaymentByCustomer(Long customerId);
 	public void eliminarPayment(PaymentId id);
 	
 }

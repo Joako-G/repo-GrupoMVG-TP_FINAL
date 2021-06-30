@@ -80,6 +80,12 @@ public class OrderDetailController {
 		else {
 			model = new ModelAndView("orderdetaillist");
 			System.out.println(detalle);
+			Optional<Product> prod = productService.getProductPorId(detalle.getId().getProduct().getId());
+			orderDetailsId.setProduct(prod.get());
+			Optional<Order> ord = orderService.getOrderPorId(detalle.getId().getOrder().getId());
+			orderDetailsId.setOrder(ord.get());
+			detalle.setId(orderDetailsId);
+			detalle.setPrecio(detalle.getId().getProduct().getPrecioCompra() * detalle.getCantidad());
 			orderDetailService.guardarOrderDetail(detalle);
 			model.addObject("orderDetails", orderDetailService.getOrderDetails());	
 			return model;

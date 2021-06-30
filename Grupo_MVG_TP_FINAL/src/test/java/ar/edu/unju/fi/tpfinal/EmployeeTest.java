@@ -6,10 +6,13 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import ar.edu.unju.fi.tpfinal.model.Customer;
 import ar.edu.unju.fi.tpfinal.model.Employee;
 import ar.edu.unju.fi.tpfinal.model.Office;
+import ar.edu.unju.fi.tpfinal.service.ICustomerService;
 import ar.edu.unju.fi.tpfinal.service.IEmployeeService;
 import ar.edu.unju.fi.tpfinal.service.IOfficeService;
 
@@ -22,8 +25,13 @@ class EmployeeTest {
 	@Autowired
 	IOfficeService officeService;
 	
+	@Autowired
+	@Qualifier("customerServiceImpMysql")
+	private ICustomerService customerService;
+	
 	@Test
 	void testGuardarEmployee() {
+
 		Optional<Office> oficina1 = officeService.getOfficePorId("1");
 		Optional<Office> oficina2 = officeService.getOfficePorId("5");
 		Optional<Office> oficina3 = officeService.getOfficePorId("4");
@@ -51,10 +59,6 @@ class EmployeeTest {
 		Employee employee5 = new Employee(Integer.valueOf(5), "Bondur", "Gerard", "x5408", "gbondur@classicmodelcars.com", "Sale Manager (EMEA)", oficina3.get(), employee2, null);
 		employeeService.guardarEmployee(employee5);
 		
-		assertEquals("Murphy",employee1.getApellido());
-		assertEquals("1",oficina1.get().getId());
-		assertEquals("5",oficina2.get().getId());
-		assertEquals("4",oficina3.get().getId());
 	}
 
 }
